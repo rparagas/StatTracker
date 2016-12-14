@@ -1,26 +1,361 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Kby-Ab-jhP">
+    <device id="ipad9_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="MainViewController" customModule="StatTracker_Basketball" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbI-zT-zku">
+                                <rect key="frame" x="449" y="508" width="126" height="30"/>
+                                <state key="normal" title="Game Mangement"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubS-Zu-0t9">
+                                <rect key="frame" x="447" y="370" width="131" height="30"/>
+                                <state key="normal" title="Team Management"/>
+                                <connections>
+                                    <segue destination="ZwY-ps-5iQ" kind="show" identifier="teamManagementSegue" id="RwF-Bv-jRG"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StatTracker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7DA-JH-I8Y">
+                                <rect key="frame" x="468" y="171" width="88" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="lbI-zT-zku" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4HZ-oL-Nxz"/>
+                            <constraint firstItem="7DA-JH-I8Y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8ld-2M-pKm"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ubS-Zu-0t9" secondAttribute="bottom" constant="368" id="Qdd-0Z-sMc"/>
+                            <constraint firstItem="lbI-zT-zku" firstAttribute="top" secondItem="ubS-Zu-0t9" secondAttribute="bottom" constant="108" id="ZA0-8S-txy"/>
+                            <constraint firstItem="7DA-JH-I8Y" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="107" id="aQp-fL-X71"/>
+                            <constraint firstItem="ubS-Zu-0t9" firstAttribute="top" secondItem="7DA-JH-I8Y" secondAttribute="bottom" constant="178.5" id="apQ-pv-xEJ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lbI-zT-zku" secondAttribute="bottom" constant="230" id="iGj-4c-k6T"/>
+                            <constraint firstItem="ubS-Zu-0t9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iLQ-0H-bWu"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="hje-P4-msb"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="283" y="39"/>
+        </scene>
+        <!--Team View Controller-->
+        <scene sceneID="mOU-El-1sh">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="ZwY-ps-5iQ" customClass="TeamViewController" customModule="StatTracker_Basketball" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gG8-MH-rsZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="kJO-5Z-QJT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b9G-tF-408">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="62B-sV-qCY">
+                                <rect key="frame" x="0.0" y="72" width="300" height="696"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="nZq-dg-glm"/>
+                                </constraints>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ok2-nw-W9N">
+                                <rect key="frame" x="631" y="167" width="92" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wxc-62-KHW">
+                                <rect key="frame" x="458" y="253" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxF-Y3-XdJ">
+                                <rect key="frame" x="458" y="327" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Gp-Yf-ZSz">
+                                <rect key="frame" x="458" y="401" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rK4-Ol-y3F">
+                                <rect key="frame" x="458" y="477" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eje-7B-BkG">
+                                <rect key="frame" x="458" y="556" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXm-x1-OBo">
+                                <rect key="frame" x="788" y="253" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUE-4m-AN3">
+                                <rect key="frame" x="788" y="327" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ud-0t-Bcl">
+                                <rect key="frame" x="788" y="401" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFg-3v-DAC">
+                                <rect key="frame" x="788" y="477" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLA-b6-1tO">
+                                <rect key="frame" x="788" y="556" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Id-23-zlK">
+                                <rect key="frame" x="640" y="643" width="75" height="30"/>
+                                <state key="normal" title="Edit Roster"/>
+                                <connections>
+                                    <action selector="editRosterTapped:" destination="ZwY-ps-5iQ" eventType="touchUpInside" id="bCx-sg-lB3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NLA-b6-1tO" firstAttribute="top" secondItem="UFg-3v-DAC" secondAttribute="bottom" constant="58" id="2Ti-Vv-7tp"/>
+                            <constraint firstItem="hUE-4m-AN3" firstAttribute="top" secondItem="zXm-x1-OBo" secondAttribute="bottom" constant="53" id="4Mf-1E-kBk"/>
+                            <constraint firstItem="zXm-x1-OBo" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" constant="330.5" id="5Cc-Lq-QlW"/>
+                            <constraint firstItem="62B-sV-qCY" firstAttribute="leading" secondItem="b9G-tF-408" secondAttribute="leading" id="Ak6-pw-FxK"/>
+                            <constraint firstItem="rK4-Ol-y3F" firstAttribute="top" secondItem="3Gp-Yf-ZSz" secondAttribute="bottom" constant="55" id="Ce3-iM-B03"/>
+                            <constraint firstItem="eje-7B-BkG" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" id="Lbc-th-ad7"/>
+                            <constraint firstItem="UFg-3v-DAC" firstAttribute="top" secondItem="1ud-0t-Bcl" secondAttribute="bottom" constant="55" id="Llu-yw-d6e"/>
+                            <constraint firstItem="hUE-4m-AN3" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" constant="330.5" id="Lps-z3-XSR"/>
+                            <constraint firstItem="1ud-0t-Bcl" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" constant="330.5" id="Lyk-Wh-nhA"/>
+                            <constraint firstItem="Wxc-62-KHW" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" id="QkU-Y3-xYY"/>
+                            <constraint firstItem="ok2-nw-W9N" firstAttribute="top" secondItem="gG8-MH-rsZ" secondAttribute="bottom" constant="103" id="VQ8-vo-Mf2"/>
+                            <constraint firstItem="rK4-Ol-y3F" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" id="VcV-r9-1ya"/>
+                            <constraint firstItem="2Id-23-zlK" firstAttribute="top" secondItem="ok2-nw-W9N" secondAttribute="bottom" constant="455" id="VxO-DI-v7n"/>
+                            <constraint firstItem="bxF-Y3-XdJ" firstAttribute="top" secondItem="Wxc-62-KHW" secondAttribute="bottom" constant="53" id="WOL-VK-PZ9"/>
+                            <constraint firstItem="2Id-23-zlK" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" constant="165.5" id="WkR-Gz-PBQ"/>
+                            <constraint firstItem="62B-sV-qCY" firstAttribute="top" secondItem="gG8-MH-rsZ" secondAttribute="bottom" constant="8" symbolic="YES" id="XJh-bh-pGW"/>
+                            <constraint firstItem="zXm-x1-OBo" firstAttribute="top" secondItem="ok2-nw-W9N" secondAttribute="bottom" constant="65" id="Xwi-xi-Z8M"/>
+                            <constraint firstItem="NLA-b6-1tO" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" constant="330.5" id="aTI-bd-zXk"/>
+                            <constraint firstItem="3Gp-Yf-ZSz" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" id="ayX-9H-xYj"/>
+                            <constraint firstItem="3Gp-Yf-ZSz" firstAttribute="top" secondItem="bxF-Y3-XdJ" secondAttribute="bottom" constant="53" id="dqZ-OC-YdQ"/>
+                            <constraint firstItem="62B-sV-qCY" firstAttribute="bottom" secondItem="kJO-5Z-QJT" secondAttribute="top" id="erC-gR-EBy"/>
+                            <constraint firstItem="eje-7B-BkG" firstAttribute="top" secondItem="rK4-Ol-y3F" secondAttribute="bottom" constant="58" id="gBo-9X-MFf"/>
+                            <constraint firstItem="Wxc-62-KHW" firstAttribute="top" secondItem="ok2-nw-W9N" secondAttribute="bottom" constant="65" id="hGP-Sd-5i3"/>
+                            <constraint firstItem="kJO-5Z-QJT" firstAttribute="top" secondItem="2Id-23-zlK" secondAttribute="bottom" constant="95" id="iny-iP-NqD"/>
+                            <constraint firstItem="UFg-3v-DAC" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" constant="330.5" id="kze-de-W3S"/>
+                            <constraint firstItem="1ud-0t-Bcl" firstAttribute="top" secondItem="hUE-4m-AN3" secondAttribute="bottom" constant="53" id="s2I-va-opy"/>
+                            <constraint firstItem="ok2-nw-W9N" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" constant="165" id="swU-vI-9eE"/>
+                            <constraint firstItem="bxF-Y3-XdJ" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" id="xt8-sy-fdX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ld2-4l-tBV">
+                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="yrP-Nw-0x4">
+                            <connections>
+                                <action selector="addTeamTapped:" destination="ZwY-ps-5iQ" id="gQU-qY-Oaw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="playerEightLabel" destination="1ud-0t-Bcl" id="VrI-W2-h3S"/>
+                        <outlet property="playerFiveLabel" destination="eje-7B-BkG" id="4f7-dx-m1G"/>
+                        <outlet property="playerFourLabel" destination="rK4-Ol-y3F" id="8qO-Dz-sFk"/>
+                        <outlet property="playerNineLabel" destination="UFg-3v-DAC" id="fve-Jb-gre"/>
+                        <outlet property="playerOneLabel" destination="Wxc-62-KHW" id="G9v-5G-xp8"/>
+                        <outlet property="playerSevenLabel" destination="hUE-4m-AN3" id="IgU-VB-hZf"/>
+                        <outlet property="playerSixLabel" destination="zXm-x1-OBo" id="A78-iF-vae"/>
+                        <outlet property="playerTenLabel" destination="NLA-b6-1tO" id="HXb-PS-QmD"/>
+                        <outlet property="playerThreeLabel" destination="3Gp-Yf-ZSz" id="Eac-dI-uiI"/>
+                        <outlet property="playerTwoLabel" destination="bxF-Y3-XdJ" id="eGM-4Z-dL3"/>
+                        <outlet property="teamNameLabel" destination="ok2-nw-W9N" id="Laa-dY-BnI"/>
+                        <outlet property="teamsTableView" destination="62B-sV-qCY" id="2yM-Kt-7De"/>
+                        <segue destination="5J8-PX-AGg" kind="show" identifier="editRosterSegue" id="sFW-PF-2S7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fMx-LQ-IC6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1425" y="-486.71875"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="j2M-bl-wdw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kby-Ab-jhP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qa0-Gg-0sS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Wt3-4D-Cg2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M3F-on-UKt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-914" y="39"/>
+        </scene>
+        <!--Team View Controller-->
+        <scene sceneID="QDf-jj-l2e">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="5J8-PX-AGg" customClass="TeamViewController" customModule="StatTracker_Basketball" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wo2-kR-8D2"/>
+                        <viewControllerLayoutGuide type="bottom" id="fx1-1E-Yho"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aj8-OU-DOp">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ejf-EI-P0Y">
+                                <rect key="frame" x="0.0" y="72" width="300" height="696"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="Xb3-O0-4nY"/>
+                                </constraints>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TO8-Jg-dEY">
+                                <rect key="frame" x="631" y="167" width="92" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9x-wb-rmh">
+                                <rect key="frame" x="458" y="253" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKd-eL-XZm">
+                                <rect key="frame" x="458" y="327" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXh-q1-HWM">
+                                <rect key="frame" x="458" y="401" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UnK-Hc-Ocz">
+                                <rect key="frame" x="458" y="477" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGx-PQ-ZX0">
+                                <rect key="frame" x="458" y="556" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3H-n6-YuS">
+                                <rect key="frame" x="788" y="253" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVG-p7-1KH">
+                                <rect key="frame" x="788" y="327" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wB-Kv-jht">
+                                <rect key="frame" x="788" y="401" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTU-b8-ov7">
+                                <rect key="frame" x="788" y="477" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7c-Zw-1ER">
+                                <rect key="frame" x="788" y="556" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCq-fs-ii3">
+                                <rect key="frame" x="640" y="643" width="75" height="30"/>
+                                <state key="normal" title="Edit Roster"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="L3H-n6-YuS" firstAttribute="top" secondItem="TO8-Jg-dEY" secondAttribute="bottom" constant="65" id="18y-XP-MRP"/>
+                            <constraint firstItem="qVG-p7-1KH" firstAttribute="top" secondItem="L3H-n6-YuS" secondAttribute="bottom" constant="53" id="3Jl-Bc-VOA"/>
+                            <constraint firstItem="iGx-PQ-ZX0" firstAttribute="centerX" secondItem="aj8-OU-DOp" secondAttribute="centerX" id="4XJ-nh-QFd"/>
+                            <constraint firstItem="wXh-q1-HWM" firstAttribute="top" secondItem="zKd-eL-XZm" secondAttribute="bottom" constant="53" id="69x-tc-eVH"/>
+                            <constraint firstItem="fx1-1E-Yho" firstAttribute="top" secondItem="ZCq-fs-ii3" secondAttribute="bottom" constant="95" id="85D-O3-sW9"/>
+                            <constraint firstItem="wXh-q1-HWM" firstAttribute="centerX" secondItem="aj8-OU-DOp" secondAttribute="centerX" id="B6A-qJ-1Hg"/>
+                            <constraint firstItem="zKd-eL-XZm" firstAttribute="top" secondItem="T9x-wb-rmh" secondAttribute="bottom" constant="53" id="CMh-Al-rK7"/>
+                            <constraint firstItem="c7c-Zw-1ER" firstAttribute="top" secondItem="dTU-b8-ov7" secondAttribute="bottom" constant="58" id="CpP-zE-5Bp"/>
+                            <constraint firstItem="dTU-b8-ov7" firstAttribute="centerX" secondItem="aj8-OU-DOp" secondAttribute="centerX" constant="330.5" id="E2a-2r-WVc"/>
+                            <constraint firstItem="iGx-PQ-ZX0" firstAttribute="top" secondItem="UnK-Hc-Ocz" secondAttribute="bottom" constant="58" id="H31-xM-NtJ"/>
+                            <constraint firstItem="ZCq-fs-ii3" firstAttribute="centerX" secondItem="aj8-OU-DOp" secondAttribute="centerX" constant="165.5" id="LaH-Gk-21K"/>
+                            <constraint firstItem="TO8-Jg-dEY" firstAttribute="centerX" secondItem="aj8-OU-DOp" secondAttribute="centerX" constant="165" id="MZL-ew-qZz"/>
+                            <constraint firstItem="ejf-EI-P0Y" firstAttribute="bottom" secondItem="fx1-1E-Yho" secondAttribute="top" id="Mxo-Vo-9YK"/>
+                            <constraint firstItem="ZCq-fs-ii3" firstAttribute="top" secondItem="TO8-Jg-dEY" secondAttribute="bottom" constant="455" id="PyI-uZ-e7E"/>
+                            <constraint firstItem="TO8-Jg-dEY" firstAttribute="top" secondItem="wo2-kR-8D2" secondAttribute="bottom" constant="103" id="Thf-CT-7KY"/>
+                            <constraint firstItem="L3H-n6-YuS" firstAttribute="centerX" secondItem="aj8-OU-DOp" secondAttribute="centerX" constant="330.5" id="adI-4J-Hbg"/>
+                            <constraint firstItem="UnK-Hc-Ocz" firstAttribute="centerX" secondItem="aj8-OU-DOp" secondAttribute="centerX" id="cXT-oN-Q3Z"/>
+                            <constraint firstItem="T9x-wb-rmh" firstAttribute="centerX" secondItem="aj8-OU-DOp" secondAttribute="centerX" id="diG-9x-VhW"/>
+                            <constraint firstItem="ejf-EI-P0Y" firstAttribute="leading" secondItem="aj8-OU-DOp" secondAttribute="leading" id="gQp-l3-loD"/>
+                            <constraint firstItem="UnK-Hc-Ocz" firstAttribute="top" secondItem="wXh-q1-HWM" secondAttribute="bottom" constant="55" id="jET-tW-7Dl"/>
+                            <constraint firstItem="6wB-Kv-jht" firstAttribute="top" secondItem="qVG-p7-1KH" secondAttribute="bottom" constant="53" id="kS5-Id-uPf"/>
+                            <constraint firstItem="T9x-wb-rmh" firstAttribute="top" secondItem="TO8-Jg-dEY" secondAttribute="bottom" constant="65" id="lXx-ye-oIy"/>
+                            <constraint firstItem="dTU-b8-ov7" firstAttribute="top" secondItem="6wB-Kv-jht" secondAttribute="bottom" constant="55" id="ngz-yD-m0E"/>
+                            <constraint firstItem="zKd-eL-XZm" firstAttribute="centerX" secondItem="aj8-OU-DOp" secondAttribute="centerX" id="nto-Hu-fF2"/>
+                            <constraint firstItem="ejf-EI-P0Y" firstAttribute="top" secondItem="wo2-kR-8D2" secondAttribute="bottom" constant="8" symbolic="YES" id="qco-Mv-yPW"/>
+                            <constraint firstItem="qVG-p7-1KH" firstAttribute="centerX" secondItem="aj8-OU-DOp" secondAttribute="centerX" constant="330.5" id="rXH-5e-aEX"/>
+                            <constraint firstItem="c7c-Zw-1ER" firstAttribute="centerX" secondItem="aj8-OU-DOp" secondAttribute="centerX" constant="330.5" id="upy-k7-TBt"/>
+                            <constraint firstItem="6wB-Kv-jht" firstAttribute="centerX" secondItem="aj8-OU-DOp" secondAttribute="centerX" constant="330.5" id="vrX-kg-F6r"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="K6O-F8-mOn">
+                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="jgY-uh-cjU"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J5h-em-Vc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2696" y="-487"/>
         </scene>
     </scenes>
 </document>

@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		A617C9091E0035410077805E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A617C9081E0035410077805E /* AppDelegate.swift */; };
-		A617C90B1E0035410077805E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A617C90A1E0035410077805E /* ViewController.swift */; };
+		A617C90B1E0035410077805E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A617C90A1E0035410077805E /* MainViewController.swift */; };
 		A617C90E1E0035410077805E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A617C90C1E0035410077805E /* Main.storyboard */; };
 		A617C9111E0035410077805E /* StatTracker_Basketball.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A617C90F1E0035410077805E /* StatTracker_Basketball.xcdatamodeld */; };
 		A617C9131E0035410077805E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A617C9121E0035410077805E /* Assets.xcassets */; };
 		A617C9161E0035410077805E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A617C9141E0035410077805E /* LaunchScreen.storyboard */; };
+		A617C91E1E003C6E0077805E /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A617C91D1E003C6E0077805E /* TeamViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A617C9051E0035410077805E /* StatTracker-Basketball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StatTracker-Basketball.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A617C9081E0035410077805E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A617C90A1E0035410077805E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A617C90A1E0035410077805E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A617C90D1E0035410077805E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A617C9101E0035410077805E /* StatTracker_Basketball.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StatTracker_Basketball.xcdatamodel; sourceTree = "<group>"; };
 		A617C9121E0035410077805E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A617C9151E0035410077805E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A617C9171E0035410077805E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A617C91D1E003C6E0077805E /* TeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamViewController.swift; path = ../TeamViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +59,8 @@
 			isa = PBXGroup;
 			children = (
 				A617C9081E0035410077805E /* AppDelegate.swift */,
-				A617C90A1E0035410077805E /* ViewController.swift */,
+				A617C90A1E0035410077805E /* MainViewController.swift */,
+				A617C91D1E003C6E0077805E /* TeamViewController.swift */,
 				A617C90C1E0035410077805E /* Main.storyboard */,
 				A617C9121E0035410077805E /* Assets.xcassets */,
 				A617C9141E0035410077805E /* LaunchScreen.storyboard */,
@@ -141,7 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A617C9111E0035410077805E /* StatTracker_Basketball.xcdatamodeld in Sources */,
-				A617C90B1E0035410077805E /* ViewController.swift in Sources */,
+				A617C91E1E003C6E0077805E /* TeamViewController.swift in Sources */,
+				A617C90B1E0035410077805E /* MainViewController.swift in Sources */,
 				A617C9091E0035410077805E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
