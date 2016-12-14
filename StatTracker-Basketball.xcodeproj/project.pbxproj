@@ -14,6 +14,8 @@
 		A617C9131E0035410077805E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A617C9121E0035410077805E /* Assets.xcassets */; };
 		A617C9161E0035410077805E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A617C9141E0035410077805E /* LaunchScreen.storyboard */; };
 		A617C91E1E003C6E0077805E /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A617C91D1E003C6E0077805E /* TeamViewController.swift */; };
+		A6BC03551E0124AF00CB843B /* AddTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BC03541E0124AF00CB843B /* AddTeamViewController.swift */; };
+		A6BC03571E01366F00CB843B /* RosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BC03561E01366F00CB843B /* RosterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		A617C9151E0035410077805E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A617C9171E0035410077805E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A617C91D1E003C6E0077805E /* TeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamViewController.swift; path = ../TeamViewController.swift; sourceTree = "<group>"; };
+		A6BC03541E0124AF00CB843B /* AddTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTeamViewController.swift; path = ../AddTeamViewController.swift; sourceTree = "<group>"; };
+		A6BC03561E01366F00CB843B /* RosterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RosterViewController.swift; path = ../RosterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 			children = (
 				A617C9081E0035410077805E /* AppDelegate.swift */,
 				A617C90A1E0035410077805E /* MainViewController.swift */,
+				A6BC03541E0124AF00CB843B /* AddTeamViewController.swift */,
+				A6BC03561E01366F00CB843B /* RosterViewController.swift */,
 				A617C91D1E003C6E0077805E /* TeamViewController.swift */,
 				A617C90C1E0035410077805E /* Main.storyboard */,
 				A617C9121E0035410077805E /* Assets.xcassets */,
@@ -143,10 +149,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6BC03551E0124AF00CB843B /* AddTeamViewController.swift in Sources */,
 				A617C9111E0035410077805E /* StatTracker_Basketball.xcdatamodeld in Sources */,
 				A617C91E1E003C6E0077805E /* TeamViewController.swift in Sources */,
 				A617C90B1E0035410077805E /* MainViewController.swift in Sources */,
 				A617C9091E0035410077805E /* AppDelegate.swift in Sources */,
+				A6BC03571E01366F00CB843B /* RosterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +318,7 @@
 				A617C91C1E0035410077805E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

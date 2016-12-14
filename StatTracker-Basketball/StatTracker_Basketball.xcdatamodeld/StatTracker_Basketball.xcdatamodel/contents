@@ -39,15 +39,17 @@
         <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="players" inverseEntity="Team" syncable="YES"/>
     </entity>
     <entity name="Team" representedClassName="Team" syncable="YES" codeGenerationType="class">
+        <attribute name="teamDivision" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="teamName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teamType" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="games" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GameTeam" inverseName="team" inverseEntity="GameTeam" syncable="YES"/>
         <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player" inverseName="team" inverseEntity="Player" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Player" positionX="-353" positionY="170" width="128" height="133"/>
-        <element name="Team" positionX="-522" positionY="57" width="128" height="88"/>
         <element name="Game" positionX="54" positionY="-169" width="128" height="133"/>
         <element name="GamePlayer" positionX="-126" positionY="36" width="128" height="268"/>
         <element name="GameTeam" positionX="-335" positionY="-214" width="128" height="88"/>
+        <element name="Player" positionX="-353" positionY="170" width="128" height="133"/>
+        <element name="Team" positionX="-522" positionY="57" width="128" height="118"/>
     </elements>
 </model>
