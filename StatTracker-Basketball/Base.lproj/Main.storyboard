@@ -25,14 +25,14 @@
                                 <rect key="frame" x="449" y="508" width="126" height="30"/>
                                 <state key="normal" title="Game Mangement"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubS-Zu-0t9">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubS-Zu-0t9">
                                 <rect key="frame" x="447" y="370" width="131" height="30"/>
                                 <state key="normal" title="Team Management"/>
                                 <connections>
                                     <segue destination="ZwY-ps-5iQ" kind="show" identifier="teamManagementSegue" id="RwF-Bv-jRG"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StatTracker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7DA-JH-I8Y">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="StatTracker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7DA-JH-I8Y">
                                 <rect key="frame" x="468" y="171" width="88" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -330,6 +330,7 @@
                         <outlet property="positionTextField" destination="9lJ-Yd-Oko" id="51t-4U-mTa"/>
                         <outlet property="rosterTableView" destination="ejf-EI-P0Y" id="EcB-W2-y9O"/>
                         <outlet property="updateButton" destination="tuG-2C-TCF" id="hah-cl-xGb"/>
+                        <segue destination="WyE-c6-Aap" kind="show" id="fwo-so-Ito"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J5h-em-Vc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -340,6 +341,10 @@
         <scene sceneID="O9U-TT-5IY">
             <objects>
                 <viewController id="PYB-zM-fKv" customClass="AddTeamViewController" customModule="StatTracker_Basketball" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lXH-lN-ezx"/>
+                        <viewControllerLayoutGuide type="bottom" id="ALg-ay-CJs"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="l1a-2Y-s8G">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -406,6 +411,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DJY-Kq-nka" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1850" y="-1195"/>
+        </scene>
+        <!--Add Player View Controller-->
+        <scene sceneID="Ore-2Z-Emz">
+            <objects>
+                <viewController id="WyE-c6-Aap" customClass="AddPlayerViewController" customModule="StatTracker_Basketball" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mRY-JR-dXo"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Dr-Ow-xZ3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rCT-zE-UaO">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ONc-Cb-oj1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2558" y="-1195"/>
         </scene>
     </scenes>
 </document>

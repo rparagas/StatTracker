@@ -7,19 +7,40 @@
 //
 
 import UIKit
+import CoreData
 
 class MainViewController: UIViewController {
+    
+    var selectedRoster = [Player]()
+    var selectedTeam : Team? = nil
+    var teams = [Team]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func getPlayers(){
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Player")
+        fetchRequest.predicate = NSPredicate(format: "team.teamName == %@", (selectedTeam?.teamName)!)
+        do {
+            selectedRoster = try context.fetch(fetchRequest) as! [Player]
+        } catch {
+            print("error")
+        }
     }
-
+    
+    func getTeams(){
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        do {
+            teams = try context.fetch(Team.fetchRequest()) as! [Team]
+        } catch {
+            print("error")
+        }
+    }
+    
+    
 
 }
 
