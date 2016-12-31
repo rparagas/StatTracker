@@ -32,7 +32,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         updateButton.isHidden = true
         rosterTableView.dataSource = self
         rosterTableView.delegate = self
-        getRoster()
+        //getRoster()
         rosterTableView.reloadData()
         // Do any additional setup after loading the view.
     }
@@ -44,13 +44,14 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         let player = roster[indexPath.row]
-        cell.textLabel?.text = "#\(player.playerNumber!). \(player.playerFirstName!) \(player.playerLastName!)"
+        cell.textLabel?.text = "#\(player.playerNumber). \(player.playerFirstName) \(player.playerLastName)"
         return cell
     }
     
     override func viewWillAppear(_ animated: Bool) {
     }
     
+    /* FIX
     func getRoster() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Player")
@@ -61,6 +62,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             print("error")
         }
     }
+    */
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedPlayer = roster[indexPath.row]
@@ -75,6 +77,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         updateButton.isHidden = false
     }
 
+    /* FIX
     @IBAction func updateTapped(_ sender: Any) {
         selectedPlayer?.playerFirstName = firstNameTextField.text
         selectedPlayer?.playerLastName = lastNameTextField.text
@@ -83,4 +86,5 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         rosterTableView.reloadData()
     }
+    */
 }

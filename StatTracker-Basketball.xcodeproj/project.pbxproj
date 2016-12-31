@@ -14,20 +14,12 @@
 		A617C9131E0035410077805E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A617C9121E0035410077805E /* Assets.xcassets */; };
 		A617C9161E0035410077805E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A617C9141E0035410077805E /* LaunchScreen.storyboard */; };
 		A617C91E1E003C6E0077805E /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A617C91D1E003C6E0077805E /* TeamViewController.swift */; };
-		A67DA54E1E090EF700191A27 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67DA5491E090EF700191A27 /* Player+CoreDataClass.swift */; };
-		A67DA54F1E090EF700191A27 /* Team+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67DA54A1E090EF700191A27 /* Team+CoreDataClass.swift */; };
-		A67DA5501E090EF700191A27 /* Game+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67DA54B1E090EF700191A27 /* Game+CoreDataClass.swift */; };
-		A67DA5511E090EF700191A27 /* GamePlayer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67DA54C1E090EF700191A27 /* GamePlayer+CoreDataClass.swift */; };
-		A67DA5521E090EF700191A27 /* GameTeam+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67DA54D1E090EF700191A27 /* GameTeam+CoreDataClass.swift */; };
-		A67DA5581E090F0000191A27 /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67DA5531E090F0000191A27 /* Player+CoreDataProperties.swift */; };
-		A67DA5591E090F0000191A27 /* Team+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67DA5541E090F0000191A27 /* Team+CoreDataProperties.swift */; };
-		A67DA55A1E090F0000191A27 /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67DA5551E090F0000191A27 /* Game+CoreDataProperties.swift */; };
-		A67DA55B1E090F0000191A27 /* GamePlayer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67DA5561E090F0000191A27 /* GamePlayer+CoreDataProperties.swift */; };
-		A67DA55C1E090F0000191A27 /* GameTeam+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67DA5571E090F0000191A27 /* GameTeam+CoreDataProperties.swift */; };
 		A67DA55E1E090FF500191A27 /* AddPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67DA55D1E090FF500191A27 /* AddPlayerViewController.swift */; };
 		A689B50C1E07CC5100EE1E75 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A689B50B1E07CC5100EE1E75 /* GoogleService-Info.plist */; };
 		A6BC03551E0124AF00CB843B /* AddTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BC03541E0124AF00CB843B /* AddTeamViewController.swift */; };
 		A6BC03571E01366F00CB843B /* RosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BC03561E01366F00CB843B /* RosterViewController.swift */; };
+		A6C9A4771E17707B00057381 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9A4761E17707B00057381 /* Team.swift */; };
+		A6C9A4791E1770D900057381 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9A4781E1770D900057381 /* Player.swift */; };
 		B09A1348139010B8A6C53C4C /* Pods_StatTracker_Basketball.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0563C83DB25A2EE67BCFEBCE /* Pods_StatTracker_Basketball.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,20 +36,12 @@
 		A617C9151E0035410077805E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A617C9171E0035410077805E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A617C91D1E003C6E0077805E /* TeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamViewController.swift; path = ../TeamViewController.swift; sourceTree = "<group>"; };
-		A67DA5491E090EF700191A27 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A67DA54A1E090EF700191A27 /* Team+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Team+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A67DA54B1E090EF700191A27 /* Game+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A67DA54C1E090EF700191A27 /* GamePlayer+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GamePlayer+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A67DA54D1E090EF700191A27 /* GameTeam+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GameTeam+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A67DA5531E090F0000191A27 /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		A67DA5541E090F0000191A27 /* Team+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Team+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		A67DA5551E090F0000191A27 /* Game+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		A67DA5561E090F0000191A27 /* GamePlayer+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GamePlayer+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		A67DA5571E090F0000191A27 /* GameTeam+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GameTeam+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A67DA55D1E090FF500191A27 /* AddPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPlayerViewController.swift; sourceTree = "<group>"; };
 		A689B50B1E07CC5100EE1E75 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A6BC03541E0124AF00CB843B /* AddTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTeamViewController.swift; path = ../AddTeamViewController.swift; sourceTree = "<group>"; };
 		A6BC03561E01366F00CB843B /* RosterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RosterViewController.swift; path = ../RosterViewController.swift; sourceTree = "<group>"; };
+		A6C9A4761E17707B00057381 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		A6C9A4781E1770D900057381 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,9 +111,9 @@
 			isa = PBXGroup;
 			children = (
 				A617C90A1E0035410077805E /* MainViewController.swift */,
+				A617C91D1E003C6E0077805E /* TeamViewController.swift */,
 				A6BC03541E0124AF00CB843B /* AddTeamViewController.swift */,
 				A6BC03561E01366F00CB843B /* RosterViewController.swift */,
-				A617C91D1E003C6E0077805E /* TeamViewController.swift */,
 				A67DA55D1E090FF500191A27 /* AddPlayerViewController.swift */,
 			);
 			name = Controller;
@@ -138,26 +122,10 @@
 		A67DA5291E090D4500191A27 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A67DA5491E090EF700191A27 /* Player+CoreDataClass.swift */,
-				A67DA54A1E090EF700191A27 /* Team+CoreDataClass.swift */,
-				A67DA54B1E090EF700191A27 /* Game+CoreDataClass.swift */,
-				A67DA54C1E090EF700191A27 /* GamePlayer+CoreDataClass.swift */,
-				A67DA54D1E090EF700191A27 /* GameTeam+CoreDataClass.swift */,
-				A67DA52A1E090D4E00191A27 /* Generated */,
+				A6C9A4761E17707B00057381 /* Team.swift */,
+				A6C9A4781E1770D900057381 /* Player.swift */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		A67DA52A1E090D4E00191A27 /* Generated */ = {
-			isa = PBXGroup;
-			children = (
-				A67DA5531E090F0000191A27 /* Player+CoreDataProperties.swift */,
-				A67DA5541E090F0000191A27 /* Team+CoreDataProperties.swift */,
-				A67DA5551E090F0000191A27 /* Game+CoreDataProperties.swift */,
-				A67DA5561E090F0000191A27 /* GamePlayer+CoreDataProperties.swift */,
-				A67DA5571E090F0000191A27 /* GameTeam+CoreDataProperties.swift */,
-			);
-			name = Generated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,21 +255,13 @@
 			files = (
 				A6BC03551E0124AF00CB843B /* AddTeamViewController.swift in Sources */,
 				A617C9111E0035410077805E /* StatTracker_Basketball.xcdatamodeld in Sources */,
-				A67DA5581E090F0000191A27 /* Player+CoreDataProperties.swift in Sources */,
 				A617C91E1E003C6E0077805E /* TeamViewController.swift in Sources */,
-				A67DA5591E090F0000191A27 /* Team+CoreDataProperties.swift in Sources */,
-				A67DA5521E090EF700191A27 /* GameTeam+CoreDataClass.swift in Sources */,
 				A617C90B1E0035410077805E /* MainViewController.swift in Sources */,
-				A67DA55A1E090F0000191A27 /* Game+CoreDataProperties.swift in Sources */,
-				A67DA55C1E090F0000191A27 /* GameTeam+CoreDataProperties.swift in Sources */,
+				A6C9A4771E17707B00057381 /* Team.swift in Sources */,
 				A617C9091E0035410077805E /* AppDelegate.swift in Sources */,
-				A67DA55B1E090F0000191A27 /* GamePlayer+CoreDataProperties.swift in Sources */,
-				A67DA54E1E090EF700191A27 /* Player+CoreDataClass.swift in Sources */,
-				A67DA54F1E090EF700191A27 /* Team+CoreDataClass.swift in Sources */,
 				A67DA55E1E090FF500191A27 /* AddPlayerViewController.swift in Sources */,
+				A6C9A4791E1770D900057381 /* Player.swift in Sources */,
 				A6BC03571E01366F00CB843B /* RosterViewController.swift in Sources */,
-				A67DA5511E090EF700191A27 /* GamePlayer+CoreDataClass.swift in Sources */,
-				A67DA5501E090EF700191A27 /* Game+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
