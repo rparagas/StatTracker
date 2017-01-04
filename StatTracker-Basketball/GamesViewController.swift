@@ -31,7 +31,6 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         // Do any additional setup after loading the view.
     }
     
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -50,6 +49,23 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         if selectedTeam != nil {
             newGameButton.isEnabled = true
         }
+        
+        if selectedTeamGames.isEmpty != true {
+            selectedTeamGames.removeAll()
+        }
+        FIRDatabase.database().reference().child("teams").child((selectedTeam?.teamID)!).child("games").observe(FIRDataEventType.childAdded, with: {(snapshot) in
+            let game = Game()
+            
+            game.gameID = snapshot.key
+            game.gameDateTime = (snapshot.value as! NSDictionary)["gameDate"] as! String
+            game.gameNumFouls = (snapshot.value as! NSDictionary)["gameFouls"] as! String
+            game.gameNumPeriods = (snapshot.value as! NSDictionary)["gameNumPeriods"] as! String
+            game.gameOppTeam = (snapshot.value as! NSDictionary)["gameOpponent"] as! String
+            game.gamePeriodLength = (snapshot.value as! NSDictionary)["gamePeriodLength"] as! String
+            game.gameStatus = (snapshot.value as! NSDictionary)["gameStatus"] as! String
+            self.selectedTeamGames.append(game)
+            self.gamesTableView.reloadData()
+        })
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,8 +74,13 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        let game = Game()
-        cell.textLabel?.text = "\(game.oppTeam) - \(game.gameDateTime)"
+        var game = Game()
+        game = selectedTeamGames[indexPath.row]
+        for team in teams {
+            if team.teamID == game.gameOppTeam {
+                cell.textLabel?.text = "vs \(team.teamName) - \(game.gameDateTime)"
+            }
+        }
         return cell
     }
     

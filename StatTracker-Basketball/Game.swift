@@ -10,11 +10,12 @@ import Foundation
 
 class Game {
     var gameID = ""
-    var gameNumPeriods = 0
-    var gamePeriodLength = 0
-    var gameNumFouls = 0
-    var gameNumRegisteredTeams = 0
+    var gameNumPeriods = ""
+    var gamePeriodLength = ""
+    var gameNumFouls = ""
+    var gameNumRegisteredTeams = ""
     var gameDateTime = ""
-    var selectedTeam = ""
-    var oppTeam = ""
+    var gameSelectedTeam = ""
+    var gameOppTeam = ""
+    var gameStatus = ""
 }

@@ -28,11 +28,11 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var editRosterButton: UIButton!
     @IBOutlet weak var editButton: UIBarButtonItem!
     
-    var allPlayers = [Player]()
     var selectedRoster = [Player]()
     var selectedTeam : Team? = nil
     var teams = [Team]()
     var editMode = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,8 +53,8 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         playerTenLabel.isHidden = true
         editRosterButton.isHidden = true
         getTeams()
-        getPlayers()
     }
+    
     
     func updateDisplayedRoster() {
         teamNameLabel.isHidden = false
@@ -79,29 +79,25 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         })
     }
     
+    
+    // update view as the data comes in
     func getPlayers() {
-        FIRDatabase.database().reference().child("players").observe(FIRDataEventType.childAdded, with: {(snapshot) in
+        if selectedRoster.isEmpty != true {
+            selectedRoster.removeAll()
+        }
+        FIRDatabase.database().reference().child("players").child(selectedTeam!.teamID).observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let player = Player()
-            
             player.playerID = snapshot.key
             player.playerFirstName = (snapshot.value as! NSDictionary)["playerFirstName"] as! String
             player.playerLastName = (snapshot.value as! NSDictionary)["playerLastName"] as! String
             player.playerNumber = (snapshot.value as! NSDictionary)["playerNumber"] as! String
             player.playerPosition = (snapshot.value as! NSDictionary)["playerPosition"] as! String
-            player.playerTeam = (snapshot.value as! NSDictionary)["playerTeam"] as! String
-            self.allPlayers.append(player)
+            player.playerTeam = self.selectedTeam!.teamID
+            self.selectedRoster.append(player)
+            self.updateDisplayedRoster()
         })
     }
     
-    func filterPlayers() {
-        selectedRoster.removeAll()
-        for player in allPlayers {
-            if player.playerTeam == selectedTeam?.teamID {
-                self.selectedRoster.append(player)
-            }
-        }
-    }
-
     // tableView delegate functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return teams.count
@@ -117,15 +113,11 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedTeam = teams[indexPath.row]
-        filterPlayers()
+        
+        getPlayers()
         updateDisplayedRoster()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        //getTeams()
-        //teamsTableView.reloadData()
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editRosterSegue" {
             let nextVC = segue.destination as! RosterViewController

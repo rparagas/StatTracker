@@ -128,7 +128,7 @@ class AddGameViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     @IBAction func saveGameTapped(_ sender: Any) {
         uuid = NSUUID().uuidString
-        let game = ["gameOpponent": selectedOpponent, "gameDate": selectedDate, "gameNumPeriods": selectedPeriod, "gamePeriodLength": selectedLength, "gameFouls": selectedFoul]
+        let game = ["gameOpponent": selectedOpponent, "gameDate": selectedDate, "gameNumPeriods": selectedPeriod, "gamePeriodLength": selectedLength, "gameFouls": selectedFoul, "gameStatus": "pending"]
         print(game)
         FIRDatabase.database().reference().child("teams").child(selectedTeam.teamID).child("games").child(uuid).setValue(game)
         navigationController?.popViewController(animated: true)
