@@ -20,8 +20,7 @@ class AddTeamViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    /* FIX
-    @IBAction func addTeamTapped(_ sender: Any) {
+    /*@IBAction func addTeamTapped(_ sender: Any) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let team = Team()
         team.teamName = teamNameTextField.text
@@ -29,6 +28,5 @@ class AddTeamViewController: UIViewController {
         team.teamDivision = teamDivisionTextField.text
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         navigationController?.popViewController(animated: true)
-    }
-    */
+    }*/
 }

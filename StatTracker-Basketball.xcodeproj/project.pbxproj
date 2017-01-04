@@ -20,6 +20,9 @@
 		A6BC03571E01366F00CB843B /* RosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BC03561E01366F00CB843B /* RosterViewController.swift */; };
 		A6C9A4771E17707B00057381 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9A4761E17707B00057381 /* Team.swift */; };
 		A6C9A4791E1770D900057381 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9A4781E1770D900057381 /* Player.swift */; };
+		A6C9A47B1E179BC400057381 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9A47A1E179BC400057381 /* Game.swift */; };
+		A6C9A47D1E179C5700057381 /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9A47C1E179C5700057381 /* GamesViewController.swift */; };
+		A6C9A47F1E17A97900057381 /* AddGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9A47E1E17A97900057381 /* AddGameViewController.swift */; };
 		B09A1348139010B8A6C53C4C /* Pods_StatTracker_Basketball.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0563C83DB25A2EE67BCFEBCE /* Pods_StatTracker_Basketball.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +45,9 @@
 		A6BC03561E01366F00CB843B /* RosterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RosterViewController.swift; path = ../RosterViewController.swift; sourceTree = "<group>"; };
 		A6C9A4761E17707B00057381 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		A6C9A4781E1770D900057381 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		A6C9A47A1E179BC400057381 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		A6C9A47C1E179C5700057381 /* GamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
+		A6C9A47E1E17A97900057381 /* AddGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,8 @@
 				A6BC03541E0124AF00CB843B /* AddTeamViewController.swift */,
 				A6BC03561E01366F00CB843B /* RosterViewController.swift */,
 				A67DA55D1E090FF500191A27 /* AddPlayerViewController.swift */,
+				A6C9A47C1E179C5700057381 /* GamesViewController.swift */,
+				A6C9A47E1E17A97900057381 /* AddGameViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -124,6 +132,7 @@
 			children = (
 				A6C9A4761E17707B00057381 /* Team.swift */,
 				A6C9A4781E1770D900057381 /* Player.swift */,
+				A6C9A47A1E179BC400057381 /* Game.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -254,11 +263,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6BC03551E0124AF00CB843B /* AddTeamViewController.swift in Sources */,
+				A6C9A47B1E179BC400057381 /* Game.swift in Sources */,
 				A617C9111E0035410077805E /* StatTracker_Basketball.xcdatamodeld in Sources */,
 				A617C91E1E003C6E0077805E /* TeamViewController.swift in Sources */,
 				A617C90B1E0035410077805E /* MainViewController.swift in Sources */,
 				A6C9A4771E17707B00057381 /* Team.swift in Sources */,
 				A617C9091E0035410077805E /* AppDelegate.swift in Sources */,
+				A6C9A47D1E179C5700057381 /* GamesViewController.swift in Sources */,
+				A6C9A47F1E17A97900057381 /* AddGameViewController.swift in Sources */,
 				A67DA55E1E090FF500191A27 /* AddPlayerViewController.swift in Sources */,
 				A6C9A4791E1770D900057381 /* Player.swift in Sources */,
 				A6BC03571E01366F00CB843B /* RosterViewController.swift in Sources */,

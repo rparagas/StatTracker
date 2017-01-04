@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -32,7 +33,6 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         updateButton.isHidden = true
         rosterTableView.dataSource = self
         rosterTableView.delegate = self
-        //getRoster()
         rosterTableView.reloadData()
         // Do any additional setup after loading the view.
     }
@@ -51,18 +51,6 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
     }
     
-    /* FIX
-    func getRoster() {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Player")
-        fetchRequest.predicate = NSPredicate(format: "team.teamName == %@", (team!.teamName)!)
-        do {
-            roster = try context.fetch(fetchRequest) as! [Player]
-        } catch {
-            print("error")
-        }
-    }
-    */
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedPlayer = roster[indexPath.row]

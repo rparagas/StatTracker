@@ -26,11 +26,13 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var playerTenLabel: UILabel!
     @IBOutlet weak var teamsTableView: UITableView!
     @IBOutlet weak var editRosterButton: UIButton!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     var allPlayers = [Player]()
     var selectedRoster = [Player]()
     var selectedTeam : Team? = nil
     var teams = [Team]()
+    var editMode = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +52,8 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         playerNineLabel.isHidden = true
         playerTenLabel.isHidden = true
         editRosterButton.isHidden = true
+        getTeams()
         getPlayers()
-        
     }
     
     func updateDisplayedRoster() {
@@ -66,8 +68,18 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         editRosterButton.isHidden = false
     }
+ 
+    func getTeams() {
+        FIRDatabase.database().reference().child("teams").observe(FIRDataEventType.childAdded, with: {(snapshot) in
+            let team = Team()
+            team.teamID = snapshot.key
+            team.teamName = (snapshot.value as! NSDictionary)["teamName"] as! String
+            self.teams.append(team)
+            self.teamsTableView.reloadData()
+        })
+    }
     
-    func getPlayers(){
+    func getPlayers() {
         FIRDatabase.database().reference().child("players").observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let player = Player()
             
@@ -81,23 +93,13 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         })
     }
     
-    func filterPlayers(){
-        selectedRoster = [Player]()
+    func filterPlayers() {
+        selectedRoster.removeAll()
         for player in allPlayers {
             if player.playerTeam == selectedTeam?.teamID {
-                selectedRoster.append(player)
+                self.selectedRoster.append(player)
             }
         }
-    }
- 
-    func getTeams(){
-        FIRDatabase.database().reference().child("teams").observe(FIRDataEventType.childAdded, with: {(snapshot) in
-            let team = Team()
-            team.teamID = snapshot.key
-            team.teamName = (snapshot.value as! NSDictionary)["teamName"] as! String
-            self.teams.append(team)
-            self.teamsTableView.reloadData()
-        })
     }
 
     // tableView delegate functions
@@ -120,20 +122,23 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getTeams()
-        teamsTableView.reloadData()
+        //getTeams()
+        //teamsTableView.reloadData()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editRosterSegue" {
             let nextVC = segue.destination as! RosterViewController
             nextVC.team = selectedTeam!
+            nextVC.roster = selectedRoster
         }
     }
     
-    @IBAction func addTeamTapped(_ sender: Any) {
+    // work on later, if editmode is on then perform segue
+    @IBAction func editAddTapped(_ sender: Any) {
         performSegue(withIdentifier: "addTeamSegue", sender: nil)
     }
+
     
     @IBAction func editRosterTapped(_ sender: Any) {
         performSegue(withIdentifier: "editRosterSegue", sender: selectedTeam)
