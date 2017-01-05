@@ -14,10 +14,12 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var gamesTableView: UITableView!
     @IBOutlet weak var teamsPickerView: UIPickerView!
     @IBOutlet weak var newGameButton: UIBarButtonItem!
+    @IBOutlet weak var gameSummaryView: UIView!
     
     var teams = [Team]()
     var selectedTeamGames = [Game]()
     var selectedTeam : Team? = nil
+    var selectedGame : Game? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         gamesTableView.dataSource = self
         getTeams()
         newGameButton.isEnabled = false
-
+        gameSummaryView.isHidden = true
         // Do any additional setup after loading the view.
     }
     
@@ -53,13 +55,14 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         if selectedTeamGames.isEmpty != true {
             selectedTeamGames.removeAll()
         }
-        FIRDatabase.database().reference().child("teams").child((selectedTeam?.teamID)!).child("games").observe(FIRDataEventType.childAdded, with: {(snapshot) in
+        FIRDatabase.database().reference().child("games").child((selectedTeam?.teamID)!).observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let game = Game()
             
             game.gameID = snapshot.key
             game.gameDateTime = (snapshot.value as! NSDictionary)["gameDate"] as! String
             game.gameNumFouls = (snapshot.value as! NSDictionary)["gameFouls"] as! String
             game.gameNumPeriods = (snapshot.value as! NSDictionary)["gameNumPeriods"] as! String
+            game.gameSelectedTeam = (self.selectedTeam?.teamID)!
             game.gameOppTeam = (snapshot.value as! NSDictionary)["gameOpponent"] as! String
             game.gamePeriodLength = (snapshot.value as! NSDictionary)["gamePeriodLength"] as! String
             game.gameStatus = (snapshot.value as! NSDictionary)["gameStatus"] as! String
@@ -84,6 +87,11 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        gameSummaryView.isHidden = false
+        selectedGame = selectedTeamGames[indexPath.row]
+    }
+    
     func getTeams() {
         FIRDatabase.database().reference().child("teams").observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let team = Team()
@@ -95,12 +103,21 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nextVC = segue.destination as! AddGameViewController
-        nextVC.selectedTeam = sender as! Team
+        if segue.identifier == "newGameSegue" {
+            let nextVC = segue.destination as! AddGameViewController
+            nextVC.selectedTeam = sender as! Team
+        }
+        if segue.identifier == "beginGameSegue" {
+            let nextVC = segue.destination as! StatTrackerViewController
+            nextVC.selectedGame = sender as! Game
+        }
     }
     
     @IBAction func newGameTapped(_ sender: Any) {
         performSegue(withIdentifier: "newGameSegue", sender: selectedTeam)
     }
     
+    @IBAction func beginGameTapped(_ sender: Any) {
+        performSegue(withIdentifier: "beginGameSegue", sender: selectedGame)
+    }
 }
