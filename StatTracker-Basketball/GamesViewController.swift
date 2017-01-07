@@ -79,11 +79,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         let cell = UITableViewCell()
         var game = Game()
         game = selectedTeamGames[indexPath.row]
-        for team in teams {
-            if team.teamID == game.gameOppTeam {
-                cell.textLabel?.text = "vs \(team.teamName) - \(game.gameDateTime)"
-            }
-        }
+        cell.textLabel?.text = "vs \(game.gameOppTeam) - \(game.gameDateTime)"
         return cell
     }
     

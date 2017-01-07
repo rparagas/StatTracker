@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A60CBB0C1E1E3194006100D2 /* StatTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60CBB0B1E1E3194006100D2 /* StatTrackerViewController.swift */; };
+		A60CBB0E1E1F384D006100D2 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60CBB0D1E1F384D006100D2 /* Stats.swift */; };
 		A617C9091E0035410077805E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A617C9081E0035410077805E /* AppDelegate.swift */; };
 		A617C90B1E0035410077805E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A617C90A1E0035410077805E /* MainViewController.swift */; };
 		A617C90E1E0035410077805E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A617C90C1E0035410077805E /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 		287A0FE79654E732982794B5 /* Pods-StatTracker-Basketball.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StatTracker-Basketball.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StatTracker-Basketball/Pods-StatTracker-Basketball.debug.xcconfig"; sourceTree = "<group>"; };
 		9D20947D506DF8FEF77D2F37 /* Pods-StatTracker-Basketball.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StatTracker-Basketball.release.xcconfig"; path = "Pods/Target Support Files/Pods-StatTracker-Basketball/Pods-StatTracker-Basketball.release.xcconfig"; sourceTree = "<group>"; };
 		A60CBB0B1E1E3194006100D2 /* StatTrackerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatTrackerViewController.swift; sourceTree = "<group>"; };
+		A60CBB0D1E1F384D006100D2 /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		A617C9051E0035410077805E /* StatTracker-Basketball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StatTracker-Basketball.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A617C9081E0035410077805E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A617C90A1E0035410077805E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				A6C9A4761E17707B00057381 /* Team.swift */,
 				A6C9A4781E1770D900057381 /* Player.swift */,
 				A6C9A47A1E179BC400057381 /* Game.swift */,
+				A60CBB0D1E1F384D006100D2 /* Stats.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				A6C9A4771E17707B00057381 /* Team.swift in Sources */,
 				A617C9091E0035410077805E /* AppDelegate.swift in Sources */,
 				A6C9A47D1E179C5700057381 /* GamesViewController.swift in Sources */,
+				A60CBB0E1E1F384D006100D2 /* Stats.swift in Sources */,
 				A6C9A47F1E17A97900057381 /* AddGameViewController.swift in Sources */,
 				A60CBB0C1E1E3194006100D2 /* StatTrackerViewController.swift in Sources */,
 				A67DA55E1E090FF500191A27 /* AddPlayerViewController.swift in Sources */,
