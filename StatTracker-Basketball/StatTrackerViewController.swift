@@ -11,11 +11,30 @@ import Firebase
 
 class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - BUTTON OUTLETS
+     ******************************************************************************************************************* */
+    
+    @IBOutlet weak var timeButton: UIButton!
+    
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - VIEW OUTLETS
+     ******************************************************************************************************************* */
+    
+    @IBOutlet weak var statsButtonView: UIView!
+    @IBOutlet weak var selectedPlayerStatsView: UIView!
+    
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - TABLEVIEW OUTLETS
+     ******************************************************************************************************************* */
+
     @IBOutlet weak var selectedTeamBenchTableView: UITableView!
     @IBOutlet weak var selectedTeamTableView: UITableView!
-    @IBOutlet weak var timeButton: UIButton!
-    @IBOutlet weak var selectedPlayerStatsView: UIView!
-    @IBOutlet weak var statsButtonView: UIView!
+    
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - INDIVIDUAL STATS OUTLET
+     ******************************************************************************************************************* */
+    
     @IBOutlet weak var playerMinutesLabel: UILabel!
     @IBOutlet weak var playerNameLabel: UILabel!
     @IBOutlet weak var playerPointsLabel: UILabel!
@@ -27,6 +46,11 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var playerBlocksLabel: UILabel!
     @IBOutlet weak var playerTurnoverLabel: UILabel!
     @IBOutlet weak var playerFoulsLabel: UILabel!
+    
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - TEAM STATS OUTLET
+     ******************************************************************************************************************* */
+    
     @IBOutlet weak var selectedTeamNameLabel: UILabel!
     @IBOutlet weak var selectedTeamScoreLabel: UILabel!
     @IBOutlet weak var selectedTeamFieldGoalLabel: UILabel!
@@ -48,6 +72,10 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var opponentTeamTurnoversLabel: UILabel!
     @IBOutlet weak var opponentTeamFoulsLabel: UILabel!
     
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - GLOBAL VARIABLES
+     ******************************************************************************************************************* */
+    
     var selectedGame : Game = Game()
     
     var selectedTeam : Team = Team()
@@ -61,6 +89,10 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     
     var selectedPlayer : Player = Player()
     
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - BOILER PLATE
+     ******************************************************************************************************************* */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,8 +103,14 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         getPlayers()
         statsButtonView.isHidden = true
         selectedPlayerStatsView.isHidden = true
+        selectedTeamNameLabel.text = "\(selectedTeam.teamName)"
+        opponentTeamNameLabel.text = "\(selectedGame.gameOppTeam)"
         // Do any additional setup after loading the view.
     }
+    
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - TABLEVIEW FUNCTIONS
+    ******************************************************************************************************************* */
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var sectionName = ""
@@ -116,10 +154,188 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    @IBAction func opponentButtonTapped(_ sender: Any) {
-        opponentButtonSelected = true
-        statsButtonView.isHidden = false
-        
+    /* *******************************************************************************************************************
+     // FIREBASE - RETRIEVE QUERY FUNCTIONS
+     ******************************************************************************************************************* */
+    
+    func getPlayers() {
+        var starters = 0
+        FIRDatabase.database().reference().child("players").child(selectedGame.gameSelectedTeam).observe(FIRDataEventType.childAdded, with: {(snapshot) in
+            let player = Player()
+            let playerStats = Stats()
+            player.playerID = snapshot.key
+            playerStats.playerID = snapshot.key
+            player.playerFirstName = (snapshot.value as! NSDictionary)["playerFirstName"] as! String
+            player.playerLastName = (snapshot.value as! NSDictionary)["playerLastName"] as! String
+            player.playerNumber = (snapshot.value as! NSDictionary)["playerNumber"] as! String
+            player.playerPosition = (snapshot.value as! NSDictionary)["playerPosition"] as! String
+            player.playerTeam = self.selectedTeam.teamID
+            if starters < 5 {
+                self.selectedActiveRoster.append(player)
+            } else {
+                self.selectedInActiveRoster.append(player)
+            }
+            self.selectedRosterStats.append(playerStats)
+            self.selectedTeamTableView.reloadData()
+            self.selectedTeamBenchTableView.reloadData()
+            starters = starters + 1
+        })
+    }
+    
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - CALCULATE STATISTICS FUNCTIONS
+    ******************************************************************************************************************* */
+    
+    func calSelectedTeamScore() -> (Int) {
+        var score = 0
+        for player in selectedRosterStats {
+            score = score + player.madeOnePoints
+            score = score + player.madeTwoPoints * 2
+            score = score + player.madeThreePoints * 3
+        }
+        return score
+    }
+    
+    func calSelectedTeamFieldGoal() -> (Double) {
+        var made = 0.0
+        var total = 0.0
+        for player in selectedRosterStats {
+            made = made + Double(player.madeTwoPoints) + Double(player.madeThreePoints)
+            total = total + Double(player.madeTwoPoints) + Double(player.madeThreePoints) + Double(player.missedTwoPoints) + Double(player.missedThreePoints)
+        }
+        let fieldGoal : Double = Double(made) / Double(total)
+        return Double(round(fieldGoal * 1000)/1000) * 100
+    }
+    
+    func calSelectedTeamFreeThrow() -> (Double) {
+        var made = 0.0
+        var total = 0.0
+        for player in selectedRosterStats {
+            made = made + Double(player.madeOnePoints)
+            total = total + Double(player.madeOnePoints) + Double(player.missedOnePoints)
+        }
+        let freeThrow : Double = Double(made) / Double(total)
+        return Double(round(freeThrow * 1000)/1000) * 100
+    }
+    
+    func calSelectedTeamAssists() -> (Int) {
+        var assists = 0
+        for player in selectedRosterStats {
+            assists = assists + player.assists
+        }
+        return assists
+    }
+    
+    func calSelectedTeamRebounds() -> (Int) {
+        var rebounds = 0
+        for player in selectedRosterStats{
+            rebounds = rebounds + player.defRebounds + player.offRebounds
+        }
+        return rebounds
+    }
+    
+    func calSelectedTeamBlocks() -> (Int) {
+        var blocks = 0
+        for player in selectedRosterStats{
+            blocks = blocks + player.blocks
+        }
+        return blocks
+    }
+    
+    func calSelectedTeamSteals() -> (Int) {
+        var steals = 0
+        for player in selectedRosterStats{
+            steals = steals + player.steals
+        }
+        return steals
+    }
+    
+    func calSelectedTeamFouls() -> (Int) {
+        var fouls = 0
+        for player in selectedRosterStats{
+            fouls = fouls + player.fouls
+        }
+        return fouls
+    }
+    
+    func calSelectedTeamTurnovers() -> (Int) {
+        var turnovers = 0
+        for player in selectedRosterStats{
+            turnovers = turnovers + player.turnovers
+        }
+        return turnovers
+    }
+    
+    func calPoints(stat:Stats) -> (Int) {
+        return stat.madeOnePoints + (2*stat.madeTwoPoints) + (3*stat.madeThreePoints)
+    }
+    
+    func calFieldGoal(stat: Stats) -> (Double) {
+        let made = stat.madeTwoPoints + stat.madeThreePoints
+        let total = stat.madeTwoPoints + stat.madeThreePoints + stat.missedTwoPoints + stat.missedThreePoints
+        let fieldGoalCal : Double = Double(made) / Double(total)
+        return Double(round(fieldGoalCal * 1000)/1000) * 100
+    }
+    
+    func calFreeThrow(stat: Stats) -> (Double) {
+        let total = stat.madeOnePoints + stat.missedOnePoints
+        let freeThrowCal : Double = Double(stat.madeOnePoints) / Double(total)
+        return Double(round(freeThrowCal * 1000)/1000) * 100
+    }
+    
+    func calRebounds(stat: Stats) -> (Int) {
+        return stat.offRebounds + stat.defRebounds
+    }
+    
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - DISPLAY STATISTICS FUNCTIONS
+     ******************************************************************************************************************* */
+    
+    func displayTeamScore() {
+        selectedTeamScoreLabel.text = "\(calSelectedTeamScore())"
+        opponentTeamScoreLabel.text = "\(opponent.madeOnePoints + (opponent.madeTwoPoints * 2) + (opponent.madeThreePoints * 3))"
+    }
+    
+    func displayTeamFieldGoal() {
+        selectedTeamFieldGoalLabel.text = "\(calSelectedTeamFieldGoal())"
+        let opponentFieldGoalCal : Double = Double(opponent.madeTwoPoints + opponent.madeThreePoints) / Double(opponent.madeTwoPoints + opponent.madeThreePoints + opponent.missedTwoPoints + opponent.missedThreePoints)
+        opponentTeamFieldGoalLabel.text = "\(Double(round(opponentFieldGoalCal * 1000)/1000) * 100)"
+    }
+    
+    func displayTeamFreeThrow() {
+        selectedTeamFreeThrowLabel.text = "\(calSelectedTeamFreeThrow())"
+        let opponentFreeThrowCal : Double = Double(opponent.madeOnePoints) / Double(opponent.madeOnePoints + opponent.missedOnePoints)
+        opponentTeamFreeThrowLabel.text = "\(Double(round(opponentFreeThrowCal * 1000)/1000) * 100)"
+    }
+    
+    func displayTeamAssists() {
+        selectedTeamAssistLabel.text = "\(calSelectedTeamAssists())"
+        opponentTeamAssistLabel.text = "\(opponent.assists)"
+    }
+    
+    func displayTeamRebounds(){
+        selectedTeamReboundLabel.text = "\(calSelectedTeamRebounds())"
+        opponentTeamReboundLabel.text = "\(opponent.defRebounds + opponent.offRebounds)"
+    }
+    
+    func displayTeamBlocks() {
+        selectedTeamBlocksLabel.text = "\(calSelectedTeamBlocks())"
+        opponentTeamBlocksLabel.text = "\(opponent.blocks)"
+    }
+    
+    func displayTeamSteals() {
+        selectedTeamStealsLabel.text = "\(calSelectedTeamSteals())"
+        opponentTeamStealsLabel.text = "\(opponent.steals)"
+    }
+    
+    func displayTeamFouls() {
+        selectedTeamFoulsLabel.text = "\(calSelectedTeamFouls())"
+        opponentTeamFoulsLabel.text = "\(opponent.fouls)"
+    }
+    
+    func displayTeamTurnovers() {
+        selectedTeamTurnoversLabel.text = "\(calSelectedTeamTurnovers())"
+        opponentTeamTurnoversLabel.text = "\(opponent.turnovers)"
     }
     
     func displayIndividualStats(stat: Stats) {
@@ -149,49 +365,14 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    func calPoints(stat:Stats) -> (Int) {
-        return stat.madeOnePoints + (2*stat.madeTwoPoints) + (3*stat.madeThreePoints)
-    }
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - ACTION BUTTONS
+    ******************************************************************************************************************* */
     
-    func calFieldGoal(stat: Stats) -> (Double) {
-        let made = stat.madeTwoPoints + stat.madeThreePoints
-        let total = stat.madeTwoPoints + stat.madeThreePoints + stat.missedTwoPoints + stat.missedThreePoints
-        let fieldGoalCal : Double = Double(made) / Double(total)
-        return Double(round(fieldGoalCal * 1000)/1000) * 100
-    }
-    
-    func calFreeThrow(stat: Stats) -> (Double) {
-        let total = stat.madeOnePoints + stat.missedOnePoints
-        let freeThrowCal : Double = Double(stat.madeOnePoints) / Double(total)
-        return Double(round(freeThrowCal * 1000)/1000) * 100
-    }
-    
-    func calRebounds(stat: Stats) -> (Int) {
-        return stat.offRebounds + stat.defRebounds
-    }
-    
-    func getPlayers() {
-        var starters = 0
-        FIRDatabase.database().reference().child("players").child(selectedGame.gameSelectedTeam).observe(FIRDataEventType.childAdded, with: {(snapshot) in
-            let player = Player()
-            let playerStats = Stats()
-            player.playerID = snapshot.key
-            playerStats.playerID = snapshot.key
-            player.playerFirstName = (snapshot.value as! NSDictionary)["playerFirstName"] as! String
-            player.playerLastName = (snapshot.value as! NSDictionary)["playerLastName"] as! String
-            player.playerNumber = (snapshot.value as! NSDictionary)["playerNumber"] as! String
-            player.playerPosition = (snapshot.value as! NSDictionary)["playerPosition"] as! String
-            player.playerTeam = self.selectedTeam.teamID
-            if starters < 5 {
-                self.selectedActiveRoster.append(player)
-            } else {
-                self.selectedInActiveRoster.append(player)
-            }
-            self.selectedRosterStats.append(playerStats)
-            self.selectedTeamTableView.reloadData()
-            self.selectedTeamBenchTableView.reloadData()
-            starters = starters + 1
-        })
+    @IBAction func opponentButtonTapped(_ sender: Any) {
+        opponentButtonSelected = true
+        statsButtonView.isHidden = false
+        
     }
     
     @IBAction func timerTapped(_ sender: Any) {
@@ -214,6 +395,8 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             selectedPlayerStatsView.isHidden = true
         }
         statsButtonView.isHidden = true
+        displayTeamScore()
+        displayTeamFreeThrow()
     }
     
     @IBAction func madeTwoTapped(_ sender: Any) {
@@ -229,6 +412,8 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             selectedPlayerStatsView.isHidden = true
         }
         statsButtonView.isHidden = true
+        displayTeamScore()
+        displayTeamFieldGoal()
     }
     
     @IBAction func madeThreeTapped(_ sender: Any) {
@@ -244,6 +429,8 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             selectedPlayerStatsView.isHidden = true
         }
         statsButtonView.isHidden = true
+        displayTeamScore()
+        displayTeamFieldGoal()
     }
     
     @IBAction func missOneTapped(_ sender: Any) {
@@ -259,6 +446,8 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             selectedPlayerStatsView.isHidden = true
         }
         statsButtonView.isHidden = true
+        displayTeamFieldGoal()
+        displayTeamFreeThrow()
     }
     
     @IBAction func missTwotapped(_ sender: Any) {
@@ -274,6 +463,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             selectedPlayerStatsView.isHidden = true
         }
         statsButtonView.isHidden = true
+        displayTeamFieldGoal()
     }
     
     @IBAction func missThreeTapped(_ sender: Any) {
@@ -289,6 +479,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             selectedPlayerStatsView.isHidden = true
         }
         statsButtonView.isHidden = true
+        displayTeamFieldGoal()
     }
     
     @IBAction func offReboundTapped(_ sender: Any) {
@@ -304,6 +495,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             selectedPlayerStatsView.isHidden = true
         }
         statsButtonView.isHidden = true
+        displayTeamRebounds()
     }
     
     @IBAction func defReboundTapped(_ sender: Any) {
@@ -319,6 +511,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             selectedPlayerStatsView.isHidden = true
         }
         statsButtonView.isHidden = true
+        displayTeamRebounds()
     }
     
     @IBAction func assistTapped(_ sender: Any) {
@@ -334,6 +527,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             selectedPlayerStatsView.isHidden = true
         }
         statsButtonView.isHidden = true
+        displayTeamAssists()
     }
     
     @IBAction func blockTapped(_ sender: Any) {
@@ -349,6 +543,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             selectedPlayerStatsView.isHidden = true
         }
         statsButtonView.isHidden = true
+        displayTeamBlocks()
     }
     
     @IBAction func stealTapped(_ sender: Any) {
@@ -364,6 +559,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             selectedPlayerStatsView.isHidden = true
         }
         statsButtonView.isHidden = true
+        displayTeamSteals()
     }
     
     @IBAction func turnoverTapped(_ sender: Any) {
@@ -379,6 +575,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             selectedPlayerStatsView.isHidden = true
         }
         statsButtonView.isHidden = true
+        displayTeamTurnovers()
     }
     
     @IBAction func foulTapped(_ sender: Any) {
@@ -394,9 +591,11 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             selectedPlayerStatsView.isHidden = true
         }
         statsButtonView.isHidden = true
+        displayTeamFouls()
     }
     
     @IBAction func fixTapped(_ sender: Any) {
+        //NEED TO DO
     }
     
     

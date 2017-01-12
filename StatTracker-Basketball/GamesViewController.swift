@@ -106,6 +106,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         if segue.identifier == "beginGameSegue" {
             let nextVC = segue.destination as! StatTrackerViewController
             nextVC.selectedGame = sender as! Game
+            nextVC.selectedTeam = selectedTeam!
         }
     }
     
