@@ -102,8 +102,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         selectedTeamBenchTableView.delegate = self
         selectedTeamBenchTableView.dataSource = self
         getPlayers()
-        statsButtonView.isHidden = true
-        selectedPlayerStatsView.isHidden = true
+        hideTrackerViews()
         selectedTeamBenchTableView.allowsSelection = false
         selectedTeamNameLabel.text = "\(selectedTeam.teamName)"
         opponentTeamNameLabel.text = "\(selectedGame.gameOppTeam)"
@@ -166,10 +165,8 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             selectedInActiveRoster.append(temp)
             selectedPlayer = Player()
             selectedPlayerIndexPath = IndexPath()
-            statsButtonView.isHidden = true
-            selectedPlayerStatsView.isHidden = true
-            selectedTeamTableView.reloadData()
-            selectedTeamBenchTableView.reloadData()
+            displayTrackerViews()
+            reloadRosters()
         }
     }
     
@@ -199,8 +196,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
                 self.selectedInActiveRoster.append(player)
             }
             self.selectedRosterStats.append(playerStats)
-            self.selectedTeamTableView.reloadData()
-            self.selectedTeamBenchTableView.reloadData()
+            self.reloadRosters()
             starters = starters + 1
         })
     }
@@ -314,6 +310,26 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
      // VIEW CONTROLLER - DISPLAY STATISTICS FUNCTIONS
      ******************************************************************************************************************* */
     
+    func preventSelection() {
+        selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
+        selectedTeamBenchTableView.allowsSelection = false
+    }
+    
+    func hideTrackerViews() {
+        statsButtonView.isHidden = true
+        selectedPlayerStatsView.isHidden = true
+    }
+    
+    func displayTrackerViews() {
+        statsButtonView.isHidden = true
+        selectedPlayerStatsView.isHidden = true
+    }
+    
+    func reloadRosters() {
+        self.selectedTeamTableView.reloadData()
+        self.selectedTeamBenchTableView.reloadData()
+    }
+    
     func displayTeamScore() {
         selectedTeamScoreLabel.text = "\(calSelectedTeamScore())"
         opponentTeamScoreLabel.text = "\(opponent.madeOnePoints + (opponent.madeTwoPoints * 2) + (opponent.madeThreePoints * 3))"
@@ -414,13 +430,11 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
                     stat.madeOnePoints = stat.madeOnePoints + 1
                 }
             }
-            selectedPlayerStatsView.isHidden = true
         }
-        statsButtonView.isHidden = true
+        hideTrackerViews()
         displayTeamScore()
         displayTeamFreeThrow()
-        selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
-        selectedTeamBenchTableView.allowsSelection = false
+        preventSelection()
     }
     
     @IBAction func madeTwoTapped(_ sender: Any) {
@@ -433,13 +447,11 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
                     stat.madeTwoPoints = stat.madeTwoPoints + 1
                 }
             }
-            selectedPlayerStatsView.isHidden = true
         }
-        statsButtonView.isHidden = true
+        hideTrackerViews()
         displayTeamScore()
         displayTeamFieldGoal()
-        selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
-        selectedTeamBenchTableView.allowsSelection = false
+        preventSelection()
     }
     
     @IBAction func madeThreeTapped(_ sender: Any) {
@@ -452,13 +464,11 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
                     stat.madeThreePoints = stat.madeThreePoints + 1
                 }
             }
-            selectedPlayerStatsView.isHidden = true
         }
-        statsButtonView.isHidden = true
+        hideTrackerViews()
         displayTeamScore()
         displayTeamFieldGoal()
-        selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
-        selectedTeamBenchTableView.allowsSelection = false
+        preventSelection()
     }
     
     @IBAction func missOneTapped(_ sender: Any) {
@@ -471,13 +481,11 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
                     stat.missedOnePoints = stat.missedOnePoints + 1
                 }
             }
-            selectedPlayerStatsView.isHidden = true
         }
-        statsButtonView.isHidden = true
+        hideTrackerViews()
         displayTeamFieldGoal()
         displayTeamFreeThrow()
-        selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
-        selectedTeamBenchTableView.allowsSelection = false
+        preventSelection()
     }
     
     @IBAction func missTwotapped(_ sender: Any) {
@@ -490,12 +498,10 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
                     stat.missedTwoPoints = stat.missedTwoPoints + 1
                 }
             }
-            selectedPlayerStatsView.isHidden = true
         }
-        statsButtonView.isHidden = true
+        hideTrackerViews()
         displayTeamFieldGoal()
-        selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
-        selectedTeamBenchTableView.allowsSelection = false
+        preventSelection()
     }
     
     @IBAction func missThreeTapped(_ sender: Any) {
@@ -508,12 +514,10 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
                     stat.missedThreePoints = stat.missedThreePoints + 1
                 }
             }
-            selectedPlayerStatsView.isHidden = true
         }
-        statsButtonView.isHidden = true
+        hideTrackerViews()
         displayTeamFieldGoal()
-        selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
-        selectedTeamBenchTableView.allowsSelection = false
+        preventSelection()
     }
     
     @IBAction func offReboundTapped(_ sender: Any) {
@@ -526,12 +530,10 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
                     stat.offRebounds = stat.offRebounds + 1
                 }
             }
-            selectedPlayerStatsView.isHidden = true
         }
-        statsButtonView.isHidden = true
+        hideTrackerViews()
         displayTeamRebounds()
-        selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
-        selectedTeamBenchTableView.allowsSelection = false
+        preventSelection()
     }
     
     @IBAction func defReboundTapped(_ sender: Any) {
@@ -544,12 +546,10 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
                     stat.defRebounds = stat.defRebounds + 1
                 }
             }
-            selectedPlayerStatsView.isHidden = true
         }
-        statsButtonView.isHidden = true
+        hideTrackerViews()
         displayTeamRebounds()
-        selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
-        selectedTeamBenchTableView.allowsSelection = false
+        preventSelection()
     }
     
     @IBAction func assistTapped(_ sender: Any) {
@@ -562,12 +562,10 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
                     stat.assists = stat.assists + 1
                 }
             }
-            selectedPlayerStatsView.isHidden = true
         }
-        statsButtonView.isHidden = true
+        hideTrackerViews()
         displayTeamAssists()
-        selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
-        selectedTeamBenchTableView.allowsSelection = false
+        preventSelection()
     }
     
     @IBAction func blockTapped(_ sender: Any) {
@@ -580,12 +578,10 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
                     stat.blocks = stat.blocks + 1
                 }
             }
-            selectedPlayerStatsView.isHidden = true
         }
-        statsButtonView.isHidden = true
+        hideTrackerViews()
         displayTeamBlocks()
-        selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
-        selectedTeamBenchTableView.allowsSelection = false
+        preventSelection()
     }
     
     @IBAction func stealTapped(_ sender: Any) {
@@ -598,12 +594,10 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
                     stat.steals = stat.steals + 1
                 }
             }
-            selectedPlayerStatsView.isHidden = true
         }
-        statsButtonView.isHidden = true
+        hideTrackerViews()
         displayTeamSteals()
-        selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
-        selectedTeamBenchTableView.allowsSelection = false
+        preventSelection()
     }
     
     @IBAction func turnoverTapped(_ sender: Any) {
@@ -616,12 +610,10 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
                     stat.turnovers = stat.turnovers + 1
                 }
             }
-            selectedPlayerStatsView.isHidden = true
         }
-        statsButtonView.isHidden = true
+        hideTrackerViews()
         displayTeamTurnovers()
-        selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
-        selectedTeamBenchTableView.allowsSelection = false
+        preventSelection()
     }
     
     @IBAction func foulTapped(_ sender: Any) {
@@ -634,12 +626,10 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
                     stat.fouls = stat.fouls + 1
                 }
             }
-            selectedPlayerStatsView.isHidden = true
         }
-        statsButtonView.isHidden = true
+        hideTrackerViews()
         displayTeamFouls()
-        selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
-        selectedTeamBenchTableView.allowsSelection = false
+        preventSelection()
     }
     
     @IBAction func fixTapped(_ sender: Any) {
