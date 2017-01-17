@@ -76,6 +76,8 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
      // VIEW CONTROLLER - GLOBAL VARIABLES
      ******************************************************************************************************************* */
     
+    
+    
     var selectedGame : Game = Game()
     
     var selectedTeam : Team = Team()
@@ -89,6 +91,9 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     
     var selectedPlayer : Player = Player()
     var selectedPlayerIndexPath : IndexPath = IndexPath()
+    
+    var periodTimer = Timer()
+    var currentPeriodTimeInSeconds = 0
     
     /* *******************************************************************************************************************
      // VIEW CONTROLLER - BOILER PLATE
@@ -106,6 +111,9 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         selectedTeamBenchTableView.allowsSelection = false
         selectedTeamNameLabel.text = "\(selectedTeam.teamName)"
         opponentTeamNameLabel.text = "\(selectedGame.gameOppTeam)"
+        currentPeriodTimeInSeconds = Int(selectedGame.gamePeriodLength)! * 60
+        let (m,s) = calMinutesSeconds(seconds: currentPeriodTimeInSeconds)
+        timeButton.setTitle("\(m) : 0\(s)", for: .normal)
         // Do any additional setup after loading the view.
     }
     
@@ -205,12 +213,17 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
      // VIEW CONTROLLER - CALCULATE STATISTICS FUNCTIONS
     ******************************************************************************************************************* */
     
+    func calMinutesSeconds (seconds: Int) -> (Int,Int) {
+        return ((seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+    
+    
     func calSelectedTeamScore() -> (Int) {
         var score = 0
         for player in selectedRosterStats {
-            score = score + player.madeOnePoints
-            score = score + player.madeTwoPoints * 2
-            score = score + player.madeThreePoints * 3
+            score += player.madeOnePoints
+            score += player.madeTwoPoints * 2
+            score += player.madeThreePoints * 3
         }
         return score
     }
@@ -309,6 +322,16 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     /* *******************************************************************************************************************
      // VIEW CONTROLLER - DISPLAY STATISTICS FUNCTIONS
      ******************************************************************************************************************* */
+    
+    func displayTime() {
+        currentPeriodTimeInSeconds -= 1
+        let (m,s) = calMinutesSeconds(seconds: currentPeriodTimeInSeconds)
+        if s < 10 {
+            timeButton.setTitle("\(m) : 0\(s)", for: .normal)
+        } else {
+            timeButton.setTitle("\(m) : \(s)", for: .normal)
+        }
+    }
     
     func preventSelection() {
         selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
@@ -414,8 +437,9 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func timerTapped(_ sender: Any) {
-        //NEED TO DO
+        periodTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.displayTime), userInfo: nil, repeats: true)
     }
+    
     @IBAction func nextPeriodTapped(_ sender: Any) {
         //NEED TO DO
     }
