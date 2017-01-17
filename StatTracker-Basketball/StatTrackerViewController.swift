@@ -168,7 +168,17 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         if tableView == self.selectedTeamBenchTableView {
             let temp = selectedActiveRoster[selectedPlayerIndexPath.row]
             selectedActiveRoster.remove(at: selectedPlayerIndexPath.row)
+            for stats in selectedRosterStats {
+                if temp.playerID == stats.playerID {
+                    setPlayerToInactive(player: stats)
+                }
+            }
             selectedActiveRoster.append(selectedInActiveRoster[indexPath.row])
+            for stats in selectedRosterStats {
+                if selectedInActiveRoster[indexPath.row].playerID == stats.playerID {
+                    setPlayerToActive(player: stats)
+                }
+            }
             selectedInActiveRoster.remove(at: indexPath.row)
             selectedInActiveRoster.append(temp)
             selectedPlayer = Player()
@@ -191,19 +201,25 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         FIRDatabase.database().reference().child("players").child(selectedGame.gameSelectedTeam).observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let player = Player()
             let playerStats = Stats()
-            player.playerID = snapshot.key
             playerStats.playerID = snapshot.key
+            player.playerID = snapshot.key
             player.playerFirstName = (snapshot.value as! NSDictionary)["playerFirstName"] as! String
             player.playerLastName = (snapshot.value as! NSDictionary)["playerLastName"] as! String
             player.playerNumber = (snapshot.value as! NSDictionary)["playerNumber"] as! String
             player.playerPosition = (snapshot.value as! NSDictionary)["playerPosition"] as! String
             player.playerTeam = self.selectedTeam.teamID
+            self.selectedRosterStats.append(playerStats)
             if starters < 5 {
                 self.selectedActiveRoster.append(player)
             } else {
                 self.selectedInActiveRoster.append(player)
+                for stats in self.selectedRosterStats {
+                    if player.playerID == stats.playerID {
+                        self.setPlayerToInactive(player: stats)
+                    }
+                }
             }
-            self.selectedRosterStats.append(playerStats)
+            
             self.reloadRosters()
             starters = starters + 1
         })
@@ -216,7 +232,6 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     func calMinutesSeconds (seconds: Int) -> (Int,Int) {
         return ((seconds % 3600) / 60, (seconds % 3600) % 60)
     }
-    
     
     func calSelectedTeamScore() -> (Int) {
         var score = 0
@@ -320,11 +335,16 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     /* *******************************************************************************************************************
-     // VIEW CONTROLLER - DISPLAY STATISTICS FUNCTIONS
+     // VIEW CONTROLLER - VIEW STATISTICS FUNCTIONS
      ******************************************************************************************************************* */
     
     func displayTime() {
         currentPeriodTimeInSeconds -= 1
+        for stats in selectedRosterStats {
+            if stats.isActive == true {
+                stats.playingTimeInSeconds += 1
+            }
+        }
         let (m,s) = calMinutesSeconds(seconds: currentPeriodTimeInSeconds)
         if s < 10 {
             timeButton.setTitle("\(m) : 0\(s)", for: .normal)
@@ -424,6 +444,8 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             playerBlocksLabel.text = "\(stat.blocks)"
             playerTurnoverLabel.text = "\(stat.turnovers)"
             playerFoulsLabel.text = "\(stat.fouls)"
+            let (m,s) = calMinutesSeconds(seconds: stat.playingTimeInSeconds)
+            playerMinutesLabel.text = "\(m):\(s)"
         }
     }
     
@@ -660,5 +682,15 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         //NEED TO DO
     }
     
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - SETTER FUNCTIONS
+     ******************************************************************************************************************* */
     
+    func setPlayerToActive(player: Stats) {
+        player.isActive = true
+    }
+    
+    func setPlayerToInactive(player: Stats) {
+        player.isActive = false
+    }
 }

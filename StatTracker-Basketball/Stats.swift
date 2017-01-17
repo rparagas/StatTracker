@@ -10,8 +10,9 @@ import Foundation
 
 class Stats {
     var playerID = ""
+    var isActive = true
     
-    var minutesPlayed = 0.00
+    var playingTimeInSeconds = 0
     
     var madeOnePoints = 0
     var missedOnePoints = 0
