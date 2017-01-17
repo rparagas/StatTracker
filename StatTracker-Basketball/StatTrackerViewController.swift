@@ -16,6 +16,8 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
      ******************************************************************************************************************* */
     
     @IBOutlet weak var timeButton: UIButton!
+    @IBOutlet weak var currentPeriodLabel: UILabel!
+    @IBOutlet weak var periodButton: UIButton!
     
     /* *******************************************************************************************************************
      // VIEW CONTROLLER - VIEW OUTLETS
@@ -76,8 +78,6 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
      // VIEW CONTROLLER - GLOBAL VARIABLES
      ******************************************************************************************************************* */
     
-    
-    
     var selectedGame : Game = Game()
     
     var selectedTeam : Team = Team()
@@ -94,6 +94,9 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     
     var periodTimer = Timer()
     var currentPeriodTimeInSeconds = 0
+    var isTimeout = true
+    
+    var currentPeriod = 1
     
     /* *******************************************************************************************************************
      // VIEW CONTROLLER - BOILER PLATE
@@ -114,6 +117,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         currentPeriodTimeInSeconds = Int(selectedGame.gamePeriodLength)! * 60
         let (m,s) = calMinutesSeconds(seconds: currentPeriodTimeInSeconds)
         timeButton.setTitle("\(m) : 0\(s)", for: .normal)
+        displayCurrentPeriod()
         // Do any additional setup after loading the view.
     }
     
@@ -156,40 +160,82 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == self.selectedTeamTableView {
-            selectedPlayer = selectedActiveRoster[indexPath.row]
-            statsButtonView.isHidden = false
-            selectedPlayerStatsView.isHidden = false
-            for stat in selectedRosterStats{
-                displayIndividualStats(stat: stat)
-            }
-            selectedPlayerIndexPath = indexPath
-            selectedTeamBenchTableView.allowsSelection = true
+            enableStatTracking(indexPath: indexPath)
         }
         if tableView == self.selectedTeamBenchTableView {
-            let temp = selectedActiveRoster[selectedPlayerIndexPath.row]
-            selectedActiveRoster.remove(at: selectedPlayerIndexPath.row)
-            for stats in selectedRosterStats {
-                if temp.playerID == stats.playerID {
-                    setPlayerToInactive(player: stats)
-                }
-            }
-            selectedActiveRoster.append(selectedInActiveRoster[indexPath.row])
-            for stats in selectedRosterStats {
-                if selectedInActiveRoster[indexPath.row].playerID == stats.playerID {
-                    setPlayerToActive(player: stats)
-                }
-            }
-            selectedInActiveRoster.remove(at: indexPath.row)
-            selectedInActiveRoster.append(temp)
-            selectedPlayer = Player()
-            selectedPlayerIndexPath = IndexPath()
-            displayTrackerViews()
-            reloadRosters()
+            performSubstitution(indexPath: indexPath)
         }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        resetSelectedPlayer()
+    }
+    
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - PERFORM FUNCTIONS
+     ******************************************************************************************************************* */
+    
+    func enableStatTracking(indexPath: IndexPath) {
+        selectedPlayer = selectedActiveRoster[indexPath.row]
+        statsButtonView.isHidden = false
+        selectedPlayerStatsView.isHidden = false
+        for stat in selectedRosterStats{
+            displayIndividualStats(stat: stat)
+        }
+        selectedPlayerIndexPath = indexPath
+        allowBenchSelection()
+    }
+    
+    
+    func performSubstitution(indexPath: IndexPath) {
+        let temp = selectedActiveRoster[selectedPlayerIndexPath.row]
+        deactivatePlayer(indexPath: indexPath)
+        deactivatePlayerStats(temp: temp)
+        activatePlayerStats(indexPath: indexPath)
+        activatePlayer(indexPath: indexPath, temp: temp)
+        resetSelectedPlayer()
+        displayTrackerViews()
+        reloadRosters()
+        preventSelection()
+    }
+    
+    func deactivatePlayer(indexPath: IndexPath){
+        selectedActiveRoster.remove(at: selectedPlayerIndexPath.row)
+        selectedActiveRoster.append(selectedInActiveRoster[indexPath.row])
+    }
+    
+    func activatePlayer(indexPath: IndexPath, temp: Player) {
+        selectedInActiveRoster.remove(at: indexPath.row)
+        selectedInActiveRoster.append(temp)
+    }
+    
+    func deactivatePlayerStats(temp: Player) {
+        for stats in selectedRosterStats {
+            if temp.playerID == stats.playerID {
+                setPlayerToInactive(player: stats)
+            }
+        }
+    }
+    
+    func activatePlayerStats(indexPath: IndexPath) {
+        for stats in selectedRosterStats {
+            if selectedInActiveRoster[indexPath.row].playerID == stats.playerID {
+                setPlayerToActive(player: stats)
+            }
+        }
+    }
+    
+    func resetSelectedPlayer() {
         selectedPlayer = Player()
+        selectedPlayerIndexPath = IndexPath()
+    }
+    
+    func nextPeriod() {
+        periodTimer.invalidate()
+        currentPeriodTimeInSeconds = Int(selectedGame.gamePeriodLength)! * 60
+        isTimeout = true
+        currentPeriod += 1
+        
     }
     
     /* *******************************************************************************************************************
@@ -208,21 +254,24 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             player.playerNumber = (snapshot.value as! NSDictionary)["playerNumber"] as! String
             player.playerPosition = (snapshot.value as! NSDictionary)["playerPosition"] as! String
             player.playerTeam = self.selectedTeam.teamID
-            self.selectedRosterStats.append(playerStats)
-            if starters < 5 {
-                self.selectedActiveRoster.append(player)
-            } else {
-                self.selectedInActiveRoster.append(player)
-                for stats in self.selectedRosterStats {
-                    if player.playerID == stats.playerID {
-                        self.setPlayerToInactive(player: stats)
-                    }
+            self.setupStarters(player: player, playerStats: playerStats, starters: starters)
+            starters += 1
+        })
+    }
+    
+    func setupStarters(player: Player, playerStats: Stats, starters: Int) {
+        self.selectedRosterStats.append(playerStats)
+        if starters < 5 {
+            self.selectedActiveRoster.append(player)
+        } else {
+            self.selectedInActiveRoster.append(player)
+            for stats in self.selectedRosterStats {
+                if player.playerID == stats.playerID {
+                    self.setPlayerToInactive(player: stats)
                 }
             }
-            
-            self.reloadRosters()
-            starters = starters + 1
-        })
+        }
+        reloadRosters()
     }
     
     /* *******************************************************************************************************************
@@ -247,8 +296,8 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         var made = 0.0
         var total = 0.0
         for player in selectedRosterStats {
-            made = made + Double(player.madeTwoPoints) + Double(player.madeThreePoints)
-            total = total + Double(player.madeTwoPoints) + Double(player.madeThreePoints) + Double(player.missedTwoPoints) + Double(player.missedThreePoints)
+            made += (Double(player.madeTwoPoints) + Double(player.madeThreePoints))
+            total += (Double(player.madeTwoPoints) + Double(player.madeThreePoints) + Double(player.missedTwoPoints) + Double(player.missedThreePoints))
         }
         let fieldGoal : Double = Double(made) / Double(total)
         return Double(round(fieldGoal * 1000)/1000) * 100
@@ -258,8 +307,8 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         var made = 0.0
         var total = 0.0
         for player in selectedRosterStats {
-            made = made + Double(player.madeOnePoints)
-            total = total + Double(player.madeOnePoints) + Double(player.missedOnePoints)
+            made += Double(player.madeOnePoints)
+            total += (Double(player.madeOnePoints) + Double(player.missedOnePoints))
         }
         let freeThrow : Double = Double(made) / Double(total)
         return Double(round(freeThrow * 1000)/1000) * 100
@@ -268,7 +317,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     func calSelectedTeamAssists() -> (Int) {
         var assists = 0
         for player in selectedRosterStats {
-            assists = assists + player.assists
+            assists += player.assists
         }
         return assists
     }
@@ -276,7 +325,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     func calSelectedTeamRebounds() -> (Int) {
         var rebounds = 0
         for player in selectedRosterStats{
-            rebounds = rebounds + player.defRebounds + player.offRebounds
+            rebounds += (player.defRebounds + player.offRebounds)
         }
         return rebounds
     }
@@ -284,7 +333,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     func calSelectedTeamBlocks() -> (Int) {
         var blocks = 0
         for player in selectedRosterStats{
-            blocks = blocks + player.blocks
+            blocks += player.blocks
         }
         return blocks
     }
@@ -292,7 +341,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     func calSelectedTeamSteals() -> (Int) {
         var steals = 0
         for player in selectedRosterStats{
-            steals = steals + player.steals
+            steals += player.steals
         }
         return steals
     }
@@ -300,7 +349,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     func calSelectedTeamFouls() -> (Int) {
         var fouls = 0
         for player in selectedRosterStats{
-            fouls = fouls + player.fouls
+            fouls += player.fouls
         }
         return fouls
     }
@@ -308,7 +357,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     func calSelectedTeamTurnovers() -> (Int) {
         var turnovers = 0
         for player in selectedRosterStats{
-            turnovers = turnovers + player.turnovers
+            turnovers += player.turnovers
         }
         return turnovers
     }
@@ -335,17 +384,34 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     /* *******************************************************************************************************************
-     // VIEW CONTROLLER - VIEW STATISTICS FUNCTIONS
+     // VIEW CONTROLLER - DISPLAY STATISTICS FUNCTIONS
      ******************************************************************************************************************* */
     
-    func displayTime() {
-        currentPeriodTimeInSeconds -= 1
-        for stats in selectedRosterStats {
-            if stats.isActive == true {
-                stats.playingTimeInSeconds += 1
-            }
+    func displayCurrentPeriod() {
+        if selectedGame.gameNumPeriods == "4" {
+            currentPeriodLabel.text = "Q\(currentPeriod)"
+        } else {
+            currentPeriodLabel.text = "H\(currentPeriod)"
         }
-        let (m,s) = calMinutesSeconds(seconds: currentPeriodTimeInSeconds)
+    }
+    
+    func displayPeriodTime() {
+        currentPeriodTimeInSeconds -= 1
+        addPlayingTime()
+        let (minutes, seconds) = calMinutesSeconds(seconds: currentPeriodTimeInSeconds)
+        displayTime(m: minutes, s: seconds)
+        if currentPeriodTimeInSeconds == 0 {
+            nextPeriod()
+        }
+        if currentPeriod > Int(selectedGame.gameNumPeriods)! {
+            // GAME FINISHED
+            // pass values to next screen
+            // on next screen, upload values
+        }
+        displayCurrentPeriod()
+    }
+    
+    func displayTime(m: Int, s: Int) {
         if s < 10 {
             timeButton.setTitle("\(m) : 0\(s)", for: .normal)
         } else {
@@ -420,32 +486,79 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         opponentTeamTurnoversLabel.text = "\(opponent.turnovers)"
     }
     
-    func displayIndividualStats(stat: Stats) {
-        if selectedPlayer.playerID == stat.playerID {
-            playerNameLabel.text = "#\(selectedPlayer.playerNumber) \(selectedPlayer.playerFirstName) \(selectedPlayer.playerLastName)"
-            let points = calPoints(stat: stat)
-            playerPointsLabel.text = "\(points)"
-            let fieldGoal = calFieldGoal(stat: stat)
-            if fieldGoal.isNaN == true {
-                playerPercentageLabel.text = "0.0"
-            } else {
-                playerPercentageLabel.text = "\(fieldGoal)"
-            }
-            let freeThrow = calFreeThrow(stat: stat)
-            if freeThrow.isNaN == true {
-                playerFreeThrowPercentLabe.text = "0.0"
-            } else {
-                playerFreeThrowPercentLabe.text = "\(freeThrow)"
-            }
-            playerAssistLabel.text = "\(stat.assists)"
-            let rebounds = calRebounds(stat: stat)
-            playerReboundLabel.text = "\(rebounds)"
-            playerStealsLabel.text = "\(stat.steals)"
-            playerBlocksLabel.text = "\(stat.blocks)"
-            playerTurnoverLabel.text = "\(stat.turnovers)"
-            playerFoulsLabel.text = "\(stat.fouls)"
-            let (m,s) = calMinutesSeconds(seconds: stat.playingTimeInSeconds)
+    func displayPlayerDetails() {
+        playerNameLabel.text = "#\(selectedPlayer.playerNumber) \(selectedPlayer.playerFirstName) \(selectedPlayer.playerLastName)"
+    }
+    
+    func displayPlayerPoints(stat: Stats) {
+        let points = calPoints(stat: stat)
+        playerPointsLabel.text = "\(points)"
+    }
+    
+    func displayPlayerFieldGoal(stat: Stats) {
+        let fieldGoal = calFieldGoal(stat: stat)
+        if fieldGoal.isNaN == true {
+            playerPercentageLabel.text = "0.0"
+        } else {
+            playerPercentageLabel.text = "\(fieldGoal)"
+        }
+    }
+    
+    func displayPlayerFreeThrow(stat: Stats) {
+        let freeThrow = calFreeThrow(stat: stat)
+        if freeThrow.isNaN == true {
+            playerFreeThrowPercentLabe.text = "0.0"
+        } else {
+            playerFreeThrowPercentLabe.text = "\(freeThrow)"
+        }
+    }
+    
+    func displayPlayerAssists(stat: Stats) {
+        playerAssistLabel.text = "\(stat.assists)"
+    }
+    
+    func displayPlayerRebounds(stat: Stats) {
+        let rebounds = calRebounds(stat: stat)
+        playerReboundLabel.text = "\(rebounds)"
+    }
+    
+    func displayPlayerSteals(stat: Stats) {
+        playerStealsLabel.text = "\(stat.steals)"
+    }
+    
+    func displayPlayerBlocks(stat: Stats) {
+        playerBlocksLabel.text = "\(stat.blocks)"
+    }
+    
+    func displayPlayerTurnovers(stat: Stats) {
+        playerTurnoverLabel.text = "\(stat.turnovers)"
+    }
+    
+    func displayPlayerFouls(stat: Stats) {
+        playerFoulsLabel.text = "\(stat.fouls)"
+    }
+    
+    func displayPlayerMinutes(stat: Stats) {
+        let (m,s) = calMinutesSeconds(seconds: stat.playingTimeInSeconds)
+        if s < 10  {
+            playerMinutesLabel.text = "\(m):0\(s)"
+        } else {
             playerMinutesLabel.text = "\(m):\(s)"
+        }
+    }
+    
+    func displayIndividualStats(stat: Stats) {
+        if isPlayerSame(stat: stat) {
+            displayPlayerDetails()
+            displayPlayerMinutes(stat: stat)
+            displayPlayerPoints(stat: stat)
+            displayPlayerFieldGoal(stat: stat)
+            displayPlayerFreeThrow(stat: stat)
+            displayPlayerAssists(stat: stat)
+            displayPlayerRebounds(stat: stat)
+            displayPlayerBlocks(stat: stat)
+            displayPlayerTurnovers(stat: stat)
+            displayPlayerFouls(stat: stat)
         }
     }
     
@@ -454,26 +567,32 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     ******************************************************************************************************************* */
     
     @IBAction func opponentButtonTapped(_ sender: Any) {
-        opponentButtonSelected = true
+        selectOpponentButton()
         statsButtonView.isHidden = false
     }
     
     @IBAction func timerTapped(_ sender: Any) {
-        periodTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.displayTime), userInfo: nil, repeats: true)
+        if isTimeout == true {
+            periodTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.displayPeriodTime), userInfo: nil, repeats: true)
+            isTimeout = false
+        } else {
+            periodTimer.invalidate()
+            isTimeout = true
+        }
     }
     
     @IBAction func nextPeriodTapped(_ sender: Any) {
-        //NEED TO DO
+        nextPeriod()
     }
     
     @IBAction func madeOneTapped(_ sender: Any) {
-        if opponentButtonSelected == true {
-            opponent.madeOnePoints = opponent.madeOnePoints + 1
-            opponentButtonSelected = false
+        if opponentSelected() {
+            addMadeOne(stat: opponent)
+            deselectOpponentButton()
         } else {
             for stat in selectedRosterStats{
-                if selectedPlayer.playerID == stat.playerID {
-                    stat.madeOnePoints = stat.madeOnePoints + 1
+                if isPlayerSame(stat: stat) {
+                    addMadeOne(stat: stat)
                 }
             }
         }
@@ -484,13 +603,13 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func madeTwoTapped(_ sender: Any) {
-        if opponentButtonSelected == true {
-            opponent.madeTwoPoints = opponent.madeTwoPoints + 1
-            opponentButtonSelected = false
+        if opponentSelected() {
+            addMadeTwo(stat: opponent)
+            deselectOpponentButton()
         } else {
             for stat in selectedRosterStats{
-                if selectedPlayer.playerID == stat.playerID {
-                    stat.madeTwoPoints = stat.madeTwoPoints + 1
+                if isPlayerSame(stat: stat) {
+                    addMadeTwo(stat: stat)
                 }
             }
         }
@@ -501,13 +620,13 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func madeThreeTapped(_ sender: Any) {
-        if opponentButtonSelected == true {
-            opponent.madeThreePoints = opponent.madeThreePoints + 1
-            opponentButtonSelected = false
+        if opponentSelected() {
+            addMadeThree(stat: opponent)
+            deselectOpponentButton()
         } else {
             for stat in selectedRosterStats{
-                if selectedPlayer.playerID == stat.playerID {
-                    stat.madeThreePoints = stat.madeThreePoints + 1
+                if isPlayerSame(stat: stat) {
+                    addMadeThree(stat: stat)
                 }
             }
         }
@@ -518,13 +637,13 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func missOneTapped(_ sender: Any) {
-        if opponentButtonSelected == true {
-            opponent.missedOnePoints = opponent.missedOnePoints + 1
-            opponentButtonSelected = false
+        if opponentSelected() {
+            addMissOne(stat: opponent)
+            deselectOpponentButton()
         } else {
             for stat in selectedRosterStats{
-                if selectedPlayer.playerID == stat.playerID {
-                    stat.missedOnePoints = stat.missedOnePoints + 1
+                if isPlayerSame(stat: stat) {
+                    addMissOne(stat: stat)
                 }
             }
         }
@@ -535,13 +654,13 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func missTwotapped(_ sender: Any) {
-        if opponentButtonSelected == true {
-            opponent.missedTwoPoints = opponent.missedTwoPoints + 1
-            opponentButtonSelected = false
+        if opponentSelected() {
+            addMissTwo(stat: opponent)
+            deselectOpponentButton()
         } else {
             for stat in selectedRosterStats{
-                if selectedPlayer.playerID == stat.playerID {
-                    stat.missedTwoPoints = stat.missedTwoPoints + 1
+                if isPlayerSame(stat: stat) {
+                    addMissTwo(stat: stat)
                 }
             }
         }
@@ -551,13 +670,13 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func missThreeTapped(_ sender: Any) {
-        if opponentButtonSelected == true {
-            opponent.missedThreePoints = opponent.missedThreePoints + 1
-            opponentButtonSelected = false
+        if opponentSelected() {
+            addMissThree(stat: opponent)
+            deselectOpponentButton()
         } else {
             for stat in selectedRosterStats{
-                if selectedPlayer.playerID == stat.playerID {
-                    stat.missedThreePoints = stat.missedThreePoints + 1
+                if isPlayerSame(stat: stat) {
+                    addMissThree(stat: stat)
                 }
             }
         }
@@ -567,13 +686,13 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func offReboundTapped(_ sender: Any) {
-        if opponentButtonSelected == true {
-            opponent.offRebounds = opponent.offRebounds + 1
-            opponentButtonSelected = false
+        if opponentSelected() {
+            addOffRebound(stat: opponent)
+            deselectOpponentButton()
         } else {
             for stat in selectedRosterStats{
-                if selectedPlayer.playerID == stat.playerID {
-                    stat.offRebounds = stat.offRebounds + 1
+                if isPlayerSame(stat: stat) {
+                    addOffRebound(stat: stat)
                 }
             }
         }
@@ -583,13 +702,13 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func defReboundTapped(_ sender: Any) {
-        if opponentButtonSelected == true {
-            opponent.defRebounds = opponent.defRebounds + 1
-            opponentButtonSelected = false
+        if opponentSelected() {
+            addDefRebound(stat: opponent)
+            deselectOpponentButton()
         } else {
             for stat in selectedRosterStats{
-                if selectedPlayer.playerID == stat.playerID {
-                    stat.defRebounds = stat.defRebounds + 1
+                if isPlayerSame(stat: stat) {
+                    addDefRebound(stat: stat)
                 }
             }
         }
@@ -599,13 +718,13 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func assistTapped(_ sender: Any) {
-        if opponentButtonSelected == true {
-            opponent.assists = opponent.assists + 1
-            opponentButtonSelected = false
+        if opponentSelected() {
+            addAssist(stat: opponent)
+            deselectOpponentButton()
         } else {
             for stat in selectedRosterStats{
-                if selectedPlayer.playerID == stat.playerID {
-                    stat.assists = stat.assists + 1
+                if isPlayerSame(stat: stat) {
+                    addAssist(stat: stat)
                 }
             }
         }
@@ -615,13 +734,13 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func blockTapped(_ sender: Any) {
-        if opponentButtonSelected == true {
-            opponent.blocks = opponent.blocks + 1
-            opponentButtonSelected = false
+        if opponentSelected() {
+            addBlock(stat: opponent)
+            deselectOpponentButton()
         } else {
             for stat in selectedRosterStats{
-                if selectedPlayer.playerID == stat.playerID {
-                    stat.blocks = stat.blocks + 1
+                if isPlayerSame(stat: stat) {
+                    addBlock(stat: stat)
                 }
             }
         }
@@ -631,13 +750,13 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func stealTapped(_ sender: Any) {
-        if opponentButtonSelected == true {
-            opponent.steals = opponent.steals + 1
-            opponentButtonSelected = false
+        if opponentSelected() {
+            addSteal(stat: opponent)
+            deselectOpponentButton()
         } else {
             for stat in selectedRosterStats{
-                if selectedPlayer.playerID == stat.playerID {
-                    stat.steals = stat.steals + 1
+                if isPlayerSame(stat: stat) {
+                    addSteal(stat: stat)
                 }
             }
         }
@@ -647,13 +766,13 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func turnoverTapped(_ sender: Any) {
-        if opponentButtonSelected == true {
-            opponent.turnovers = opponent.turnovers + 1
-            opponentButtonSelected = false
+        if opponentSelected() {
+            addTurnover(stat: opponent)
+            deselectOpponentButton()
         } else {
             for stat in selectedRosterStats{
-                if selectedPlayer.playerID == stat.playerID {
-                    stat.turnovers = stat.turnovers + 1
+                if isPlayerSame(stat: stat) {
+                    addTurnover(stat: stat)
                 }
             }
         }
@@ -663,13 +782,13 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func foulTapped(_ sender: Any) {
-        if opponentButtonSelected == true {
-            opponent.fouls = opponent.fouls + 1
-            opponentButtonSelected = false
+        if opponentSelected() {
+            addFoul(stat: opponent)
+            deselectOpponentButton()
         } else {
             for stat in selectedRosterStats{
-                if selectedPlayer.playerID == stat.playerID {
-                    stat.fouls = stat.fouls + 1
+                if isPlayerSame(stat: stat) {
+                    addFoul(stat: stat)
                 }
             }
         }
@@ -686,11 +805,99 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
      // VIEW CONTROLLER - SETTER FUNCTIONS
      ******************************************************************************************************************* */
     
+    func allowBenchSelection() {
+        selectedTeamBenchTableView.allowsSelection = true
+    }
+    
+    func preventBenchSelection() {
+        selectedTeamBenchTableView.allowsSelection = false
+    }
+    
+    func selectOpponentButton() {
+        opponentButtonSelected = true
+    }
+    
+    func deselectOpponentButton() {
+        opponentButtonSelected = false
+    }
+    
     func setPlayerToActive(player: Stats) {
         player.isActive = true
     }
     
     func setPlayerToInactive(player: Stats) {
         player.isActive = false
+    }
+    
+    func addFoul(stat: Stats) {
+        stat.fouls += 1
+    }
+    
+    func addTurnover(stat: Stats) {
+        stat.turnovers += 1
+    }
+    
+    func addSteal(stat: Stats) {
+        stat.steals += 1
+    }
+    
+    func addBlock(stat: Stats) {
+        stat.blocks += 1
+    }
+    
+    func addAssist(stat: Stats) {
+        stat.assists += 1
+    }
+    
+    func addDefRebound(stat: Stats) {
+        stat.defRebounds += 1
+    }
+    
+    func addOffRebound(stat: Stats) {
+        stat.offRebounds += 1
+    }
+    
+    func addMadeOne(stat: Stats) {
+        stat.madeOnePoints += 1
+    }
+    
+    func addMadeTwo(stat: Stats) {
+        stat.madeTwoPoints += 1
+    }
+    
+    func addMadeThree(stat: Stats) {
+        stat.madeThreePoints += 1
+    }
+    
+    func addMissOne(stat: Stats) {
+        stat.missedOnePoints += 1
+    }
+    
+    func addMissTwo(stat: Stats) {
+        stat.missedTwoPoints += 1
+    }
+    
+    func addMissThree(stat: Stats) {
+        stat.missedThreePoints += 1
+    }
+    
+    func addPlayingTime() {
+        for stats in selectedRosterStats {
+            if stats.isActive == true {
+                stats.playingTimeInSeconds += 1
+            }
+        }
+    }
+    
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - CONDITION FUNCTIONS
+     ******************************************************************************************************************* */
+    
+    func isPlayerSame(stat: Stats) -> (Bool){
+        return selectedPlayer.playerID == stat.playerID
+    }
+    
+    func opponentSelected() -> (Bool){
+        return opponentButtonSelected
     }
 }

@@ -682,7 +682,7 @@
                                 </subviews>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DBA-b8-gSa">
-                                <rect key="frame" x="484" y="72" width="152" height="82"/>
+                                <rect key="frame" x="509" y="72" width="152" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.67723850389999996" green="0.67723850389999996" blue="0.67723850389999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="20 : 00">
@@ -693,7 +693,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DBr-FN-w4P">
-                                <rect key="frame" x="644" y="72" width="151" height="82"/>
+                                <rect key="frame" x="669" y="72" width="151" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.67723850389999996" green="0.67723850389999996" blue="0.67723850389999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="NEXT PERIOD &gt;">
@@ -1100,6 +1100,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PERIOD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GvB-Fs-Od2">
+                                <rect key="frame" x="392" y="103" width="60" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1107,6 +1114,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Breakdown" id="sJl-KF-8E0"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="currentPeriodLabel" destination="GvB-Fs-Od2" id="liS-ys-GlS"/>
                         <outlet property="opponentTeamAssistLabel" destination="j9e-Ye-LzH" id="VZn-9U-gWU"/>
                         <outlet property="opponentTeamBlocksLabel" destination="zXJ-De-CO0" id="GOq-qJ-Mbe"/>
                         <outlet property="opponentTeamFieldGoalLabel" destination="MKi-v4-j78" id="LCU-ng-KfT"/>
@@ -1117,6 +1125,7 @@
                         <outlet property="opponentTeamScoreLabel" destination="msY-O7-BrY" id="hUv-iA-hhA"/>
                         <outlet property="opponentTeamStealsLabel" destination="7dW-Ug-uJe" id="UHX-BK-mnR"/>
                         <outlet property="opponentTeamTurnoversLabel" destination="X3A-Mp-9Tf" id="aem-Vq-cQZ"/>
+                        <outlet property="periodButton" destination="DBr-FN-w4P" id="eVq-Y0-eII"/>
                         <outlet property="playerAssistLabel" destination="d7D-lg-VN9" id="5cS-jL-C7i"/>
                         <outlet property="playerBlocksLabel" destination="GbW-0O-UDh" id="ELp-V7-hB8"/>
                         <outlet property="playerFoulsLabel" destination="AbM-rQ-ri5" id="PEB-g9-8As"/>
@@ -1256,7 +1265,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kby-Ab-jhP" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Qa0-Gg-0sS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qa0-Gg-0sS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
