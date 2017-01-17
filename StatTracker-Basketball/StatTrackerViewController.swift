@@ -235,7 +235,8 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         currentPeriodTimeInSeconds = Int(selectedGame.gamePeriodLength)! * 60
         isTimeout = true
         currentPeriod += 1
-        
+        let (minutes, seconds) = calMinutesSeconds(seconds: currentPeriodTimeInSeconds)
+        displayTime(m: minutes, s: seconds)
     }
     
     /* *******************************************************************************************************************
