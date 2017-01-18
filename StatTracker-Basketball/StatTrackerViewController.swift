@@ -109,16 +109,18 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         selectedTeamTableView.dataSource = self
         selectedTeamBenchTableView.delegate = self
         selectedTeamBenchTableView.dataSource = self
+        
         getPlayers()
         hideTrackerViews()
+        
         selectedTeamBenchTableView.allowsSelection = false
         selectedTeamNameLabel.text = "\(selectedTeam.teamName)"
         opponentTeamNameLabel.text = "\(selectedGame.gameOppTeam)"
+        
         currentPeriodTimeInSeconds = Int(selectedGame.gamePeriodLength)! * 60
         let (m,s) = calMinutesSeconds(seconds: currentPeriodTimeInSeconds)
         timeButton.setTitle("\(m) : 0\(s)", for: .normal)
         displayCurrentPeriod()
-        // Do any additional setup after loading the view.
     }
     
     /* *******************************************************************************************************************
@@ -175,6 +177,15 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
      // VIEW CONTROLLER - PERFORM FUNCTIONS
      ******************************************************************************************************************* */
     
+    func nextPeriod() {
+        periodTimer.invalidate()
+        currentPeriodTimeInSeconds = Int(selectedGame.gamePeriodLength)! * 60
+        isTimeout = true
+        currentPeriod += 1
+        let (minutes, seconds) = calMinutesSeconds(seconds: currentPeriodTimeInSeconds)
+        displayTime(m: minutes, s: seconds)
+    }
+    
     func enableStatTracking(indexPath: IndexPath) {
         selectedPlayer = selectedActiveRoster[indexPath.row]
         statsButtonView.isHidden = false
@@ -230,17 +241,27 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         selectedPlayerIndexPath = IndexPath()
     }
     
-    func nextPeriod() {
-        periodTimer.invalidate()
-        currentPeriodTimeInSeconds = Int(selectedGame.gamePeriodLength)! * 60
-        isTimeout = true
-        currentPeriod += 1
-        let (minutes, seconds) = calMinutesSeconds(seconds: currentPeriodTimeInSeconds)
-        displayTime(m: minutes, s: seconds)
+    
+    func createStatsDictionary(player: Stats) -> [String:Int] {
+        let stats = ["playingTime": player.playingTimeInSeconds,
+                     "madeOne": player.madeOnePoints,
+                     "missOne": player.missedOnePoints,
+                     "madeTwo": player.madeTwoPoints,
+                     "missTwo": player.missedTwoPoints,
+                     "madeThree": player.madeThreePoints,
+                     "missThree": player.missedThreePoints,
+                     "assists": player.assists,
+                     "offRebounds": player.offRebounds,
+                     "defRebounds": player.defRebounds,
+                     "steals": player.steals,
+                     "blocks": player.blocks,
+                     "fouls": player.fouls,
+                     "turnovers": player.turnovers]
+        return stats
     }
     
     /* *******************************************************************************************************************
-     // FIREBASE - RETRIEVE QUERY FUNCTIONS
+     // FIREBASE - QUERY FUNCTIONS
      ******************************************************************************************************************* */
     
     func getPlayers() {
@@ -273,6 +294,13 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         reloadRosters()
+    }
+    
+    func uploadStats() {
+        for player in selectedRosterStats {
+            let stats = createStatsDictionary(player: player)
+            FIRDatabase.database().reference().child("gameResults").child(selectedTeam.teamID).child(selectedGame.gameID).child(player.playerID).setValue(stats)
+        }
     }
     
     /* *******************************************************************************************************************
@@ -388,6 +416,16 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
      // VIEW CONTROLLER - DISPLAY STATISTICS FUNCTIONS
      ******************************************************************************************************************* */
     
+    func preventSelection() {
+        selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
+        selectedTeamBenchTableView.allowsSelection = false
+    }
+    
+    func hideTrackerViews() {
+        statsButtonView.isHidden = true
+        selectedPlayerStatsView.isHidden = true
+    }
+    
     func displayCurrentPeriod() {
         if selectedGame.gameNumPeriods == "4" {
             currentPeriodLabel.text = "Q\(currentPeriod)"
@@ -405,11 +443,11 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             nextPeriod()
         }
         if currentPeriod > Int(selectedGame.gameNumPeriods)! {
-            // GAME FINISHED
-            // pass values to next screen
-            // on next screen, upload values
+            periodButton.setTitle("Upload", for: .normal)
+            currentPeriodLabel.text = "Game Complete"
+        } else {
+            displayCurrentPeriod()
         }
-        displayCurrentPeriod()
     }
     
     func displayTime(m: Int, s: Int) {
@@ -420,25 +458,11 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    func preventSelection() {
-        selectedTeamTableView.deselectRow(at: selectedPlayerIndexPath, animated: true)
-        selectedTeamBenchTableView.allowsSelection = false
-    }
-    
-    func hideTrackerViews() {
-        statsButtonView.isHidden = true
-        selectedPlayerStatsView.isHidden = true
-    }
-    
     func displayTrackerViews() {
         statsButtonView.isHidden = true
         selectedPlayerStatsView.isHidden = true
     }
     
-    func reloadRosters() {
-        self.selectedTeamTableView.reloadData()
-        self.selectedTeamBenchTableView.reloadData()
-    }
     
     func displayTeamScore() {
         selectedTeamScoreLabel.text = "\(calSelectedTeamScore())"
@@ -491,6 +515,15 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         playerNameLabel.text = "#\(selectedPlayer.playerNumber) \(selectedPlayer.playerFirstName) \(selectedPlayer.playerLastName)"
     }
     
+    func displayPlayerMinutes(stat: Stats) {
+        let (m,s) = calMinutesSeconds(seconds: stat.playingTimeInSeconds)
+        if s < 10  {
+            playerMinutesLabel.text = "\(m):0\(s)"
+        } else {
+            playerMinutesLabel.text = "\(m):\(s)"
+        }
+    }
+    
     func displayPlayerPoints(stat: Stats) {
         let points = calPoints(stat: stat)
         playerPointsLabel.text = "\(points)"
@@ -539,15 +572,6 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         playerFoulsLabel.text = "\(stat.fouls)"
     }
     
-    func displayPlayerMinutes(stat: Stats) {
-        let (m,s) = calMinutesSeconds(seconds: stat.playingTimeInSeconds)
-        if s < 10  {
-            playerMinutesLabel.text = "\(m):0\(s)"
-        } else {
-            playerMinutesLabel.text = "\(m):\(s)"
-        }
-    }
-    
     func displayIndividualStats(stat: Stats) {
         if isPlayerSame(stat: stat) {
             displayPlayerDetails()
@@ -561,6 +585,11 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             displayPlayerTurnovers(stat: stat)
             displayPlayerFouls(stat: stat)
         }
+    }
+    
+    func reloadRosters() {
+        self.selectedTeamTableView.reloadData()
+        self.selectedTeamBenchTableView.reloadData()
     }
     
     /* *******************************************************************************************************************
@@ -583,7 +612,11 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func nextPeriodTapped(_ sender: Any) {
-        nextPeriod()
+        if periodButton.titleLabel?.text == "Upload" {
+            uploadStats()
+        } else {
+            nextPeriod()
+        }
     }
     
     @IBAction func madeOneTapped(_ sender: Any) {

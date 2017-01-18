@@ -1110,9 +1110,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="rtr-aY-5jI">
-                        <barButtonItem key="rightBarButtonItem" title="Breakdown" id="sJl-KF-8E0"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="rtr-aY-5jI"/>
                     <connections>
                         <outlet property="currentPeriodLabel" destination="GvB-Fs-Od2" id="liS-ys-GlS"/>
                         <outlet property="opponentTeamAssistLabel" destination="j9e-Ye-LzH" id="VZn-9U-gWU"/>
