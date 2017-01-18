@@ -301,6 +301,10 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             let stats = createStatsDictionary(player: player)
             FIRDatabase.database().reference().child("gameResults").child(selectedTeam.teamID).child(selectedGame.gameID).child(player.playerID).setValue(stats)
         }
+        let opponentStats = createStatsDictionary(player: opponent)
+        FIRDatabase.database().reference().child("gameResults").child(selectedTeam.teamID).child(selectedGame.gameID).child("opponent").setValue(opponentStats)
+        
+        FIRDatabase.database().reference().child("games").child(selectedTeam.teamID).child(selectedGame.gameID).child("gameStatus").setValue("complete")
     }
     
     /* *******************************************************************************************************************

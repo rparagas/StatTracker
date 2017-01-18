@@ -117,4 +117,90 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBAction func beginGameTapped(_ sender: Any) {
         performSegue(withIdentifier: "beginGameSegue", sender: selectedGame)
     }
+    
+    
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - CALCULATE STATISTICS FUNCTIONS
+     ******************************************************************************************************************* */
+    
+    func calSelectedTeamScore(selectedRosterStats: [Stats]) -> (Int) {
+        var score = 0
+        for player in selectedRosterStats {
+            score += player.madeOnePoints
+            score += player.madeTwoPoints * 2
+            score += player.madeThreePoints * 3
+        }
+        return score
+    }
+    
+    func calSelectedTeamFieldGoal(selectedRosterStats: [Stats]) -> (Double) {
+        var made = 0.0
+        var total = 0.0
+        for player in selectedRosterStats {
+            made += (Double(player.madeTwoPoints) + Double(player.madeThreePoints))
+            total += (Double(player.madeTwoPoints) + Double(player.madeThreePoints) + Double(player.missedTwoPoints) + Double(player.missedThreePoints))
+        }
+        let fieldGoal : Double = Double(made) / Double(total)
+        return Double(round(fieldGoal * 1000)/1000) * 100
+    }
+    
+    func calSelectedTeamFreeThrow(selectedRosterStats: [Stats]) -> (Double) {
+        var made = 0.0
+        var total = 0.0
+        for player in selectedRosterStats {
+            made += Double(player.madeOnePoints)
+            total += (Double(player.madeOnePoints) + Double(player.missedOnePoints))
+        }
+        let freeThrow : Double = Double(made) / Double(total)
+        return Double(round(freeThrow * 1000)/1000) * 100
+    }
+    
+    func calSelectedTeamAssists(selectedRosterStats: [Stats]) -> (Int) {
+        var assists = 0
+        for player in selectedRosterStats {
+            assists += player.assists
+        }
+        return assists
+    }
+    
+    func calSelectedTeamRebounds(selectedRosterStats: [Stats]) -> (Int) {
+        var rebounds = 0
+        for player in selectedRosterStats{
+            rebounds += (player.defRebounds + player.offRebounds)
+        }
+        return rebounds
+    }
+    
+    func calSelectedTeamBlocks(selectedRosterStats: [Stats]) -> (Int) {
+        var blocks = 0
+        for player in selectedRosterStats{
+            blocks += player.blocks
+        }
+        return blocks
+    }
+    
+    func calSelectedTeamSteals(selectedRosterStats: [Stats]) -> (Int) {
+        var steals = 0
+        for player in selectedRosterStats{
+            steals += player.steals
+        }
+        return steals
+    }
+    
+    func calSelectedTeamFouls(selectedRosterStats: [Stats]) -> (Int) {
+        var fouls = 0
+        for player in selectedRosterStats{
+            fouls += player.fouls
+        }
+        return fouls
+    }
+    
+    func calSelectedTeamTurnovers(selectedRosterStats: [Stats]) -> (Int) {
+        var turnovers = 0
+        for player in selectedRosterStats{
+            turnovers += player.turnovers
+        }
+        return turnovers
+    }
+    
 }
