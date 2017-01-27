@@ -23,13 +23,15 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     /* *******************************************************************************************************************
      // VIEW CONTROLLER - BUTTON OUTLETS
      ******************************************************************************************************************* */
-    
+    @IBOutlet weak var beginBoxScoreButton: UIButton!
     @IBOutlet weak var newGameButton: UIBarButtonItem!
     
     /* *******************************************************************************************************************
      // VIEW CONTROLLER - LABEL OUTLETS
      ******************************************************************************************************************* */
     
+    @IBOutlet weak var selectedTeamNameLabel: UILabel!
+    @IBOutlet weak var opponentTeamNameLabel: UILabel!
     @IBOutlet weak var selectedTeamScoreLabel: UILabel!
     @IBOutlet weak var selectedTeamFieldGoalLabel: UILabel!
     @IBOutlet weak var selectedTeamThreePointLabel: UILabel!
@@ -42,6 +44,10 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var opponentTeamFreeThrowLabel: UILabel!
     @IBOutlet weak var opponentTeamReboundLabel: UILabel!
     @IBOutlet weak var opponentTeamAssistLabel: UILabel!
+    @IBOutlet weak var gameDateLabel: UILabel!
+    @IBOutlet weak var gamePeriodsLabel: UILabel!
+    @IBOutlet weak var gamePeriodLengthLabel: UILabel!
+    @IBOutlet weak var gameFoulsLabel: UILabel!
 
     /* *******************************************************************************************************************
      // VIEW CONTROLLER - GOLBAL VARIABLES
@@ -118,7 +124,9 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         gameSummaryView.isHidden = false
         selectedGame = selectedTeamGames[indexPath.row]
+        displayGameInfo()
         getGameSummary()
+        checkGameStatus()
     }
     
     /* *******************************************************************************************************************
@@ -279,6 +287,15 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
      // VIEW CONTROLLER - DISPLAY FUNCTIONS
      ******************************************************************************************************************* */
     
+    func displayGameInfo() {
+        selectedTeamNameLabel.text = selectedTeam?.teamName
+        opponentTeamNameLabel.text = selectedGame?.gameOppTeam
+        gameDateLabel.text = selectedGame?.gameDateTime
+        gamePeriodsLabel.text = selectedGame?.gameNumPeriods
+        gamePeriodLengthLabel.text = selectedGame?.gamePeriodLength
+        gameFoulsLabel.text = selectedGame?.gameNumFouls
+    }
+    
     func displayTeamStats() {
         displayTeamScore()
         displayTeamFieldGoal()
@@ -324,6 +341,17 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     /* *******************************************************************************************************************
      // VIEW CONTROLLER - ACTION BUTTONS
      ******************************************************************************************************************* */
+    
+    func checkGameStatus() {
+        if selectedGame?.gameStatus == "complete"
+        {
+            beginBoxScoreButton.setTitle("Box Score", for: .normal)
+        }
+    }
+    
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - ACTION BUTTONS
+     ******************************************************************************************************************* */
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newGameSegue" {
@@ -344,6 +372,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBAction func beginGameTapped(_ sender: Any) {
         performSegue(withIdentifier: "beginGameSegue", sender: selectedGame)
     }
+    
     
     
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AddTeamViewController: UIViewController {
     
@@ -20,13 +21,10 @@ class AddTeamViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    /*@IBAction func addTeamTapped(_ sender: Any) {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let team = Team()
-        team.teamName = teamNameTextField.text
-        team.teamType = teamTypeTextField.text
-        team.teamDivision = teamDivisionTextField.text
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+    @IBAction func addTeamTapped(_ sender: Any) {
+        let uuid = NSUUID().uuidString
+        let team = ["teamName":teamNameTextField.text!, "teamType":teamTypeTextField.text!]
+        FIRDatabase.database().reference().child("teams").child(uuid).setValue(team)
         navigationController?.popViewController(animated: true)
-    }*/
+    }
 }

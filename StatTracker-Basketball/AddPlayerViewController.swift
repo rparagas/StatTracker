@@ -7,29 +7,28 @@
 //
 
 import UIKit
+import Firebase
 
 class AddPlayerViewController: UIViewController {
 
+    @IBOutlet weak var playerFirstNameLabel: UITextField!
+    @IBOutlet weak var playerLastNameLabel: UITextField!
+    @IBOutlet weak var playerPositionLabel: UITextField!
+    @IBOutlet weak var playerNumberLabel: UITextField!
+    
+    var selectedTeam = Team()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func saveTapped(_ sender: Any) {
+        let uuid = NSUUID().uuidString
+        let player = ["playerFirstName": playerFirstNameLabel.text, "playerLastName": playerLastNameLabel.text, "playerNumber": playerNumberLabel.text, "playerPosition": playerPositionLabel.text]
+        FIRDatabase.database().reference().child("players").child(selectedTeam.teamID).child(uuid).setValue(player)
+        navigationController?.popViewController(animated: true)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

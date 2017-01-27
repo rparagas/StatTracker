@@ -494,18 +494,25 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="beginBoxScoreButton" destination="u6e-X5-bd5" id="p04-oF-HyH"/>
+                        <outlet property="gameDateLabel" destination="AtN-YS-0Gc" id="qe7-Fu-5ky"/>
+                        <outlet property="gameFoulsLabel" destination="pHy-6s-fIv" id="Ziy-df-mRU"/>
+                        <outlet property="gamePeriodLengthLabel" destination="Cdb-XQ-x9I" id="eZK-YJ-uTj"/>
+                        <outlet property="gamePeriodsLabel" destination="c0q-Sl-zZi" id="bxg-wx-Ag5"/>
                         <outlet property="gameSummaryView" destination="sdg-Fm-ovP" id="zZ1-C6-EIY"/>
                         <outlet property="gamesTableView" destination="zOy-Gs-a0N" id="Qex-GK-42P"/>
                         <outlet property="newGameButton" destination="ied-dh-vJp" id="HB7-5C-kU0"/>
                         <outlet property="opponentTeamAssistLabel" destination="PLv-9u-OwA" id="B6l-ES-l0m"/>
                         <outlet property="opponentTeamFieldGoalLabel" destination="7gR-rg-qbQ" id="bJk-7k-yCF"/>
                         <outlet property="opponentTeamFreeThrowLabel" destination="DZd-97-GbK" id="HrM-G6-T0u"/>
+                        <outlet property="opponentTeamNameLabel" destination="TbC-fj-Ods" id="Nrv-0h-WcV"/>
                         <outlet property="opponentTeamReboundLabel" destination="TRT-Ru-SE8" id="h4L-eh-w3q"/>
                         <outlet property="opponentTeamScoreLabel" destination="thW-uK-SkQ" id="Hnw-Xl-iDm"/>
                         <outlet property="opponentTeamThreePointLabel" destination="3kj-Wi-SCk" id="kfc-mB-F2e"/>
                         <outlet property="selectedTeamAssistLabel" destination="PaB-wI-oxx" id="ml5-U9-r18"/>
                         <outlet property="selectedTeamFieldGoalLabel" destination="rOl-zM-GhU" id="dYt-VV-IJL"/>
                         <outlet property="selectedTeamFreeThrowLabel" destination="7YE-Vw-cAV" id="h2v-BY-nW6"/>
+                        <outlet property="selectedTeamNameLabel" destination="cfX-kF-XqU" id="6wr-XI-mdt"/>
                         <outlet property="selectedTeamReboundLabel" destination="ChM-dw-5A7" id="2Di-XO-ARP"/>
                         <outlet property="selectedTeamScoreLabel" destination="brd-WH-yLH" id="tW7-RC-iAz"/>
                         <outlet property="selectedTeamThreePointLabel" destination="hmi-f8-Hpc" id="7js-hu-izY"/>
@@ -1381,7 +1388,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Team Name" id="K6O-F8-mOn">
-                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="jgY-uh-cjU"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="jgY-uh-cjU">
+                            <connections>
+                                <action selector="addPlayerTapped:" destination="5J8-PX-AGg" id="M39-e0-qL7"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="firstNameTextField" destination="gQI-9r-4Mq" id="cgo-PC-Q4P"/>
@@ -1390,7 +1401,7 @@
                         <outlet property="positionTextField" destination="9lJ-Yd-Oko" id="51t-4U-mTa"/>
                         <outlet property="rosterTableView" destination="ejf-EI-P0Y" id="EcB-W2-y9O"/>
                         <outlet property="updateButton" destination="tuG-2C-TCF" id="hah-cl-xGb"/>
-                        <segue destination="WyE-c6-Aap" kind="show" id="fwo-so-Ito"/>
+                        <segue destination="WyE-c6-Aap" kind="show" identifier="addPlayerSegue" id="fwo-so-Ito"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J5h-em-Vc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1483,8 +1494,80 @@
                     <view key="view" contentMode="scaleToFill" id="rCT-zE-UaO">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6NJ-wH-qzc">
+                                <rect key="frame" x="386" y="185" width="83" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ac2-Ou-M4W">
+                                <rect key="frame" x="387" y="230" width="82" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bA0-mh-PDA">
+                                <rect key="frame" x="390" y="318" width="77" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Position" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O0d-Lh-LuM">
+                                <rect key="frame" x="397" y="271" width="61" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GHc-UY-UmK">
+                                <rect key="frame" x="554" y="266" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I4J-a1-bcY">
+                                <rect key="frame" x="554" y="180" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n53-Ii-9X7">
+                                <rect key="frame" x="554" y="225" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMS-KP-9NY">
+                                <rect key="frame" x="495" y="447" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveTapped:" destination="WyE-c6-Aap" eventType="touchUpInside" id="tHS-FT-z7K"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YkN-hv-VMW">
+                                <rect key="frame" x="554" y="313" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="playerFirstNameLabel" destination="I4J-a1-bcY" id="dw5-Jh-z8a"/>
+                        <outlet property="playerLastNameLabel" destination="n53-Ii-9X7" id="d7O-bV-sYy"/>
+                        <outlet property="playerNumberLabel" destination="YkN-hv-VMW" id="EEg-YQ-JyA"/>
+                        <outlet property="playerPositionLabel" destination="GHc-UY-UmK" id="sLl-S8-tbb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ONc-Cb-oj1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -113,7 +113,6 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedTeam = teams[indexPath.row]
-        
         getPlayers()
         updateDisplayedRoster()
     }
@@ -122,7 +121,6 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if segue.identifier == "editRosterSegue" {
             let nextVC = segue.destination as! RosterViewController
             nextVC.team = selectedTeam!
-            nextVC.roster = selectedRoster
         }
     }
     
