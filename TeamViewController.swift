@@ -129,6 +129,9 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             FIRDatabase.database().reference().child("teams").child(teams[indexPath.row].teamID).removeValue()
+            FIRDatabase.database().reference().child("players").child(teams[indexPath.row].teamID).removeValue()
+            FIRDatabase.database().reference().child("games").child(teams[indexPath.row].teamID).removeValue()
+            FIRDatabase.database().reference().child("gameResults").child(teams[indexPath.row].teamID).removeValue()
             teams.remove(at: indexPath.row)
             teamsTableView.reloadData()
         }

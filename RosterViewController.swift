@@ -61,6 +61,14 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         positionTextField.text = selectedPlayer.playerPosition
         updateButton.isHidden = false
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            FIRDatabase.database().reference().child("players").child(team.teamID).child(roster[indexPath.row]).removeValue()
+            roster.remove(at: indexPath.row)
+            rosterTableView.reloadData()
+        }
+    }
 
     func getPlayers() {
         FIRDatabase.database().reference().child("players").child(team.teamID).observe(FIRDataEventType.childAdded, with: {(snapshot) in
