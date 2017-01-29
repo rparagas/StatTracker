@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -82,133 +83,184 @@
                                     <constraint firstAttribute="width" constant="300" id="nZq-dg-glm"/>
                                 </constraints>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ok2-nw-W9N">
-                                <rect key="frame" x="631" y="167" width="92" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wxc-62-KHW">
-                                <rect key="frame" x="458" y="253" width="109" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxF-Y3-XdJ">
-                                <rect key="frame" x="458" y="327" width="109" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Gp-Yf-ZSz">
-                                <rect key="frame" x="458" y="401" width="109" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rK4-Ol-y3F">
-                                <rect key="frame" x="458" y="477" width="109" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eje-7B-BkG">
-                                <rect key="frame" x="458" y="556" width="109" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXm-x1-OBo">
-                                <rect key="frame" x="788" y="253" width="109" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUE-4m-AN3">
-                                <rect key="frame" x="788" y="327" width="109" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ud-0t-Bcl">
-                                <rect key="frame" x="788" y="401" width="109" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFg-3v-DAC">
-                                <rect key="frame" x="788" y="477" width="109" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLA-b6-1tO">
-                                <rect key="frame" x="788" y="556" width="109" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Id-23-zlK">
-                                <rect key="frame" x="640" y="643" width="75" height="30"/>
-                                <state key="normal" title="Edit Roster"/>
-                                <connections>
-                                    <action selector="editRosterTapped:" destination="ZwY-ps-5iQ" eventType="touchUpInside" id="bCx-sg-lB3"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pfp-6m-vAV">
+                                <rect key="frame" x="308" y="72" width="707" height="688"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h98-yr-dM3">
+                                        <rect key="frame" x="124" y="91" width="109" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqm-Tw-yWY">
+                                        <rect key="frame" x="124" y="160.5" width="108.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2A-fc-TIj">
+                                        <rect key="frame" x="124" y="230.5" width="108.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zS-3p-bLn">
+                                        <rect key="frame" x="124" y="300.5" width="108.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEO-vV-DNG">
+                                        <rect key="frame" x="124" y="370.5" width="108.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ZV-AL-Rb8">
+                                        <rect key="frame" x="124" y="440.5" width="108.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2aF-z0-s0v">
+                                        <rect key="frame" x="124" y="510.5" width="108.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vky-W7-iVU">
+                                        <rect key="frame" x="474" y="161" width="109" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTO-qv-bO6">
+                                        <rect key="frame" x="474" y="231" width="109" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhK-97-Y73">
+                                        <rect key="frame" x="474" y="301" width="109" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YUU-Q4-Ecu">
+                                        <rect key="frame" x="474" y="371" width="109" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEp-rS-UE5">
+                                        <rect key="frame" x="474" y="441" width="109" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68o-zZ-UcZ">
+                                        <rect key="frame" x="474" y="511" width="109" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7BB-KY-gqa">
+                                        <rect key="frame" x="316" y="623" width="75" height="30"/>
+                                        <state key="normal" title="Edit Roster"/>
+                                        <connections>
+                                            <action selector="editRosterTapped:" destination="ZwY-ps-5iQ" eventType="touchUpInside" id="WOt-yg-wLr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnA-ib-dLg">
+                                        <rect key="frame" x="319" y="563" width="68" height="30"/>
+                                        <state key="normal" title="Edit Team"/>
+                                        <connections>
+                                            <action selector="editTeamTapped:" destination="ZwY-ps-5iQ" eventType="touchUpInside" id="IQY-eW-swB"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfr-0e-OjJ">
+                                        <rect key="frame" x="474" y="91" width="109" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="lqm-Tw-yWY" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="-175" id="3gu-TV-giV"/>
+                                    <constraint firstItem="P2A-fc-TIj" firstAttribute="top" secondItem="lqm-Tw-yWY" secondAttribute="bottom" constant="49" id="76k-lV-HyG"/>
+                                    <constraint firstItem="7BB-KY-gqa" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" id="7By-TV-rq9"/>
+                                    <constraint firstItem="9ZV-AL-Rb8" firstAttribute="top" secondItem="QEO-vV-DNG" secondAttribute="bottom" constant="49" id="7OF-yp-DcQ"/>
+                                    <constraint firstItem="68o-zZ-UcZ" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="175" id="8qs-JF-100"/>
+                                    <constraint firstItem="vhK-97-Y73" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="175" id="9F8-bt-Veh"/>
+                                    <constraint firstItem="mnA-ib-dLg" firstAttribute="top" secondItem="68o-zZ-UcZ" secondAttribute="bottom" constant="31" id="9f6-Tf-JXi"/>
+                                    <constraint firstItem="vky-W7-iVU" firstAttribute="top" secondItem="lfr-0e-OjJ" secondAttribute="bottom" constant="49" id="AKI-yZ-3Q6"/>
+                                    <constraint firstItem="h98-yr-dM3" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="-175" id="AWB-9h-CGA"/>
+                                    <constraint firstItem="QEO-vV-DNG" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="-175" id="D3g-GW-J7m"/>
+                                    <constraint firstItem="eTO-qv-bO6" firstAttribute="top" secondItem="vky-W7-iVU" secondAttribute="bottom" constant="49" id="Dsf-dh-IoP"/>
+                                    <constraint firstItem="9ZV-AL-Rb8" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="-175" id="EsT-jB-thE"/>
+                                    <constraint firstItem="YUU-Q4-Ecu" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="175" id="Fb9-t9-ABp"/>
+                                    <constraint firstItem="7BB-KY-gqa" firstAttribute="top" secondItem="mnA-ib-dLg" secondAttribute="bottom" constant="30" id="Gyr-mn-P4x"/>
+                                    <constraint firstItem="mnA-ib-dLg" firstAttribute="top" secondItem="2aF-z0-s0v" secondAttribute="bottom" constant="31.5" id="Hk0-A4-vmK"/>
+                                    <constraint firstItem="P2A-fc-TIj" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="-175" id="IPS-N6-c2P"/>
+                                    <constraint firstItem="lqm-Tw-yWY" firstAttribute="top" secondItem="h98-yr-dM3" secondAttribute="bottom" constant="49" id="K0C-VF-96b"/>
+                                    <constraint firstItem="eTO-qv-bO6" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="175" id="RVQ-M5-FUD"/>
+                                    <constraint firstItem="YUU-Q4-Ecu" firstAttribute="top" secondItem="vhK-97-Y73" secondAttribute="bottom" constant="49" id="SVY-tU-Qed"/>
+                                    <constraint firstItem="h98-yr-dM3" firstAttribute="top" secondItem="Pfp-6m-vAV" secondAttribute="top" constant="91" id="UL7-al-H4h"/>
+                                    <constraint firstItem="lfr-0e-OjJ" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="175" id="VFd-iP-XJh"/>
+                                    <constraint firstItem="4zS-3p-bLn" firstAttribute="top" secondItem="P2A-fc-TIj" secondAttribute="bottom" constant="49" id="Zcp-xC-KCN"/>
+                                    <constraint firstAttribute="bottom" secondItem="7BB-KY-gqa" secondAttribute="bottom" constant="35" id="aLk-St-7Ae"/>
+                                    <constraint firstItem="lfr-0e-OjJ" firstAttribute="top" secondItem="Pfp-6m-vAV" secondAttribute="top" constant="91" id="aVe-t0-HgN"/>
+                                    <constraint firstItem="KEp-rS-UE5" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="175" id="bxm-1O-KfM"/>
+                                    <constraint firstItem="4zS-3p-bLn" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="-175" id="eWM-jW-AAp"/>
+                                    <constraint firstItem="68o-zZ-UcZ" firstAttribute="top" secondItem="KEp-rS-UE5" secondAttribute="bottom" constant="49" id="ez9-M2-KNn"/>
+                                    <constraint firstItem="mnA-ib-dLg" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" id="mBv-Ss-xEh"/>
+                                    <constraint firstItem="QEO-vV-DNG" firstAttribute="top" secondItem="4zS-3p-bLn" secondAttribute="bottom" constant="49" id="pac-qr-Ck6"/>
+                                    <constraint firstItem="KEp-rS-UE5" firstAttribute="top" secondItem="YUU-Q4-Ecu" secondAttribute="bottom" constant="49" id="sBb-dX-xOp"/>
+                                    <constraint firstItem="2aF-z0-s0v" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="-175" id="vlh-ma-rIO"/>
+                                    <constraint firstItem="vky-W7-iVU" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="175" id="wsd-22-OGx"/>
+                                    <constraint firstItem="2aF-z0-s0v" firstAttribute="top" secondItem="9ZV-AL-Rb8" secondAttribute="bottom" constant="49" id="zIh-qM-vim"/>
+                                    <constraint firstItem="vhK-97-Y73" firstAttribute="top" secondItem="eTO-qv-bO6" secondAttribute="bottom" constant="49" id="zUu-Uh-wdy"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NLA-b6-1tO" firstAttribute="top" secondItem="UFg-3v-DAC" secondAttribute="bottom" constant="58" id="2Ti-Vv-7tp"/>
-                            <constraint firstItem="hUE-4m-AN3" firstAttribute="top" secondItem="zXm-x1-OBo" secondAttribute="bottom" constant="53" id="4Mf-1E-kBk"/>
-                            <constraint firstItem="zXm-x1-OBo" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" constant="330.5" id="5Cc-Lq-QlW"/>
-                            <constraint firstItem="62B-sV-qCY" firstAttribute="leading" secondItem="b9G-tF-408" secondAttribute="leading" id="Ak6-pw-FxK"/>
-                            <constraint firstItem="rK4-Ol-y3F" firstAttribute="top" secondItem="3Gp-Yf-ZSz" secondAttribute="bottom" constant="55" id="Ce3-iM-B03"/>
-                            <constraint firstItem="eje-7B-BkG" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" id="Lbc-th-ad7"/>
-                            <constraint firstItem="UFg-3v-DAC" firstAttribute="top" secondItem="1ud-0t-Bcl" secondAttribute="bottom" constant="55" id="Llu-yw-d6e"/>
-                            <constraint firstItem="hUE-4m-AN3" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" constant="330.5" id="Lps-z3-XSR"/>
-                            <constraint firstItem="1ud-0t-Bcl" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" constant="330.5" id="Lyk-Wh-nhA"/>
-                            <constraint firstItem="62B-sV-qCY" firstAttribute="top" secondItem="gG8-MH-rsZ" secondAttribute="bottom" id="Qdv-Uz-1WG"/>
-                            <constraint firstItem="Wxc-62-KHW" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" id="QkU-Y3-xYY"/>
-                            <constraint firstItem="ok2-nw-W9N" firstAttribute="top" secondItem="gG8-MH-rsZ" secondAttribute="bottom" constant="103" id="VQ8-vo-Mf2"/>
-                            <constraint firstItem="rK4-Ol-y3F" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" id="VcV-r9-1ya"/>
-                            <constraint firstItem="2Id-23-zlK" firstAttribute="top" secondItem="ok2-nw-W9N" secondAttribute="bottom" constant="455" id="VxO-DI-v7n"/>
-                            <constraint firstItem="bxF-Y3-XdJ" firstAttribute="top" secondItem="Wxc-62-KHW" secondAttribute="bottom" constant="53" id="WOL-VK-PZ9"/>
-                            <constraint firstItem="2Id-23-zlK" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" constant="165.5" id="WkR-Gz-PBQ"/>
-                            <constraint firstItem="zXm-x1-OBo" firstAttribute="top" secondItem="ok2-nw-W9N" secondAttribute="bottom" constant="65" id="Xwi-xi-Z8M"/>
-                            <constraint firstItem="NLA-b6-1tO" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" constant="330.5" id="aTI-bd-zXk"/>
-                            <constraint firstItem="3Gp-Yf-ZSz" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" id="ayX-9H-xYj"/>
-                            <constraint firstItem="3Gp-Yf-ZSz" firstAttribute="top" secondItem="bxF-Y3-XdJ" secondAttribute="bottom" constant="53" id="dqZ-OC-YdQ"/>
-                            <constraint firstItem="62B-sV-qCY" firstAttribute="bottom" secondItem="kJO-5Z-QJT" secondAttribute="top" id="erC-gR-EBy"/>
-                            <constraint firstItem="eje-7B-BkG" firstAttribute="top" secondItem="rK4-Ol-y3F" secondAttribute="bottom" constant="58" id="gBo-9X-MFf"/>
-                            <constraint firstItem="Wxc-62-KHW" firstAttribute="top" secondItem="ok2-nw-W9N" secondAttribute="bottom" constant="65" id="hGP-Sd-5i3"/>
-                            <constraint firstItem="kJO-5Z-QJT" firstAttribute="top" secondItem="2Id-23-zlK" secondAttribute="bottom" constant="95" id="iny-iP-NqD"/>
-                            <constraint firstItem="UFg-3v-DAC" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" constant="330.5" id="kze-de-W3S"/>
-                            <constraint firstItem="1ud-0t-Bcl" firstAttribute="top" secondItem="hUE-4m-AN3" secondAttribute="bottom" constant="53" id="s2I-va-opy"/>
-                            <constraint firstItem="ok2-nw-W9N" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" constant="165" id="swU-vI-9eE"/>
-                            <constraint firstItem="bxF-Y3-XdJ" firstAttribute="centerX" secondItem="b9G-tF-408" secondAttribute="centerX" id="xt8-sy-fdX"/>
+                            <constraint firstItem="Pfp-6m-vAV" firstAttribute="leading" secondItem="62B-sV-qCY" secondAttribute="trailing" constant="8" symbolic="YES" id="1rJ-ep-qNI"/>
+                            <constraint firstItem="62B-sV-qCY" firstAttribute="centerY" secondItem="Pfp-6m-vAV" secondAttribute="centerY" id="1v0-C8-Q8E"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Pfp-6m-vAV" secondAttribute="trailing" constant="-11" id="5Zs-du-iI7"/>
+                            <constraint firstItem="62B-sV-qCY" firstAttribute="leading" secondItem="b9G-tF-408" secondAttribute="leading" id="D6L-Yg-2mL"/>
+                            <constraint firstItem="62B-sV-qCY" firstAttribute="top" secondItem="gG8-MH-rsZ" secondAttribute="bottom" id="MZU-DB-V2m"/>
+                            <constraint firstItem="Pfp-6m-vAV" firstAttribute="top" secondItem="gG8-MH-rsZ" secondAttribute="bottom" constant="8" symbolic="YES" id="cs4-MS-Fz2"/>
+                            <constraint firstItem="62B-sV-qCY" firstAttribute="bottom" secondItem="kJO-5Z-QJT" secondAttribute="top" id="z2e-Cx-nki"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Team Management" id="Ld2-4l-tBV">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="yrP-Nw-0x4">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" systemItem="add" id="yrP-Nw-0x4">
                             <connections>
-                                <action selector="editAddTapped:" destination="ZwY-ps-5iQ" id="eGD-m9-eJL"/>
+                                <action selector="addTapped:" destination="ZwY-ps-5iQ" id="5AA-vQ-UOg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="editButton" destination="yrP-Nw-0x4" id="HI1-8p-8C4"/>
-                        <outlet property="editRosterButton" destination="2Id-23-zlK" id="udR-aM-7h3"/>
-                        <outlet property="playerEightLabel" destination="1ud-0t-Bcl" id="VrI-W2-h3S"/>
-                        <outlet property="playerFiveLabel" destination="eje-7B-BkG" id="4f7-dx-m1G"/>
-                        <outlet property="playerFourLabel" destination="rK4-Ol-y3F" id="8qO-Dz-sFk"/>
-                        <outlet property="playerNineLabel" destination="UFg-3v-DAC" id="fve-Jb-gre"/>
-                        <outlet property="playerOneLabel" destination="Wxc-62-KHW" id="G9v-5G-xp8"/>
-                        <outlet property="playerSevenLabel" destination="hUE-4m-AN3" id="IgU-VB-hZf"/>
-                        <outlet property="playerSixLabel" destination="zXm-x1-OBo" id="A78-iF-vae"/>
-                        <outlet property="playerTenLabel" destination="NLA-b6-1tO" id="HXb-PS-QmD"/>
-                        <outlet property="playerThreeLabel" destination="3Gp-Yf-ZSz" id="Eac-dI-uiI"/>
-                        <outlet property="playerTwoLabel" destination="bxF-Y3-XdJ" id="eGM-4Z-dL3"/>
-                        <outlet property="teamNameLabel" destination="ok2-nw-W9N" id="Laa-dY-BnI"/>
+                        <outlet property="addTeamButton" destination="yrP-Nw-0x4" id="KKt-aN-TNQ"/>
+                        <outlet property="editRosterButton" destination="7BB-KY-gqa" id="sYX-EE-r8r"/>
+                        <outlet property="editTeamButton" destination="mnA-ib-dLg" id="Sv2-Qn-kbk"/>
+                        <outlet property="playerEightLabel" destination="lfr-0e-OjJ" id="Kgy-kQ-gOO"/>
+                        <outlet property="playerElevenLabel" destination="vhK-97-Y73" id="NhV-uZ-IP5"/>
+                        <outlet property="playerFiveLabel" destination="QEO-vV-DNG" id="Ofy-vA-HYI"/>
+                        <outlet property="playerFourLabel" destination="4zS-3p-bLn" id="Aqd-lN-O8F"/>
+                        <outlet property="playerFourteenLabel" destination="68o-zZ-UcZ" id="U5O-42-KmU"/>
+                        <outlet property="playerNineLabel" destination="vky-W7-iVU" id="iQ5-Nb-Ew1"/>
+                        <outlet property="playerOneLabel" destination="h98-yr-dM3" id="5xt-BH-gKn"/>
+                        <outlet property="playerSevenLabel" destination="2aF-z0-s0v" id="j61-T1-aeu"/>
+                        <outlet property="playerSixLabel" destination="9ZV-AL-Rb8" id="Qm9-Et-EpC"/>
+                        <outlet property="playerTenLabel" destination="eTO-qv-bO6" id="a75-Mm-fOq"/>
+                        <outlet property="playerThirteenLabel" destination="KEp-rS-UE5" id="pBy-ep-D0J"/>
+                        <outlet property="playerThreeLabel" destination="P2A-fc-TIj" id="8fj-mR-EMx"/>
+                        <outlet property="playerTwelveLabel" destination="YUU-Q4-Ecu" id="R2g-6M-qni"/>
+                        <outlet property="playerTwoLabel" destination="lqm-Tw-yWY" id="ZwD-vP-DUf"/>
+                        <outlet property="teamView" destination="Pfp-6m-vAV" id="7uK-Tv-Y8Q"/>
                         <outlet property="teamsTableView" destination="62B-sV-qCY" id="2yM-Kt-7De"/>
                         <segue destination="5J8-PX-AGg" kind="show" identifier="editRosterSegue" id="sFW-PF-2S7"/>
                         <segue destination="PYB-zM-fKv" kind="show" identifier="addTeamSegue" id="O0f-qy-G9j"/>
