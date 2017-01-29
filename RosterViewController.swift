@@ -64,7 +64,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            FIRDatabase.database().reference().child("players").child(team.teamID).child(roster[indexPath.row]).removeValue()
+            FIRDatabase.database().reference().child("players").child(team.teamID).child(roster[indexPath.row].playerID).removeValue()
             roster.remove(at: indexPath.row)
             rosterTableView.reloadData()
         }
