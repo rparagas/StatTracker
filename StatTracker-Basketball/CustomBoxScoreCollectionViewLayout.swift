@@ -28,25 +28,111 @@ class CustomBoxScoreCollectionViewLayout: UICollectionViewLayout {
     // within the collection view.
     var contentSize = CGSize.zero
     
+    
+    // Used to determine if a data source update has occured.
+    // Note: The data source would be responsible for updating
+    // this value if an update was performed.
+    var dataSourceDidUpdate = true
+    
     override var collectionViewContentSize: CGSize {
         return self.contentSize
     }
     
     override func prepare() {
+        
+        // Only update header cells.
+        if !dataSourceDidUpdate {
+            
+            // Determine current content offsets.
+            let xOffset = collectionView!.contentOffset.x
+            let yOffset = collectionView!.contentOffset.y
+            
+            if (collectionView?.numberOfSections)! > 0 {
+                for section in 0...collectionView!.numberOfSections-1 {
+                    
+                    // Confirm the section has items.
+                    if (collectionView?.numberOfItems(inSection: section))! > 0 {
+                        
+                        // Update all items in the first row.
+                        if section == 0 {
+                            for item in 0...collectionView!.numberOfItems(inSection: section)-1 {
+                                
+                                // Build indexPath to get attributes from dictionary.
+                                let indexPath = NSIndexPath(item: item, section: section)
+                                
+                                // Update y-position to follow user.
+                                if let attrs = cellAttrsDictionary[indexPath] {
+                                    var frame = attrs.frame
+                                    
+                                    // Also update x-position for corner cell.
+                                    if item == 0 {
+                                        frame.origin.x = xOffset
+                                    }
+                                    frame.origin.y = yOffset
+                                    attrs.frame = frame
+                                }
+                            }
+                            
+                            // For all other sections, we only need to update
+                            // the x-position for the first item.
+                        } else {
+                            
+                            // Build indexPath to get attributes from dictionary.
+                            let indexPath = NSIndexPath(item: 0, section: section)
+                            
+                            // Update y-position to follow user.
+                            if let attrs = cellAttrsDictionary[indexPath] {
+                                var frame = attrs.frame
+                                frame.origin.x = xOffset
+                                attrs.frame = frame
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Do not run attribute generation code
+            // unless data source has been updated.
+            return
+        }
+        
+        // Acknowledge data source change, and disable for next time.
+        dataSourceDidUpdate = false
+        
+        // Cycle through each section of the data source.
         if (collectionView?.numberOfSections)! > 0 {
             for section in 0...collectionView!.numberOfSections-1 {
                 
+                // Cycle through each item in the section.
                 if (collectionView?.numberOfItems(inSection: section))! > 0 {
                     for item in 0...collectionView!.numberOfItems(inSection: section)-1 {
                         
                         // Build the UI CollectionViewLayout attributes for cell
                         let cellIndex = NSIndexPath(item: item, section: section)
-                        let xPos = Double(item) * CELL_WIDTH
+                        var calculatedCellWidth: Double
+                        var xPos: Double
+                        
+                        // Double the space between item 0 and item 1 cells
+                        if item == 0 {
+                            calculatedCellWidth = CELL_WIDTH * 2
+                            xPos = Double(item) * calculatedCellWidth
+                        } else if item == 1 {
+                            calculatedCellWidth = CELL_WIDTH * 2
+                            xPos = Double(item) * calculatedCellWidth - CELL_WIDTH
+                        } else {
+                            calculatedCellWidth = CELL_WIDTH
+                            xPos = Double(item) * calculatedCellWidth
+                        }
                         let yPos = Double(section) * CELL_HEIGHT
                         
                         var cellAttributes = UICollectionViewLayoutAttributes(forCellWith: cellIndex as IndexPath)
-                        cellAttributes.frame = CGRect(x: xPos, y: yPos, width: CELL_WIDTH, height: CELL_HEIGHT)
                         
+                        // Double the border length of item 0 cells
+                        if item == 0 {
+                            cellAttributes.frame = CGRect(x: xPos, y: yPos, width: CELL_WIDTH*2, height: CELL_HEIGHT)
+                        } else {
+                            cellAttributes.frame = CGRect(x: xPos, y: yPos, width: CELL_WIDTH, height: CELL_HEIGHT)
+                        }
                         
                         // Determine zIndex based on cell type
                         if section == 0 && item == 0 {
@@ -65,19 +151,23 @@ class CustomBoxScoreCollectionViewLayout: UICollectionViewLayout {
                 }
             }
         }
+        // Update content size.
         let contentWidth = Double(collectionView!.numberOfItems(inSection: 0)) * CELL_WIDTH
         let contentHeight = Double(collectionView!.numberOfSections) * CELL_HEIGHT
         self.contentSize = CGSize(width: contentWidth, height: contentHeight)
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        // Create an array to hold all elements found in our current view.
         var attributesInRect = [UICollectionViewLayoutAttributes]()
         
+        // Check each element to see if it should be returned.
         for cellAttributes in cellAttrsDictionary.values {
             if rect.intersects(cellAttributes.frame) {
                 attributesInRect.append(cellAttributes)
             }
         }
+        // Return list of elements.
         return attributesInRect
     }
     
@@ -86,6 +176,6 @@ class CustomBoxScoreCollectionViewLayout: UICollectionViewLayout {
     }
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        return false
+        return true
     }
 }

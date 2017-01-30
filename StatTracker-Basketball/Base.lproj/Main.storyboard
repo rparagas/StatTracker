@@ -1237,23 +1237,25 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewLayout key="collectionViewLayout" id="8pz-Gz-fBm" customClass="CustomBoxScoreCollectionViewLayout" customModule="StatTracker_Basketball" customModuleProvider="target"/>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="customCell" id="6QI-Fy-Vc9" customClass="CustomBoxScoreCollectionViewCell" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="customCell" id="6QI-Fy-Vc9" customClass="CustomBoxScoreCollectionViewCell" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="32"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ir-Hc-88x">
                                             <rect key="frame" x="8" y="5" width="84" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </view>
-                                <size key="customSize" width="100" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="customSize" width="100" height="32"/>
                                 <connections>
                                     <outlet property="label" destination="5ir-Hc-88x" id="3eP-XN-3D6"/>
                                 </connections>
