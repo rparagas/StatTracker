@@ -363,6 +363,13 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             nextVC.selectedGame = sender as! Game
             nextVC.selectedTeam = selectedTeam!
         }
+        if segue.identifier == "boxScoreSegue" {
+            let nextVC = segue.destination as! BoxScoreCollectionViewController
+            //nextVC.selectedGame = sender as! Game
+            //nextVC.selectedTeam = selectedTeam!
+            //nextVC.stats = selectedTeamGameStats
+            //nextVC.oppStats = selectedOpponentGameStats
+        }
     }
     
     @IBAction func newGameTapped(_ sender: Any) {
@@ -370,7 +377,11 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     @IBAction func beginGameTapped(_ sender: Any) {
-        performSegue(withIdentifier: "beginGameSegue", sender: selectedGame)
+        if selectedGame?.gameStatus == "complete" {
+            performSegue(withIdentifier: "boxScoreSegue", sender: selectedGame)
+        } else {
+            performSegue(withIdentifier: "beginGameSegue", sender: selectedGame)
+        }
     }
     
     
