@@ -118,10 +118,10 @@ class CustomBoxScoreCollectionViewLayout: UICollectionViewLayout {
                             xPos = Double(item) * calculatedCellWidth
                         } else if item == 1 {
                             calculatedCellWidth = CELL_WIDTH * 2
-                            xPos = Double(item) * calculatedCellWidth - CELL_WIDTH
+                            xPos = Double(item) * calculatedCellWidth
                         } else {
                             calculatedCellWidth = CELL_WIDTH
-                            xPos = Double(item) * calculatedCellWidth
+                            xPos = Double(item) * calculatedCellWidth + CELL_WIDTH
                         }
                         let yPos = Double(section) * CELL_HEIGHT
                         
