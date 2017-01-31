@@ -59,6 +59,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     var selectedGame : Game? = nil
     var selectedTeamGameStats = [Stats]()
     var selectedOpponentGameStats = Stats()
+    var roster = [Player]()
     
     /* *******************************************************************************************************************
      // VIEW CONTROLLER - BOILERPLATE
@@ -127,6 +128,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         displayGameInfo()
         getGameSummary()
         checkGameStatus()
+        getPlayers()
     }
     
     /* *******************************************************************************************************************
@@ -165,6 +167,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let stats = Stats()
             
             stats.playerID = snapshot.key
+            stats.playingTimeInSeconds = (snapshot.value as! NSDictionary)["playingTime"] as! Int
             stats.madeOnePoints = (snapshot.value as! NSDictionary)["madeOne"] as! Int
             stats.missedOnePoints = (snapshot.value as! NSDictionary)["missOne"] as! Int
             stats.madeTwoPoints = (snapshot.value as! NSDictionary)["madeTwo"] as! Int
@@ -185,6 +188,19 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 self.selectedTeamGameStats.append(stats)
             }
             self.displayTeamStats()
+        })
+    }
+    
+    func getPlayers() {
+        FIRDatabase.database().reference().child("players").child(selectedTeam!.teamID).observe(FIRDataEventType.childAdded, with: {(snapshot) in
+            let player = Player()
+            player.playerID = snapshot.key
+            player.playerFirstName = (snapshot.value as! NSDictionary)["playerFirstName"] as! String
+            player.playerLastName = (snapshot.value as! NSDictionary)["playerLastName"] as! String
+            player.playerNumber = (snapshot.value as! NSDictionary)["playerNumber"] as! String
+            player.playerPosition = (snapshot.value as! NSDictionary)["playerPosition"] as! String
+            player.playerTeam = self.selectedTeam!.teamID
+            self.roster.append(player)
         })
     }
     
@@ -209,8 +225,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             made += (Double(player.madeTwoPoints) + Double(player.madeThreePoints))
             total += (Double(player.madeTwoPoints) + Double(player.madeThreePoints) + Double(player.missedTwoPoints) + Double(player.missedThreePoints))
         }
-        let fieldGoal : Double = Double(made) / Double(total)
-        return Double(round(fieldGoal * 1000)/1000) * 100
+        return Double(made) / Double(total)
     }
     
     func calSelectedTeamThreePoint() -> (Double) {
@@ -220,8 +235,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             made += Double(player.madeThreePoints)
             total += (Double(player.madeThreePoints) + Double(player.missedThreePoints))
         }
-        let threePoint : Double = Double(made) / Double (total)
-        return Double(round(threePoint * 1000)/1000) * 100
+        return Double(made) / Double (total)
     }
     
     func calSelectedTeamFreeThrow() -> (Double) {
@@ -231,8 +245,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             made += Double(player.madeOnePoints)
             total += (Double(player.madeOnePoints) + Double(player.missedOnePoints))
         }
-        let freeThrow : Double = Double(made) / Double(total)
-        return Double(round(freeThrow * 1000)/1000) * 100
+        return Double(made) / Double(total)
     }
     
     func calSelectedTeamAssists() -> (Int) {
@@ -289,8 +302,11 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func displayGameInfo() {
         selectedTeamNameLabel.text = selectedTeam?.teamName
+        selectedTeamNameLabel.sizeToFit()
         opponentTeamNameLabel.text = selectedGame?.gameOppTeam
+        opponentTeamNameLabel.sizeToFit()
         gameDateLabel.text = selectedGame?.gameDateTime
+        gameDateLabel.sizeToFit()
         gamePeriodsLabel.text = selectedGame?.gameNumPeriods
         gamePeriodLengthLabel.text = selectedGame?.gamePeriodLength
         gameFoulsLabel.text = selectedGame?.gameNumFouls
@@ -311,21 +327,21 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
 
     func displayTeamFieldGoal() {
-        selectedTeamFieldGoalLabel.text = "\(calSelectedTeamFieldGoal())"
+        selectedTeamFieldGoalLabel.text = checkIfNaN(calculatedPercentage: calSelectedTeamFieldGoal())
         let opponentFieldGoalCal : Double = Double(selectedOpponentGameStats.madeTwoPoints + selectedOpponentGameStats.madeThreePoints) / Double(selectedOpponentGameStats.madeTwoPoints + selectedOpponentGameStats.madeThreePoints + selectedOpponentGameStats.missedTwoPoints + selectedOpponentGameStats.missedThreePoints)
-        opponentTeamFieldGoalLabel.text = "\(Double(round(opponentFieldGoalCal * 1000)/1000) * 100)"
+        opponentTeamFieldGoalLabel.text = checkIfNaN(calculatedPercentage: opponentFieldGoalCal)
     }
     
     func displayTeamThreePoint() {
-        selectedTeamFieldGoalLabel.text = "\(calSelectedTeamThreePoint())"
+        selectedTeamFieldGoalLabel.text = checkIfNaN(calculatedPercentage: calSelectedTeamThreePoint())
         let opponentFieldGoalCal : Double = Double(selectedOpponentGameStats.madeThreePoints) / Double(selectedOpponentGameStats.madeThreePoints + selectedOpponentGameStats.missedThreePoints)
-        opponentTeamFieldGoalLabel.text = "\(Double(round(opponentFieldGoalCal * 1000)/1000) * 100)"
+        opponentTeamFieldGoalLabel.text = checkIfNaN(calculatedPercentage: opponentFieldGoalCal)
     }
     
     func displayTeamFreeThrow() {
-        selectedTeamFreeThrowLabel.text = "\(calSelectedTeamFreeThrow())"
+        selectedTeamFreeThrowLabel.text = checkIfNaN(calculatedPercentage: calSelectedTeamFreeThrow())
         let opponentFreeThrowCal : Double = Double(selectedOpponentGameStats.madeOnePoints) / Double(selectedOpponentGameStats.madeOnePoints + selectedOpponentGameStats.missedOnePoints)
-        opponentTeamFreeThrowLabel.text = "\(Double(round(opponentFreeThrowCal * 1000)/1000) * 100)"
+        opponentTeamFreeThrowLabel.text = checkIfNaN(calculatedPercentage: opponentFreeThrowCal)
     }
     
     func displayTeamAssists() {
@@ -338,6 +354,13 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         opponentTeamReboundLabel.text = "\(selectedOpponentGameStats.defRebounds + selectedOpponentGameStats.offRebounds)"
     }
     
+    func checkIfNaN(calculatedPercentage: Double) -> String {
+        if calculatedPercentage.isNaN == true {
+            return "0.0"
+        } else {
+            return "\(Double(round(calculatedPercentage * 1000)/1000) * 100)"
+        }
+    }
     /* *******************************************************************************************************************
      // VIEW CONTROLLER - ACTION BUTTONS
      ******************************************************************************************************************* */
@@ -365,10 +388,10 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
         if segue.identifier == "boxScoreSegue" {
             let nextVC = segue.destination as! BoxScoreCollectionViewController
-            //nextVC.selectedGame = sender as! Game
-            //nextVC.selectedTeam = selectedTeam!
-            //nextVC.stats = selectedTeamGameStats
-            //nextVC.oppStats = selectedOpponentGameStats
+            nextVC.selectedTeam = selectedTeam!
+            nextVC.stats = selectedTeamGameStats
+            nextVC.oppStats = selectedOpponentGameStats
+            nextVC.roster = roster
         }
     }
     
@@ -378,7 +401,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func beginGameTapped(_ sender: Any) {
         if selectedGame?.gameStatus == "complete" {
-            performSegue(withIdentifier: "boxScoreSegue", sender: selectedGame)
+            performSegue(withIdentifier: "boxScoreSegue", sender: nil)
         } else {
             performSegue(withIdentifier: "beginGameSegue", sender: selectedGame)
         }

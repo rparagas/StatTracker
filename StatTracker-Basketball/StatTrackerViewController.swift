@@ -332,8 +332,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             made += (Double(player.madeTwoPoints) + Double(player.madeThreePoints))
             total += (Double(player.madeTwoPoints) + Double(player.madeThreePoints) + Double(player.missedTwoPoints) + Double(player.missedThreePoints))
         }
-        let fieldGoal : Double = Double(made) / Double(total)
-        return Double(round(fieldGoal * 1000)/1000) * 100
+        return Double(made) / Double(total)
     }
     
     func calSelectedTeamFreeThrow() -> (Double) {
@@ -343,8 +342,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             made += Double(player.madeOnePoints)
             total += (Double(player.madeOnePoints) + Double(player.missedOnePoints))
         }
-        let freeThrow : Double = Double(made) / Double(total)
-        return Double(round(freeThrow * 1000)/1000) * 100
+        return Double(made) / Double(total)
     }
     
     func calSelectedTeamAssists() -> (Int) {
@@ -403,13 +401,13 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         let made = stat.madeTwoPoints + stat.madeThreePoints
         let total = stat.madeTwoPoints + stat.madeThreePoints + stat.missedTwoPoints + stat.missedThreePoints
         let fieldGoalCal : Double = Double(made) / Double(total)
-        return Double(round(fieldGoalCal * 1000)/1000) * 100
+        return fieldGoalCal
     }
     
     func calFreeThrow(stat: Stats) -> (Double) {
         let total = stat.madeOnePoints + stat.missedOnePoints
         let freeThrowCal : Double = Double(stat.madeOnePoints) / Double(total)
-        return Double(round(freeThrowCal * 1000)/1000) * 100
+        return freeThrowCal
     }
     
     func calRebounds(stat: Stats) -> (Int) {
@@ -474,15 +472,15 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func displayTeamFieldGoal() {
-        selectedTeamFieldGoalLabel.text = "\(calSelectedTeamFieldGoal())"
+        selectedTeamFieldGoalLabel.text = checkIfNaN(calculatedPercentage: calSelectedTeamFieldGoal())
         let opponentFieldGoalCal : Double = Double(opponent.madeTwoPoints + opponent.madeThreePoints) / Double(opponent.madeTwoPoints + opponent.madeThreePoints + opponent.missedTwoPoints + opponent.missedThreePoints)
-        opponentTeamFieldGoalLabel.text = "\(Double(round(opponentFieldGoalCal * 1000)/1000) * 100)"
+        opponentTeamFieldGoalLabel.text = checkIfNaN(calculatedPercentage: opponentFieldGoalCal)
     }
     
     func displayTeamFreeThrow() {
-        selectedTeamFreeThrowLabel.text = "\(calSelectedTeamFreeThrow())"
+        selectedTeamFreeThrowLabel.text = checkIfNaN(calculatedPercentage: calSelectedTeamFreeThrow())
         let opponentFreeThrowCal : Double = Double(opponent.madeOnePoints) / Double(opponent.madeOnePoints + opponent.missedOnePoints)
-        opponentTeamFreeThrowLabel.text = "\(Double(round(opponentFreeThrowCal * 1000)/1000) * 100)"
+        opponentTeamFreeThrowLabel.text = checkIfNaN(calculatedPercentage: opponentFreeThrowCal)
     }
     
     func displayTeamAssists() {
@@ -535,20 +533,12 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     
     func displayPlayerFieldGoal(stat: Stats) {
         let fieldGoal = calFieldGoal(stat: stat)
-        if fieldGoal.isNaN == true {
-            playerPercentageLabel.text = "0.0"
-        } else {
-            playerPercentageLabel.text = "\(fieldGoal)"
-        }
+        playerPercentageLabel.text = checkIfNaN(calculatedPercentage: fieldGoal)
     }
     
     func displayPlayerFreeThrow(stat: Stats) {
         let freeThrow = calFreeThrow(stat: stat)
-        if freeThrow.isNaN == true {
-            playerFreeThrowPercentLabe.text = "0.0"
-        } else {
-            playerFreeThrowPercentLabe.text = "\(freeThrow)"
-        }
+        playerFreeThrowPercentLabe.text = checkIfNaN(calculatedPercentage: freeThrow)
     }
     
     func displayPlayerAssists(stat: Stats) {
@@ -594,6 +584,14 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     func reloadRosters() {
         self.selectedTeamTableView.reloadData()
         self.selectedTeamBenchTableView.reloadData()
+    }
+    
+    func checkIfNaN(calculatedPercentage: Double) -> String {
+        if calculatedPercentage.isNaN == true {
+            return "0.0"
+        } else {
+            return "\(Double(round(calculatedPercentage * 1000)/1000) * 100)"
+        }
     }
     
     /* *******************************************************************************************************************

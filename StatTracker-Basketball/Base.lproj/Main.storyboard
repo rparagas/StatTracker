@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="etx-jZ-emP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Kby-Ab-jhP">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -268,7 +268,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMx-LQ-IC6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1128.515625" y="-466.40625"/>
+            <point key="canvasLocation" x="1129" y="-544"/>
         </scene>
         <!--Game Management-->
         <scene sceneID="v7p-Oc-dcp">
@@ -571,6 +571,7 @@
                         <outlet property="teamsPickerView" destination="ifG-6a-pr1" id="vLn-DB-o14"/>
                         <segue destination="2x1-h9-suX" kind="show" identifier="newGameSegue" id="CVS-2E-ZNk"/>
                         <segue destination="6b9-J8-EoR" kind="show" identifier="beginGameSegue" id="psP-oS-Wrx"/>
+                        <segue destination="etx-jZ-emP" kind="show" identifier="boxScoreSegue" id="rKr-2W-yC8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ewP-YS-O48" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1225,7 +1226,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eTx-Ji-9ek" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1850" y="438"/>
+            <point key="canvasLocation" x="1850" y="128"/>
         </scene>
         <!--Box Score Collection View Controller-->
         <scene sceneID="jlF-E9-riQ">
@@ -1244,15 +1245,19 @@
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="32"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ir-Hc-88x">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ir-Hc-88x">
                                             <rect key="frame" x="8" y="5" width="84" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="5ir-Hc-88x" firstAttribute="centerY" secondItem="6QI-Fy-Vc9" secondAttribute="centerY" id="Enz-vW-lJM"/>
+                                    <constraint firstItem="5ir-Hc-88x" firstAttribute="centerX" secondItem="6QI-Fy-Vc9" secondAttribute="centerX" id="We5-tW-fdK"/>
+                                </constraints>
                                 <size key="customSize" width="100" height="32"/>
                                 <connections>
                                     <outlet property="label" destination="5ir-Hc-88x" id="3eP-XN-3D6"/>
@@ -1267,7 +1272,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hp5-Ve-DJI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2616.796875" y="437.5"/>
+            <point key="canvasLocation" x="2558" y="438"/>
         </scene>
         <!--Add Game View Controller-->
         <scene sceneID="ctF-PV-AUq">
@@ -1526,7 +1531,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J5h-em-Vc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1849.8046874999998" y="-466.40625"/>
+            <point key="canvasLocation" x="1850" y="-545"/>
         </scene>
         <!--Add Team View Controller-->
         <scene sceneID="O9U-TT-5IY">
@@ -1601,7 +1606,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DJY-Kq-nka" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1850" y="-1195"/>
+            <point key="canvasLocation" x="1850" y="-1277"/>
         </scene>
         <!--Add Player View Controller-->
         <scene sceneID="Ore-2Z-Emz">
@@ -1691,7 +1696,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ONc-Cb-oj1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2558" y="-1195"/>
+            <point key="canvasLocation" x="2558" y="-1277"/>
         </scene>
     </scenes>
 </document>

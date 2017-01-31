@@ -13,7 +13,7 @@ class CustomBoxScoreCollectionViewLayout: UICollectionViewLayout {
     // Used for calculating each cells CGRect on screen.
     // CGRect will define the Origin and Size of the cell.
     let CELL_HEIGHT = 30.0
-    let CELL_WIDTH = 100.0
+    let CELL_WIDTH = 80.0
     let STATUS_BAR = UIApplication.shared.statusBarFrame.height
     
     // Dictionary to hold the UICollectionViewLayoutAttributes for
