@@ -126,6 +126,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         gameSummaryView.isHidden = false
         selectedGame = selectedTeamGames[indexPath.row]
         displayGameInfo()
+        selectedTeamGameStats = [Stats]()
         getGameSummary()
         checkGameStatus()
         getPlayers()

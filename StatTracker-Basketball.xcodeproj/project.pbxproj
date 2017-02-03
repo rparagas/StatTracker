@@ -28,6 +28,7 @@
 		A6C9A47B1E179BC400057381 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9A47A1E179BC400057381 /* Game.swift */; };
 		A6C9A47D1E179C5700057381 /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9A47C1E179C5700057381 /* GamesViewController.swift */; };
 		A6C9A47F1E17A97900057381 /* AddGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9A47E1E17A97900057381 /* AddGameViewController.swift */; };
+		A6E3E5211E442B9F0008565F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E3E5201E442B9F0008565F /* CustomButton.swift */; };
 		B09A1348139010B8A6C53C4C /* Pods_StatTracker_Basketball.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0563C83DB25A2EE67BCFEBCE /* Pods_StatTracker_Basketball.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		A6C9A47A1E179BC400057381 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		A6C9A47C1E179C5700057381 /* GamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
 		A6C9A47E1E17A97900057381 /* AddGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGameViewController.swift; sourceTree = "<group>"; };
+		A6E3E5201E442B9F0008565F /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,8 +129,8 @@
 		A66EB0771E3ED0EC00358A60 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A66EB0781E3ED13800358A60 /* CustomBoxScoreCollectionViewCell.swift */,
-				A6A831391E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift */,
+				A6E3E51F1E4427EF0008565F /* Buttons View */,
+				A6E3E51E1E4427340008565F /* Collections View */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -158,6 +160,23 @@
 				A60CBB0D1E1F384D006100D2 /* Stats.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		A6E3E51E1E4427340008565F /* Collections View */ = {
+			isa = PBXGroup;
+			children = (
+				A66EB0781E3ED13800358A60 /* CustomBoxScoreCollectionViewCell.swift */,
+				A6A831391E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift */,
+			);
+			name = "Collections View";
+			sourceTree = "<group>";
+		};
+		A6E3E51F1E4427EF0008565F /* Buttons View */ = {
+			isa = PBXGroup;
+			children = (
+				A6E3E5201E442B9F0008565F /* CustomButton.swift */,
+			);
+			name = "Buttons View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +307,7 @@
 				A6BC03551E0124AF00CB843B /* AddTeamViewController.swift in Sources */,
 				A6A831361E3EFB1400A1DB60 /* BoxScoreCollectionViewController.swift in Sources */,
 				A6A8313A1E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift in Sources */,
+				A6E3E5211E442B9F0008565F /* CustomButton.swift in Sources */,
 				A6C9A47B1E179BC400057381 /* Game.swift in Sources */,
 				A617C9111E0035410077805E /* StatTracker_Basketball.xcdatamodeld in Sources */,
 				A617C91E1E003C6E0077805E /* TeamViewController.swift in Sources */,
