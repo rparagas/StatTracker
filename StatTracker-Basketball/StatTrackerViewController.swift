@@ -149,14 +149,24 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = CustomTableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomPlayerTableViewCell", for: indexPath) as! CustomPlayerTableViewCell
         var player = Player()
+        
         if tableView == self.selectedTeamTableView {
             player = selectedActiveRoster[indexPath.row]
+            for stats in selectedRosterStats {
+                if stats.playerID == player.playerID {
+                    cell.configureCell(player: player, stats: stats)
+                }
+            }
         } else {
             player = selectedInActiveRoster[indexPath.row]
+            for stats in selectedRosterStats {
+                if stats.playerID == player.playerID {
+                    cell.configureCell(player: player, stats: stats)
+                }
+            }
         }
-        cell.textLabel?.text = "# \(player.playerNumber) \(player.playerFirstName)"
         return cell
     }
     
@@ -454,6 +464,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         addPlayingTime()
         let (minutes, seconds) = calMinutesSeconds(seconds: currentPeriodTimeInSeconds)
         displayTime(m: minutes, s: seconds)
+        selectedTeamTableView.reloadData()
         if currentPeriodTimeInSeconds == 0 {
             nextPeriod()
         }

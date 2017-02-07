@@ -21,7 +21,7 @@
 		A68095291E497EDB00B78061 /* CustomSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68095281E497EDB00B78061 /* CustomSmallView.swift */; };
 		A680952E1E498A3900B78061 /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A680952D1E498A3900B78061 /* CustomTableView.swift */; };
 		A68095301E49A45700B78061 /* CustomGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A680952F1E49A45700B78061 /* CustomGameTableViewCell.swift */; };
-		A68095341E49B24500B78061 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68095331E49B24500B78061 /* CustomTableViewCell.swift */; };
+		A68095341E49B24500B78061 /* CustomPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68095331E49B24500B78061 /* CustomPlayerTableViewCell.swift */; };
 		A689B50C1E07CC5100EE1E75 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A689B50B1E07CC5100EE1E75 /* GoogleService-Info.plist */; };
 		A6A831361E3EFB1400A1DB60 /* BoxScoreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A831351E3EFB1400A1DB60 /* BoxScoreCollectionViewController.swift */; };
 		A6A8313A1E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A831391E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift */; };
@@ -57,7 +57,7 @@
 		A68095281E497EDB00B78061 /* CustomSmallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSmallView.swift; sourceTree = "<group>"; };
 		A680952D1E498A3900B78061 /* CustomTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
 		A680952F1E49A45700B78061 /* CustomGameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGameTableViewCell.swift; sourceTree = "<group>"; };
-		A68095331E49B24500B78061 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		A68095331E49B24500B78061 /* CustomPlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPlayerTableViewCell.swift; sourceTree = "<group>"; };
 		A689B50B1E07CC5100EE1E75 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A6A831351E3EFB1400A1DB60 /* BoxScoreCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxScoreCollectionViewController.swift; sourceTree = "<group>"; };
 		A6A831391E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBoxScoreCollectionViewLayout.swift; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 			children = (
 				A680952D1E498A3900B78061 /* CustomTableView.swift */,
 				A680952F1E49A45700B78061 /* CustomGameTableViewCell.swift */,
-				A68095331E49B24500B78061 /* CustomTableViewCell.swift */,
+				A68095331E49B24500B78061 /* CustomPlayerTableViewCell.swift */,
 			);
 			name = "Tableview View";
 			sourceTree = "<group>";
@@ -345,7 +345,7 @@
 				A60CBB0E1E1F384D006100D2 /* Stats.swift in Sources */,
 				A6C9A47F1E17A97900057381 /* AddGameViewController.swift in Sources */,
 				A60CBB0C1E1E3194006100D2 /* StatTrackerViewController.swift in Sources */,
-				A68095341E49B24500B78061 /* CustomTableViewCell.swift in Sources */,
+				A68095341E49B24500B78061 /* CustomPlayerTableViewCell.swift in Sources */,
 				A67DA55E1E090FF500191A27 /* AddPlayerViewController.swift in Sources */,
 				A6C9A4791E1770D900057381 /* Player.swift in Sources */,
 				A6BC03571E01366F00CB843B /* RosterViewController.swift in Sources */,
