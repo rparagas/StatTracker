@@ -18,4 +18,5 @@ class Game {
     var gameSelectedTeam = ""
     var gameOppTeam = ""
     var gameStatus = ""
+    var gameOutcome = ""
 }

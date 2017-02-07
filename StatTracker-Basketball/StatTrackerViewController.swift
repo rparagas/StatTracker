@@ -149,7 +149,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = CustomTableViewCell()
         var player = Player()
         if tableView == self.selectedTeamTableView {
             player = selectedActiveRoster[indexPath.row]
@@ -305,6 +305,19 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         FIRDatabase.database().reference().child("gameResults").child(selectedTeam.teamID).child(selectedGame.gameID).child("opponent").setValue(opponentStats)
         
         FIRDatabase.database().reference().child("games").child(selectedTeam.teamID).child(selectedGame.gameID).child("gameStatus").setValue("complete")
+        
+        let homeScore = calSelectedTeamScore()
+        let opponentScore = opponent.madeOnePoints + (opponent.madeTwoPoints * 2) + (opponent.madeThreePoints * 3)
+        
+        
+        // CREATE ITS OWN FUNCTION LATER
+        if opponentScore > homeScore {
+            FIRDatabase.database().reference().child("games").child(selectedTeam.teamID).child(selectedGame.gameID).child("gameOutcome").setValue("lose")
+        } else if opponentScore < homeScore {
+            FIRDatabase.database().reference().child("games").child(selectedTeam.teamID).child(selectedGame.gameID).child("gameOutcome").setValue("win")
+        } else {
+            FIRDatabase.database().reference().child("games").child(selectedTeam.teamID).child(selectedGame.gameID).child("gameOutcome").setValue("tie")
+        }
     }
     
     /* *******************************************************************************************************************
@@ -503,6 +516,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         opponentTeamStealsLabel.text = "\(opponent.steals)"
     }
     
+    // Taken out
     func displayTeamFouls() {
         selectedTeamFoulsLabel.text = "\(calSelectedTeamFouls())"
         opponentTeamFoulsLabel.text = "\(opponent.fouls)"
@@ -829,7 +843,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         hideTrackerViews()
-        displayTeamFouls()
+        //displayTeamFouls()
         preventSelection()
     }
     

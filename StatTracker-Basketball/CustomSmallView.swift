@@ -1,15 +1,15 @@
 //
-//  CustomView.swift
+//  CustomSmallView.swift
 //  StatTracker-Basketball
 //
-//  Created by Ray Paragas on 3/2/17.
+//  Created by Ray Paragas on 7/2/17.
 //  Copyright © 2017 Ray Paragas. All rights reserved.
 //
 
 import UIKit
 
-class CustomView: UIView {
-
+class CustomSmallView: UIView {
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         self.layer.cornerRadius = 25.0
@@ -19,11 +19,11 @@ class CustomView: UIView {
         self.backgroundColor = UIColor(red: 75/255, green: 89/255, blue: 126/255, alpha: 1.0)
         self.tintColor = UIColor.white
         createMask()
-        createBar() //removed until positioning fixed
+        createBar()
     }
     
     func createBar() {
-        let (barWidth, barHeight) = (self.frame.width, self.frame.height / 7)
+        let (barWidth, barHeight) = (self.frame.width, self.frame.height / 3)
         let barSize = CGSize(width: barWidth, height: barHeight)
         let barView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: barSize)) // revisit y origin
         barView.backgroundColor = UIColor(colorLiteralRed: 50/255, green: 64/255, blue: 101/255, alpha: 1.0) // Navy
@@ -32,7 +32,7 @@ class CustomView: UIView {
         self.sendSubview(toBack: barView)
         
     }
-
+    
     func createMask() {
         // create mask layer
         let maskLayer = CAShapeLayer()

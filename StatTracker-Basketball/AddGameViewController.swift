@@ -103,7 +103,7 @@ class AddGameViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBAction func saveGameTapped(_ sender: Any) {
         uuid = NSUUID().uuidString
         selectedOpponent = opponentNameTextField.text!
-        let game = ["gameOpponent": selectedOpponent, "gameDate": selectedDate, "gameNumPeriods": selectedPeriod, "gamePeriodLength": selectedLength, "gameFouls": selectedFoul, "gameStatus": "pending"]
+        let game = ["gameOpponent": selectedOpponent, "gameDate": selectedDate, "gameNumPeriods": selectedPeriod, "gamePeriodLength": selectedLength, "gameFouls": selectedFoul, "gameStatus": "pending", "gameOutcome": "undecided"]
         print(game)
         FIRDatabase.database().reference().child("games").child(selectedTeam.teamID).child(uuid).setValue(game)
         let gameResults = createStatsDictionary()

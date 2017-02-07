@@ -114,11 +114,15 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         return selectedTeamGames.count
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Games"
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomGameTableViewCell", for: indexPath) as! CustomGameTableViewCell
         var game = Game()
         game = selectedTeamGames[indexPath.row]
-        cell.textLabel?.text = "vs \(game.gameOppTeam) - \(game.gameDateTime)"
+        cell.configureCell(game: game)
         return cell
     }
     
@@ -158,6 +162,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             game.gameOppTeam = (snapshot.value as! NSDictionary)["gameOpponent"] as! String
             game.gamePeriodLength = (snapshot.value as! NSDictionary)["gamePeriodLength"] as! String
             game.gameStatus = (snapshot.value as! NSDictionary)["gameStatus"] as! String
+            game.gameOutcome = (snapshot.value as! NSDictionary)["gameOutcome"] as! String
             self.selectedTeamGames.append(game)
             self.gamesTableView.reloadData()
         })

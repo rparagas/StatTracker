@@ -17,7 +17,7 @@ class CustomButton: UIButton {
         self.layer.cornerRadius = 5.0
         self.layer.shadowOpacity = 0.8
         self.layer.shadowRadius = 3.0
-        self.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 5.0)
         self.backgroundColor = UIColor(red: 75/255, green: 89/255, blue: 126/255, alpha: 1.0)
         self.tintColor = UIColor.white
         createMask()
@@ -39,7 +39,7 @@ class CustomButton: UIButton {
                 barView.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 171/255, blue: 175/255, alpha: 1.0) // Blue
                 break
             case 2:
-                barView.backgroundColor = UIColor(colorLiteralRed: 255/255, green: 74/255, blue: 10/255, alpha: 1.0) // Red
+                barView.backgroundColor = UIColor(colorLiteralRed: 255/255, green: 74/255, blue: 102/255, alpha: 1.0) // Red
                 break
             case 3:
                 barView.backgroundColor = UIColor(colorLiteralRed: 255/255, green: 178/255, blue: 70/255, alpha: 1.0)  // Yellow
