@@ -50,6 +50,21 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var gameFoulsLabel: UILabel!
 
     /* *******************************************************************************************************************
+     // VIEW CONTROLLER - BAR OUTLETS
+     ******************************************************************************************************************* */
+    
+    @IBOutlet weak var selectedTeamFGBar: CustomStatBarView!
+    @IBOutlet weak var selectedTeam3PBar: CustomStatBarView!
+    @IBOutlet weak var selectedTeamFTBar: CustomStatBarView!
+    @IBOutlet weak var selectedTeamRebBar: CustomStatBarView!
+    @IBOutlet weak var selectedTeamAstBar: CustomStatBarView!
+    @IBOutlet weak var opponentTeamFGBar: CustomStatBarView!
+    @IBOutlet weak var opponentTeam3PBar: CustomStatBarView!
+    @IBOutlet weak var opponentTeamFTBar: CustomStatBarView!
+    @IBOutlet weak var opponentTeamRebBar: CustomStatBarView!
+    @IBOutlet weak var opponentTeamAstBar: CustomStatBarView!
+    
+    /* *******************************************************************************************************************
      // VIEW CONTROLLER - GOLBAL VARIABLES
      ******************************************************************************************************************* */
     
@@ -336,28 +351,50 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         selectedTeamFieldGoalLabel.text = checkIfNaN(calculatedPercentage: calSelectedTeamFieldGoal())
         let opponentFieldGoalCal : Double = Double(selectedOpponentGameStats.madeTwoPoints + selectedOpponentGameStats.madeThreePoints) / Double(selectedOpponentGameStats.madeTwoPoints + selectedOpponentGameStats.madeThreePoints + selectedOpponentGameStats.missedTwoPoints + selectedOpponentGameStats.missedThreePoints)
         opponentTeamFieldGoalLabel.text = checkIfNaN(calculatedPercentage: opponentFieldGoalCal)
+        
+        if opponentFieldGoalCal.isNaN == false && calSelectedTeamFieldGoal().isNaN == false {
+            selectedTeamFGBar.adjustSize(currentValue: calSelectedTeamFieldGoal() * 100, max: 100)
+            opponentTeamFGBar.adjustSize(currentValue: opponentFieldGoalCal * 100, max: 100)
+        }
     }
     
     func displayTeamThreePoint() {
-        selectedTeamFieldGoalLabel.text = checkIfNaN(calculatedPercentage: calSelectedTeamThreePoint())
-        let opponentFieldGoalCal : Double = Double(selectedOpponentGameStats.madeThreePoints) / Double(selectedOpponentGameStats.madeThreePoints + selectedOpponentGameStats.missedThreePoints)
-        opponentTeamFieldGoalLabel.text = checkIfNaN(calculatedPercentage: opponentFieldGoalCal)
+        selectedTeamThreePointLabel.text = checkIfNaN(calculatedPercentage: calSelectedTeamThreePoint())
+        let opponentThreePointCal : Double = Double(selectedOpponentGameStats.madeThreePoints) / Double(selectedOpponentGameStats.madeThreePoints + selectedOpponentGameStats.missedThreePoints)
+        opponentTeamThreePointLabel.text = checkIfNaN(calculatedPercentage: opponentThreePointCal)
+        
+        if opponentThreePointCal.isNaN == false && calSelectedTeamThreePoint().isNaN == false {
+            selectedTeam3PBar.adjustSize(currentValue: calSelectedTeamThreePoint() * 100, max: 100)
+            opponentTeam3PBar.adjustSize(currentValue: opponentThreePointCal * 100, max: 100)
+        }
     }
     
     func displayTeamFreeThrow() {
         selectedTeamFreeThrowLabel.text = checkIfNaN(calculatedPercentage: calSelectedTeamFreeThrow())
         let opponentFreeThrowCal : Double = Double(selectedOpponentGameStats.madeOnePoints) / Double(selectedOpponentGameStats.madeOnePoints + selectedOpponentGameStats.missedOnePoints)
         opponentTeamFreeThrowLabel.text = checkIfNaN(calculatedPercentage: opponentFreeThrowCal)
+        
+        if opponentFreeThrowCal.isNaN == false && calSelectedTeamFreeThrow().isNaN == false {
+            selectedTeamFTBar.adjustSize(currentValue: calSelectedTeamFreeThrow() * 100, max: 100)
+            opponentTeamFTBar.adjustSize(currentValue: opponentFreeThrowCal * 100, max: 100)
+        }
     }
     
     func displayTeamAssists() {
         selectedTeamAssistLabel.text = "\(calSelectedTeamAssists())"
         opponentTeamAssistLabel.text = "\(selectedOpponentGameStats.assists)"
+        
+        selectedTeamAstBar.adjustSize(currentValue: Double(calSelectedTeamAssists()), max: 50)
+        opponentTeamAstBar.adjustSize(currentValue: Double(selectedOpponentGameStats.assists), max: 50)
+
     }
     
     func displayTeamRebounds() {
         selectedTeamReboundLabel.text = "\(calSelectedTeamRebounds())"
         opponentTeamReboundLabel.text = "\(selectedOpponentGameStats.defRebounds + selectedOpponentGameStats.offRebounds)"
+        
+        selectedTeamRebBar.adjustSize(currentValue: Double(calSelectedTeamRebounds()), max: 50)
+        opponentTeamRebBar.adjustSize(currentValue: Double(selectedOpponentGameStats.defRebounds + selectedOpponentGameStats.offRebounds), max: 50)
     }
     
     func checkIfNaN(calculatedPercentage: Double) -> String {

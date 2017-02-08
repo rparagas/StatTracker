@@ -316,6 +316,8 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         
         FIRDatabase.database().reference().child("games").child(selectedTeam.teamID).child(selectedGame.gameID).child("gameStatus").setValue("complete")
         
+        periodButton.setTitle("Successful", for: .normal)
+        
         let homeScore = calSelectedTeamScore()
         let opponentScore = opponent.madeOnePoints + (opponent.madeTwoPoints * 2) + (opponent.madeThreePoints * 3)
         

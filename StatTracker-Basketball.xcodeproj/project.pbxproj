@@ -25,6 +25,7 @@
 		A689B50C1E07CC5100EE1E75 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A689B50B1E07CC5100EE1E75 /* GoogleService-Info.plist */; };
 		A6A831361E3EFB1400A1DB60 /* BoxScoreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A831351E3EFB1400A1DB60 /* BoxScoreCollectionViewController.swift */; };
 		A6A8313A1E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A831391E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift */; };
+		A6AE59A51E4ACEA700B74A75 /* CustomStatBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AE59A41E4ACEA700B74A75 /* CustomStatBarView.swift */; };
 		A6BC03551E0124AF00CB843B /* AddTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BC03541E0124AF00CB843B /* AddTeamViewController.swift */; };
 		A6BC03571E01366F00CB843B /* RosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BC03561E01366F00CB843B /* RosterViewController.swift */; };
 		A6C9A4771E17707B00057381 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9A4761E17707B00057381 /* Team.swift */; };
@@ -61,6 +62,7 @@
 		A689B50B1E07CC5100EE1E75 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A6A831351E3EFB1400A1DB60 /* BoxScoreCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxScoreCollectionViewController.swift; sourceTree = "<group>"; };
 		A6A831391E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBoxScoreCollectionViewLayout.swift; sourceTree = "<group>"; };
+		A6AE59A41E4ACEA700B74A75 /* CustomStatBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStatBarView.swift; sourceTree = "<group>"; };
 		A6BC03541E0124AF00CB843B /* AddTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTeamViewController.swift; path = ../AddTeamViewController.swift; sourceTree = "<group>"; };
 		A6BC03561E01366F00CB843B /* RosterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RosterViewController.swift; path = ../RosterViewController.swift; sourceTree = "<group>"; };
 		A6C9A4761E17707B00057381 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -139,9 +141,10 @@
 		A66EB0771E3ED0EC00358A60 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A680952A1E49848400B78061 /* Tableview View */,
+				A6AE59A41E4ACEA700B74A75 /* CustomStatBarView.swift */,
 				A6E3E5281E448BD80008565F /* CustomView.swift */,
 				A68095281E497EDB00B78061 /* CustomSmallView.swift */,
+				A680952A1E49848400B78061 /* Tableview View */,
 				A6E3E51F1E4427EF0008565F /* Buttons View */,
 				A6E3E51E1E4427340008565F /* Collections View */,
 			);
@@ -336,6 +339,7 @@
 				A617C91E1E003C6E0077805E /* TeamViewController.swift in Sources */,
 				A680952E1E498A3900B78061 /* CustomTableView.swift in Sources */,
 				A68095301E49A45700B78061 /* CustomGameTableViewCell.swift in Sources */,
+				A6AE59A51E4ACEA700B74A75 /* CustomStatBarView.swift in Sources */,
 				A6E3E5291E448BD80008565F /* CustomView.swift in Sources */,
 				A66EB0791E3ED13800358A60 /* CustomBoxScoreCollectionViewCell.swift in Sources */,
 				A617C90B1E0035410077805E /* MainViewController.swift in Sources */,
