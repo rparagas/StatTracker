@@ -373,7 +373,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                             self.opponentTeamFGBar.adjustSize(currentValue: opponentFieldGoalCal * 100, max: 100)
                             
                             //adjust labels
-                            self.selectedTeamFieldGoalLabel.adjustPosition(currentValue: selectedFieldGoalCal * 100, max: 100, rightBarOrigin: self.selectedTeamFGBar.frame.origin)
+                            self.selectedTeamFieldGoalLabel.adjustPosition(currentValue: selectedFieldGoalCal * 100, max: 100, leftBarOrigin: self.selectedTeamFGBar.frame.origin)
                             self.opponentTeamFieldGoalLabel.adjustPosition(currentValue: opponentFieldGoalCal * 100, max: 100, rightBarOrigin: self.opponentTeamFGBar.frame.origin)
         }, completion: { (finished) -> Void in
                 
@@ -404,7 +404,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                         self.opponentTeam3PBar.adjustSize(currentValue: opponentThreePointCal * 100, max: 100)
                         
                         //adjust labels
-                        self.selectedTeamThreePointLabel.adjustPosition(currentValue: selectedThreePointCal * 100, max: 100, rightBarOrigin: self.selectedTeam3PBar.frame.origin)
+                        self.selectedTeamThreePointLabel.adjustPosition(currentValue: selectedThreePointCal * 100, max: 100, leftBarOrigin: self.selectedTeam3PBar.frame.origin)
                         self.opponentTeamThreePointLabel.adjustPosition(currentValue: opponentThreePointCal * 100, max: 100, rightBarOrigin: self.opponentTeam3PBar.frame.origin)
         }, completion: { (finished) -> Void in
             
@@ -435,7 +435,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                         self.opponentTeamFTBar.adjustSize(currentValue: opponentFreeThrowCal * 100, max: 100)
         
                         //adjust labels
-                        self.selectedTeamFreeThrowLabel.adjustPosition(currentValue: selectedFreeThrowCal * 100, max: 100, rightBarOrigin: self.selectedTeamFTBar.frame.origin)
+                        self.selectedTeamFreeThrowLabel.adjustPosition(currentValue: selectedFreeThrowCal * 100, max: 100, leftBarOrigin: self.selectedTeamFTBar.frame.origin)
                         self.opponentTeamFreeThrowLabel.adjustPosition(currentValue: opponentFreeThrowCal * 100, max: 100, rightBarOrigin: self.opponentTeamFTBar.frame.origin)
         }, completion: { (finished) -> Void in
             
@@ -443,8 +443,11 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func displayTeamAssists() {
-        selectedTeamAssistLabel.text = "\(calSelectedTeamAssists())"
-        opponentTeamAssistLabel.text = "\(selectedOpponentGameStats.assists)"
+        let selectedAssistCal : Int = calSelectedTeamAssists()
+        let opponentAssistCal : Int = selectedOpponentGameStats.assists
+        
+        selectedTeamAssistLabel.text = "\(selectedAssistCal)"
+        opponentTeamAssistLabel.text = "\(opponentAssistCal)"
         
         
         UIView.animate(withDuration: 0.5,
@@ -452,12 +455,12 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                        options: UIViewAnimationOptions.beginFromCurrentState,
                        animations: { () -> Void in
                         // adjustbars
-                        self.selectedTeamAstBar.adjustSize(currentValue: Double(self.calSelectedTeamAssists()), max: 50)
-                        self.opponentTeamAstBar.adjustSize(currentValue: Double(self.selectedOpponentGameStats.assists), max: 50)
+                        self.selectedTeamAstBar.adjustSize(currentValue: Double(selectedAssistCal), max: 50)
+                        self.opponentTeamAstBar.adjustSize(currentValue: Double(opponentAssistCal), max: 50)
                         
                         //adjust labels
-                        self.selectedTeamAssistLabel.adjustPosition(currentValue: Double(self.calSelectedTeamAssists()), max: 50, rightBarOrigin: self.selectedTeamAstBar.frame.origin)
-                        self.opponentTeamAssistLabel.adjustPosition(currentValue: Double(self.selectedOpponentGameStats.assists), max: 50, rightBarOrigin: self.opponentTeamAstBar.frame.origin)
+                        self.selectedTeamAssistLabel.adjustPosition(currentValue: Double(selectedAssistCal), max: 50, leftBarOrigin: self.selectedTeamAstBar.frame.origin)
+                        self.opponentTeamAssistLabel.adjustPosition(currentValue: Double(opponentAssistCal), max: 50, rightBarOrigin: self.opponentTeamAstBar.frame.origin)
         }, completion: { (finished) -> Void in
             
         })
@@ -465,22 +468,24 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func displayTeamRebounds() {
-        selectedTeamReboundLabel.text = "\(calSelectedTeamRebounds())"
-        opponentTeamReboundLabel.text = "\(selectedOpponentGameStats.defRebounds + selectedOpponentGameStats.offRebounds)"
-        
+        let selectedReboundCal : Int = calSelectedTeamRebounds()
+        let opponentReboundCal : Int = selectedOpponentGameStats.defRebounds + selectedOpponentGameStats.offRebounds
+            
+        selectedTeamReboundLabel.text = "\(selectedReboundCal)"
+        opponentTeamReboundLabel.text = "\(opponentReboundCal)"
         
         UIView.animate(withDuration: 0.5,
                        delay: 0.1,
                        options: UIViewAnimationOptions.beginFromCurrentState,
                        animations: { () -> Void in
                         // adjust bars
-                        self.selectedTeamRebBar.adjustSize(currentValue: Double(self.calSelectedTeamRebounds()), max: 50)
-                        self.opponentTeamRebBar.adjustSize(currentValue: Double(self.selectedOpponentGameStats.defRebounds + self.selectedOpponentGameStats.offRebounds), max: 50)
+                        self.selectedTeamRebBar.adjustSize(currentValue: Double(selectedReboundCal), max: 50)
+                        self.opponentTeamRebBar.adjustSize(currentValue: Double(opponentReboundCal), max: 50)
         
         
                         //adjust labels
-                        self.selectedTeamReboundLabel.adjustPosition(currentValue: Double(self.calSelectedTeamRebounds()), max: 50, rightBarOrigin: self.selectedTeamRebBar.frame.origin)
-                        self.opponentTeamReboundLabel.adjustPosition(currentValue: Double(self.selectedOpponentGameStats.defRebounds + self.selectedOpponentGameStats.offRebounds), max: 50, rightBarOrigin: self.opponentTeamRebBar.frame.origin)
+                        self.selectedTeamReboundLabel.adjustPosition(currentValue: Double(selectedReboundCal), max: 50, leftBarOrigin: self.selectedTeamRebBar.frame.origin)
+                        self.opponentTeamReboundLabel.adjustPosition(currentValue: Double(opponentReboundCal), max: 50, rightBarOrigin: self.opponentTeamRebBar.frame.origin)
         }, completion: { (finished) -> Void in
             
         })

@@ -43,12 +43,14 @@ class CustomStatBarView: UIView {
         var xPoint: CGFloat = 0.0
         if barKey == 1 {
             // will need to change 310 x position
-            let offset = 310 - width
-            xPoint = CGFloat(offset)
+            let offset = (self.frame.origin.x + self.frame.width) - CGFloat(width)
+            xPoint = offset
         } else {
             xPoint = self.frame.origin.x
         }
         let origin = CGPoint(x: xPoint, y: self.frame.origin.y)
         self.frame = CGRect(origin: origin, size: size)
     }
+
+
 }

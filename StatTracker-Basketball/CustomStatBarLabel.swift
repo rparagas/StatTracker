@@ -27,19 +27,20 @@ class CustomStatBarLabel: UILabel {
         }
     }
     
+    func adjustPosition(currentValue: Double, max: Int, leftBarOrigin: CGPoint) {
+        var xPoint: CGFloat = 0.0
+        let offset = leftBarOrigin.x - CGFloat(5)  // width of bar - padding
+        xPoint = CGFloat(offset) - self.frame.size.width // width of self (label)
+        let origin = CGPoint(x: xPoint, y: self.frame.origin.y)
+        self.frame = CGRect(origin: origin, size: self.frame.size)
+    }
+    
     func adjustPosition(currentValue: Double, max: Int, rightBarOrigin: CGPoint) {
         let percentage : Double = currentValue / Double(max)
         let barWidth = Double(250) * percentage
         var xPoint: CGFloat = 0.0
-        if labelKey == 1 {
-            // will need to change 310 x position
-            var offset = 310 - barWidth // width of bar
-            offset -= 5 // padding between bar and label
-            xPoint = CGFloat(offset) - frame.size.width // width of self (label)
-        } else {
-            xPoint = rightBarOrigin.x + CGFloat(barWidth)
-            xPoint += CGFloat(5)
-        }
+        xPoint = rightBarOrigin.x + CGFloat(barWidth)
+        xPoint += CGFloat(5)
         let origin = CGPoint(x: xPoint, y: self.frame.origin.y)
         self.frame = CGRect(origin: origin, size: self.frame.size)
     }

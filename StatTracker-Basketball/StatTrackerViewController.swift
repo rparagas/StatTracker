@@ -55,24 +55,46 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var selectedTeamNameLabel: UILabel!
     @IBOutlet weak var selectedTeamScoreLabel: UILabel!
-    @IBOutlet weak var selectedTeamFieldGoalLabel: UILabel!
-    @IBOutlet weak var selectedTeamFreeThrowLabel: UILabel!
-    @IBOutlet weak var selectedTeamAssistLabel: UILabel!
-    @IBOutlet weak var selectedTeamReboundLabel: UILabel!
-    @IBOutlet weak var selectedTeamBlocksLabel: UILabel!
-    @IBOutlet weak var selectedTeamStealsLabel: UILabel!
-    @IBOutlet weak var selectedTeamTurnoversLabel: UILabel!
-    @IBOutlet weak var selectedTeamFoulsLabel: UILabel!
+    @IBOutlet weak var selectedTeamFieldGoalLabel: CustomStatBarLabel!
+    @IBOutlet weak var selectedTeamThreePointLabel: CustomStatBarLabel!
+    @IBOutlet weak var selectedTeamFreeThrowLabel: CustomStatBarLabel!
+    @IBOutlet weak var selectedTeamAssistLabel: CustomStatBarLabel!
+    @IBOutlet weak var selectedTeamReboundLabel: CustomStatBarLabel!
+    @IBOutlet weak var selectedTeamBlocksLabel: CustomStatBarLabel!
+    @IBOutlet weak var selectedTeamStealsLabel: CustomStatBarLabel!
+    @IBOutlet weak var selectedTeamTurnoversLabel: CustomStatBarLabel!
     @IBOutlet weak var opponentTeamNameLabel: UILabel!
     @IBOutlet weak var opponentTeamScoreLabel: UILabel!
-    @IBOutlet weak var opponentTeamFieldGoalLabel: UILabel!
-    @IBOutlet weak var opponentTeamFreeThrowLabel: UILabel!
-    @IBOutlet weak var opponentTeamAssistLabel: UILabel!
-    @IBOutlet weak var opponentTeamReboundLabel: UILabel!
-    @IBOutlet weak var opponentTeamBlocksLabel: UILabel!
-    @IBOutlet weak var opponentTeamStealsLabel: UILabel!
-    @IBOutlet weak var opponentTeamTurnoversLabel: UILabel!
-    @IBOutlet weak var opponentTeamFoulsLabel: UILabel!
+    @IBOutlet weak var opponentTeamFieldGoalLabel: CustomStatBarLabel!
+    @IBOutlet weak var opponentTeamThreePointLabel: CustomStatBarLabel!
+    @IBOutlet weak var opponentTeamFreeThrowLabel: CustomStatBarLabel!
+    @IBOutlet weak var opponentTeamAssistLabel: CustomStatBarLabel!
+    @IBOutlet weak var opponentTeamReboundLabel: CustomStatBarLabel!
+    @IBOutlet weak var opponentTeamBlocksLabel: CustomStatBarLabel!
+    @IBOutlet weak var opponentTeamStealsLabel: CustomStatBarLabel!
+    @IBOutlet weak var opponentTeamTurnoversLabel: CustomStatBarLabel!
+    
+    /* *******************************************************************************************************************
+     // VIEW CONTROLLER - BAR OUTLETS
+     ******************************************************************************************************************* */
+    
+    @IBOutlet weak var selectedTeamFGBar: CustomStatBarView!
+    @IBOutlet weak var selectedTeamFTBar: CustomStatBarView!
+    @IBOutlet weak var selectedTeam3PBar: CustomStatBarView!
+    @IBOutlet weak var selectedTeamAstBar: CustomStatBarView!
+    @IBOutlet weak var selectedTeamRebBar: CustomStatBarView!
+    @IBOutlet weak var selectedTeamBlkBar: CustomStatBarView!
+    @IBOutlet weak var selectedTeamStlBar: CustomStatBarView!
+    @IBOutlet weak var selectedTeamTOBar: CustomStatBarView!
+    @IBOutlet weak var opponentTeamFGBar: CustomStatBarView!
+    @IBOutlet weak var opponentTeam3PBar: CustomStatBarView!
+    @IBOutlet weak var opponentTeamFTBar: CustomStatBarView!
+    @IBOutlet weak var opponentTeamAstBar: CustomStatBarView!
+    @IBOutlet weak var opponentTeamRebBar: CustomStatBarView!
+    @IBOutlet weak var opponentTeamBlkBar: CustomStatBarView!
+    @IBOutlet weak var opponentTeamStlBar: CustomStatBarView!
+    @IBOutlet weak var opponentTeamTOBar: CustomStatBarView!
+    
     
     /* *******************************************************************************************************************
      // VIEW CONTROLLER - GLOBAL VARIABLES
@@ -121,6 +143,15 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         let (m,s) = calMinutesSeconds(seconds: currentPeriodTimeInSeconds)
         timeButton.setTitle("\(m) : 0\(s)", for: .normal)
         displayCurrentPeriod()
+        
+        displayTeamFieldGoal()
+        displayTeamThreePoint()
+        displayTeamFreeThrow()
+        displayTeamAssists()
+        displayTeamRebounds()
+        displayTeamBlocks()
+        displayTeamSteals()
+        displayTeamTurnovers()
     }
     
     /* *******************************************************************************************************************
@@ -360,6 +391,16 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         return Double(made) / Double(total)
     }
     
+    func calSelectedTeamThreePoint() -> (Double) {
+        var made = 0.0
+        var total = 0.0
+        for player in selectedRosterStats {
+            made += Double(player.madeThreePoints)
+            total += (Double(player.madeThreePoints) + Double(player.missedThreePoints))
+        }
+        return Double(made) / Double (total)
+    }
+    
     func calSelectedTeamFreeThrow() -> (Double) {
         var made = 0.0
         var total = 0.0
@@ -498,46 +539,213 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func displayTeamFieldGoal() {
-        selectedTeamFieldGoalLabel.text = checkIfNaN(calculatedPercentage: calSelectedTeamFieldGoal())
-        let opponentFieldGoalCal : Double = Double(opponent.madeTwoPoints + opponent.madeThreePoints) / Double(opponent.madeTwoPoints + opponent.madeThreePoints + opponent.missedTwoPoints + opponent.missedThreePoints)
+        var selectedFieldGoalCal : Double = Double(calSelectedTeamFieldGoal())
+        var opponentFieldGoalCal : Double = Double(opponent.madeTwoPoints + opponent.madeThreePoints) / Double(opponent.madeTwoPoints + opponent.madeThreePoints + opponent.missedTwoPoints + opponent.missedThreePoints)
+        
+        selectedTeamFieldGoalLabel.text = checkIfNaN(calculatedPercentage: selectedFieldGoalCal)
         opponentTeamFieldGoalLabel.text = checkIfNaN(calculatedPercentage: opponentFieldGoalCal)
+        
+        if selectedFieldGoalCal.isNaN == true {
+            selectedFieldGoalCal = 0.0
+        }
+        if opponentFieldGoalCal.isNaN == true {
+            opponentFieldGoalCal = 0.0
+        }
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.1,
+                       options: UIViewAnimationOptions.beginFromCurrentState,
+                       animations: { () -> Void in
+                        // adjust bars
+                        self.selectedTeamFGBar.adjustSize(currentValue: selectedFieldGoalCal * 100, max: 100)
+                        self.opponentTeamFGBar.adjustSize(currentValue: opponentFieldGoalCal * 100, max: 100)
+                        
+                        //adjust labels
+                        self.selectedTeamFieldGoalLabel.adjustPosition(currentValue: selectedFieldGoalCal * 100, max: 100, leftBarOrigin: self.selectedTeamFGBar.frame.origin)
+                        self.opponentTeamFieldGoalLabel.adjustPosition(currentValue: opponentFieldGoalCal * 100, max: 100, rightBarOrigin: self.opponentTeamFGBar.frame.origin)
+        }, completion: { (finished) -> Void in
+            
+        })
+    }
+    
+    func displayTeamThreePoint() {
+        var selectedThreePointCal : Double = calSelectedTeamThreePoint()
+        var opponentThreePointCal : Double = Double(opponent.madeThreePoints) / Double(opponent.madeThreePoints + opponent.missedThreePoints)
+        
+        selectedTeamThreePointLabel.text = checkIfNaN(calculatedPercentage: selectedThreePointCal)
+        opponentTeamThreePointLabel.text = checkIfNaN(calculatedPercentage: opponentThreePointCal)
+        
+        if selectedThreePointCal.isNaN == true {
+            selectedThreePointCal = 0.0
+        }
+        if opponentThreePointCal.isNaN == true {
+            opponentThreePointCal = 0.0
+        }
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.1,
+                       options: UIViewAnimationOptions.beginFromCurrentState,
+                       animations: { () -> Void in
+                        // adjust bars
+                        self.selectedTeam3PBar.adjustSize(currentValue: selectedThreePointCal * 100, max: 100)
+                        self.opponentTeam3PBar.adjustSize(currentValue: opponentThreePointCal * 100, max: 100)
+                        
+                        //adjust labels
+                        self.selectedTeamThreePointLabel.adjustPosition(currentValue: selectedThreePointCal * 100, max: 100, leftBarOrigin: self.selectedTeam3PBar.frame.origin)
+                        self.opponentTeamThreePointLabel.adjustPosition(currentValue: opponentThreePointCal * 100, max: 100, rightBarOrigin: self.opponentTeam3PBar.frame.origin)
+        }, completion: { (finished) -> Void in
+            
+        })
     }
     
     func displayTeamFreeThrow() {
-        selectedTeamFreeThrowLabel.text = checkIfNaN(calculatedPercentage: calSelectedTeamFreeThrow())
-        let opponentFreeThrowCal : Double = Double(opponent.madeOnePoints) / Double(opponent.madeOnePoints + opponent.missedOnePoints)
+        var selectedFreeThrowCal = calSelectedTeamFreeThrow()
+        var opponentFreeThrowCal : Double = Double(opponent.madeOnePoints) / Double(opponent.madeOnePoints + opponent.missedOnePoints)
+        
+        selectedTeamFreeThrowLabel.text = checkIfNaN(calculatedPercentage: selectedFreeThrowCal)
+        
         opponentTeamFreeThrowLabel.text = checkIfNaN(calculatedPercentage: opponentFreeThrowCal)
+        
+        if selectedFreeThrowCal.isNaN == true {
+            selectedFreeThrowCal = 0.0
+        }
+        if opponentFreeThrowCal.isNaN == true {
+            opponentFreeThrowCal = 0.0
+        }
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.1,
+                       options: UIViewAnimationOptions.beginFromCurrentState,
+                       animations: { () -> Void in
+                        
+                        //adjust bars
+                        self.selectedTeamFTBar.adjustSize(currentValue: selectedFreeThrowCal * 100, max: 100)
+                        self.opponentTeamFTBar.adjustSize(currentValue: opponentFreeThrowCal * 100, max: 100)
+                        
+                        //adjust labels
+                        self.selectedTeamFreeThrowLabel.adjustPosition(currentValue: selectedFreeThrowCal * 100, max: 100, leftBarOrigin: self.selectedTeamFTBar.frame.origin)
+                        self.opponentTeamFreeThrowLabel.adjustPosition(currentValue: opponentFreeThrowCal * 100, max: 100, rightBarOrigin: self.opponentTeamFTBar.frame.origin)
+        }, completion: { (finished) -> Void in
+            
+        })
     }
     
     func displayTeamAssists() {
-        selectedTeamAssistLabel.text = "\(calSelectedTeamAssists())"
-        opponentTeamAssistLabel.text = "\(opponent.assists)"
+        let selectedAssistCal : Int = calSelectedTeamAssists()
+        let opponentAssistCal : Int = opponent.assists
+        
+        selectedTeamAssistLabel.text = "\(selectedAssistCal)"
+        opponentTeamAssistLabel.text = "\(opponentAssistCal)"
+        
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.1,
+                       options: UIViewAnimationOptions.beginFromCurrentState,
+                       animations: { () -> Void in
+                        // adjustbars
+                        self.selectedTeamAstBar.adjustSize(currentValue: Double(selectedAssistCal), max: 50)
+                        self.opponentTeamAstBar.adjustSize(currentValue: Double(opponentAssistCal), max: 50)
+                        
+                        //adjust labels
+                        self.selectedTeamAssistLabel.adjustPosition(currentValue: Double(selectedAssistCal), max: 50, leftBarOrigin: self.selectedTeamAstBar.frame.origin)
+                        self.opponentTeamAssistLabel.adjustPosition(currentValue: Double(opponentAssistCal), max: 50, rightBarOrigin: self.opponentTeamAstBar.frame.origin)
+        }, completion: { (finished) -> Void in
+            
+        })
     }
     
-    func displayTeamRebounds(){
-        selectedTeamReboundLabel.text = "\(calSelectedTeamRebounds())"
-        opponentTeamReboundLabel.text = "\(opponent.defRebounds + opponent.offRebounds)"
+    func displayTeamRebounds() {
+        let selectedReboundCal : Int = calSelectedTeamRebounds()
+        let opponentReboundCal : Int = opponent.defRebounds + opponent.offRebounds
+        
+        selectedTeamReboundLabel.text = "\(selectedReboundCal)"
+        opponentTeamReboundLabel.text = "\(opponentReboundCal)"
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.1,
+                       options: UIViewAnimationOptions.beginFromCurrentState,
+                       animations: { () -> Void in
+                        // adjust bars
+                        self.selectedTeamRebBar.adjustSize(currentValue: Double(selectedReboundCal), max: 50)
+                        self.opponentTeamRebBar.adjustSize(currentValue: Double(opponentReboundCal), max: 50)
+                        
+                        
+                        //adjust labels
+                        self.selectedTeamReboundLabel.adjustPosition(currentValue: Double(selectedReboundCal), max: 50, leftBarOrigin: self.selectedTeamRebBar.frame.origin)
+                        self.opponentTeamReboundLabel.adjustPosition(currentValue: Double(opponentReboundCal), max: 50, rightBarOrigin: self.opponentTeamRebBar.frame.origin)
+        }, completion: { (finished) -> Void in
+            
+        })
     }
     
     func displayTeamBlocks() {
-        selectedTeamBlocksLabel.text = "\(calSelectedTeamBlocks())"
-        opponentTeamBlocksLabel.text = "\(opponent.blocks)"
+        let selectedBlockCal : Int = calSelectedTeamBlocks()
+        let opponentBlockCal : Int = opponent.blocks
+        
+        selectedTeamBlocksLabel.text = "\(selectedBlockCal)"
+        opponentTeamBlocksLabel.text = "\(opponentBlockCal)"
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.1,
+                       options: UIViewAnimationOptions.beginFromCurrentState,
+                       animations: { () -> Void in
+                        // adjust bars
+                        self.selectedTeamBlkBar.adjustSize(currentValue: Double(selectedBlockCal), max: 50)
+                        self.opponentTeamBlkBar.adjustSize(currentValue: Double(opponentBlockCal), max: 50)
+                        
+                        //adjust labels
+                        self.selectedTeamBlocksLabel.adjustPosition(currentValue: Double(selectedBlockCal), max: 50, leftBarOrigin: self.selectedTeamBlkBar.frame.origin)
+                        self.opponentTeamBlocksLabel.adjustPosition(currentValue: Double(opponentBlockCal), max: 50, rightBarOrigin: self.opponentTeamBlkBar.frame.origin)
+        }, completion: { (finished) -> Void in
+            
+        })
     }
     
     func displayTeamSteals() {
-        selectedTeamStealsLabel.text = "\(calSelectedTeamSteals())"
-        opponentTeamStealsLabel.text = "\(opponent.steals)"
+        let selectedStealCal : Int = calSelectedTeamSteals()
+        let opponentStealCal : Int = opponent.steals
+        
+        selectedTeamStealsLabel.text = "\(selectedStealCal)"
+        opponentTeamStealsLabel.text = "\(opponentStealCal)"
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.1,
+                       options: UIViewAnimationOptions.beginFromCurrentState,
+                       animations: { () -> Void in
+                        // adjust bars
+                        self.selectedTeamStlBar.adjustSize(currentValue: Double(selectedStealCal), max: 50)
+                        self.opponentTeamStlBar.adjustSize(currentValue: Double(opponentStealCal), max: 50)
+                        
+                        //adjust labels
+                        self.selectedTeamStealsLabel.adjustPosition(currentValue: Double(selectedStealCal), max: 50, leftBarOrigin: self.selectedTeamStlBar.frame.origin)
+                        self.opponentTeamStealsLabel.adjustPosition(currentValue: Double(opponentStealCal), max: 50, rightBarOrigin: self.opponentTeamStlBar.frame.origin)
+        }, completion: { (finished) -> Void in
+            
+        })
     }
-    
-    // Taken out
-    func displayTeamFouls() {
-        selectedTeamFoulsLabel.text = "\(calSelectedTeamFouls())"
-        opponentTeamFoulsLabel.text = "\(opponent.fouls)"
-    }
+
     
     func displayTeamTurnovers() {
-        selectedTeamTurnoversLabel.text = "\(calSelectedTeamTurnovers())"
-        opponentTeamTurnoversLabel.text = "\(opponent.turnovers)"
+        let selectedTurnoverCal : Int = calSelectedTeamTurnovers()
+        let opponentTurnoverCal : Int = opponent.turnovers
+        
+        selectedTeamTurnoversLabel.text = "\(selectedTurnoverCal)"
+        opponentTeamTurnoversLabel.text = "\(opponentTurnoverCal)"
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.1,
+                       options: UIViewAnimationOptions.beginFromCurrentState,
+                       animations: { () -> Void in
+                        // adjust bars
+                        self.selectedTeamTOBar.adjustSize(currentValue: Double(selectedTurnoverCal), max: 50)
+                        self.opponentTeamTOBar.adjustSize(currentValue: Double(opponentTurnoverCal), max: 50)
+                        
+                        //adjust labels
+                        self.selectedTeamTurnoversLabel.adjustPosition(currentValue: Double(selectedTurnoverCal), max: 50, leftBarOrigin: self.selectedTeamTOBar.frame.origin)
+                        self.opponentTeamTurnoversLabel.adjustPosition(currentValue: Double(opponentTurnoverCal), max: 50, rightBarOrigin: self.opponentTeamTOBar.frame.origin)
+        }, completion: { (finished) -> Void in
+            
+        })
     }
     
     func displayPlayerDetails() {
@@ -603,6 +811,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             displayPlayerAssists(stat: stat)
             displayPlayerRebounds(stat: stat)
             displayPlayerBlocks(stat: stat)
+            displayPlayerSteals(stat: stat)
             displayPlayerTurnovers(stat: stat)
             displayPlayerFouls(stat: stat)
         }
@@ -696,6 +905,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         hideTrackerViews()
         displayTeamScore()
         displayTeamFieldGoal()
+        displayTeamThreePoint()
         preventSelection()
     }
     
@@ -745,6 +955,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         }
         hideTrackerViews()
         displayTeamFieldGoal()
+        displayTeamThreePoint()
         preventSelection()
     }
     
