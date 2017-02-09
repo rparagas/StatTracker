@@ -51,5 +51,4 @@ class CustomStatBarView: UIView {
         let origin = CGPoint(x: xPoint, y: self.frame.origin.y)
         self.frame = CGRect(origin: origin, size: size)
     }
-    
 }

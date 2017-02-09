@@ -23,6 +23,7 @@
 		A68095301E49A45700B78061 /* CustomGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A680952F1E49A45700B78061 /* CustomGameTableViewCell.swift */; };
 		A68095341E49B24500B78061 /* CustomPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68095331E49B24500B78061 /* CustomPlayerTableViewCell.swift */; };
 		A689B50C1E07CC5100EE1E75 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A689B50B1E07CC5100EE1E75 /* GoogleService-Info.plist */; };
+		A69C15391E4C012D0014D8A1 /* CustomStatBarLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69C15381E4C012D0014D8A1 /* CustomStatBarLabel.swift */; };
 		A6A831361E3EFB1400A1DB60 /* BoxScoreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A831351E3EFB1400A1DB60 /* BoxScoreCollectionViewController.swift */; };
 		A6A8313A1E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A831391E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift */; };
 		A6AE59A51E4ACEA700B74A75 /* CustomStatBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AE59A41E4ACEA700B74A75 /* CustomStatBarView.swift */; };
@@ -60,6 +61,7 @@
 		A680952F1E49A45700B78061 /* CustomGameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGameTableViewCell.swift; sourceTree = "<group>"; };
 		A68095331E49B24500B78061 /* CustomPlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPlayerTableViewCell.swift; sourceTree = "<group>"; };
 		A689B50B1E07CC5100EE1E75 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A69C15381E4C012D0014D8A1 /* CustomStatBarLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStatBarLabel.swift; sourceTree = "<group>"; };
 		A6A831351E3EFB1400A1DB60 /* BoxScoreCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxScoreCollectionViewController.swift; sourceTree = "<group>"; };
 		A6A831391E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBoxScoreCollectionViewLayout.swift; sourceTree = "<group>"; };
 		A6AE59A41E4ACEA700B74A75 /* CustomStatBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStatBarView.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				A6AE59A41E4ACEA700B74A75 /* CustomStatBarView.swift */,
+				A69C15381E4C012D0014D8A1 /* CustomStatBarLabel.swift */,
 				A6E3E5281E448BD80008565F /* CustomView.swift */,
 				A68095281E497EDB00B78061 /* CustomSmallView.swift */,
 				A680952A1E49848400B78061 /* Tableview View */,
@@ -332,6 +335,7 @@
 			files = (
 				A6BC03551E0124AF00CB843B /* AddTeamViewController.swift in Sources */,
 				A6A831361E3EFB1400A1DB60 /* BoxScoreCollectionViewController.swift in Sources */,
+				A69C15391E4C012D0014D8A1 /* CustomStatBarLabel.swift in Sources */,
 				A6A8313A1E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift in Sources */,
 				A6E3E5211E442B9F0008565F /* CustomButton.swift in Sources */,
 				A6C9A47B1E179BC400057381 /* Game.swift in Sources */,

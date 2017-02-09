@@ -33,17 +33,17 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var selectedTeamNameLabel: UILabel!
     @IBOutlet weak var opponentTeamNameLabel: UILabel!
     @IBOutlet weak var selectedTeamScoreLabel: UILabel!
-    @IBOutlet weak var selectedTeamFieldGoalLabel: UILabel!
-    @IBOutlet weak var selectedTeamThreePointLabel: UILabel!
-    @IBOutlet weak var selectedTeamFreeThrowLabel: UILabel!
-    @IBOutlet weak var selectedTeamReboundLabel: UILabel!
-    @IBOutlet weak var selectedTeamAssistLabel: UILabel!
+    @IBOutlet weak var selectedTeamFieldGoalLabel: CustomStatBarLabel!
+    @IBOutlet weak var selectedTeamThreePointLabel: CustomStatBarLabel!
+    @IBOutlet weak var selectedTeamFreeThrowLabel: CustomStatBarLabel!
+    @IBOutlet weak var selectedTeamReboundLabel: CustomStatBarLabel!
+    @IBOutlet weak var selectedTeamAssistLabel: CustomStatBarLabel!
     @IBOutlet weak var opponentTeamScoreLabel: UILabel!
-    @IBOutlet weak var opponentTeamFieldGoalLabel: UILabel!
-    @IBOutlet weak var opponentTeamThreePointLabel: UILabel!
-    @IBOutlet weak var opponentTeamFreeThrowLabel: UILabel!
-    @IBOutlet weak var opponentTeamReboundLabel: UILabel!
-    @IBOutlet weak var opponentTeamAssistLabel: UILabel!
+    @IBOutlet weak var opponentTeamFieldGoalLabel: CustomStatBarLabel!
+    @IBOutlet weak var opponentTeamThreePointLabel: CustomStatBarLabel!
+    @IBOutlet weak var opponentTeamFreeThrowLabel: CustomStatBarLabel!
+    @IBOutlet weak var opponentTeamReboundLabel: CustomStatBarLabel!
+    @IBOutlet weak var opponentTeamAssistLabel: CustomStatBarLabel!
     @IBOutlet weak var gameDateLabel: UILabel!
     @IBOutlet weak var gamePeriodsLabel: UILabel!
     @IBOutlet weak var gamePeriodLengthLabel: UILabel!
@@ -89,6 +89,8 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         getTeams()
         newGameButton.isEnabled = false
         gameSummaryView.isHidden = true
+        
+        
         // Do any additional setup after loading the view.
     }
     
@@ -213,6 +215,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func getPlayers() {
+        roster.removeAll()
         FIRDatabase.database().reference().child("players").child(selectedTeam!.teamID).observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let player = Player()
             player.playerID = snapshot.key
@@ -348,44 +351,116 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
 
     func displayTeamFieldGoal() {
+        var selectedFieldGoalCal : Double = Double(calSelectedTeamFieldGoal())
+        var opponentFieldGoalCal : Double = Double(selectedOpponentGameStats.madeTwoPoints + selectedOpponentGameStats.madeThreePoints) / Double(selectedOpponentGameStats.madeTwoPoints + selectedOpponentGameStats.madeThreePoints + selectedOpponentGameStats.missedTwoPoints + selectedOpponentGameStats.missedThreePoints)
+        
         selectedTeamFieldGoalLabel.text = checkIfNaN(calculatedPercentage: calSelectedTeamFieldGoal())
-        let opponentFieldGoalCal : Double = Double(selectedOpponentGameStats.madeTwoPoints + selectedOpponentGameStats.madeThreePoints) / Double(selectedOpponentGameStats.madeTwoPoints + selectedOpponentGameStats.madeThreePoints + selectedOpponentGameStats.missedTwoPoints + selectedOpponentGameStats.missedThreePoints)
         opponentTeamFieldGoalLabel.text = checkIfNaN(calculatedPercentage: opponentFieldGoalCal)
         
-        if opponentFieldGoalCal.isNaN == false && calSelectedTeamFieldGoal().isNaN == false {
-            selectedTeamFGBar.adjustSize(currentValue: calSelectedTeamFieldGoal() * 100, max: 100)
-            opponentTeamFGBar.adjustSize(currentValue: opponentFieldGoalCal * 100, max: 100)
+        if selectedFieldGoalCal.isNaN == true {
+            selectedFieldGoalCal = 0.0
         }
+        if opponentFieldGoalCal.isNaN == true {
+            opponentFieldGoalCal = 0.0
+        }
+        
+        UIView.animate(withDuration: 0.5,
+                        delay: 0.1,
+                        options: UIViewAnimationOptions.beginFromCurrentState,
+                        animations: { () -> Void in
+                            // adjust bars
+                            self.selectedTeamFGBar.adjustSize(currentValue: selectedFieldGoalCal * 100, max: 100)
+                            self.opponentTeamFGBar.adjustSize(currentValue: opponentFieldGoalCal * 100, max: 100)
+                            
+                            //adjust labels
+                            self.selectedTeamFieldGoalLabel.adjustPosition(currentValue: selectedFieldGoalCal * 100, max: 100, rightBarOrigin: self.selectedTeamFGBar.frame.origin)
+                            self.opponentTeamFieldGoalLabel.adjustPosition(currentValue: opponentFieldGoalCal * 100, max: 100, rightBarOrigin: self.opponentTeamFGBar.frame.origin)
+        }, completion: { (finished) -> Void in
+                
+        })
     }
     
+    
     func displayTeamThreePoint() {
-        selectedTeamThreePointLabel.text = checkIfNaN(calculatedPercentage: calSelectedTeamThreePoint())
-        let opponentThreePointCal : Double = Double(selectedOpponentGameStats.madeThreePoints) / Double(selectedOpponentGameStats.madeThreePoints + selectedOpponentGameStats.missedThreePoints)
+        var selectedThreePointCal : Double = calSelectedTeamThreePoint()
+        var opponentThreePointCal : Double = Double(selectedOpponentGameStats.madeThreePoints) / Double(selectedOpponentGameStats.madeThreePoints + selectedOpponentGameStats.missedThreePoints)
+        
+        selectedTeamThreePointLabel.text = checkIfNaN(calculatedPercentage: selectedThreePointCal)
         opponentTeamThreePointLabel.text = checkIfNaN(calculatedPercentage: opponentThreePointCal)
         
-        if opponentThreePointCal.isNaN == false && calSelectedTeamThreePoint().isNaN == false {
-            selectedTeam3PBar.adjustSize(currentValue: calSelectedTeamThreePoint() * 100, max: 100)
-            opponentTeam3PBar.adjustSize(currentValue: opponentThreePointCal * 100, max: 100)
+        if selectedThreePointCal.isNaN == true {
+            selectedThreePointCal = 0.0
         }
+        if opponentThreePointCal.isNaN == true {
+            opponentThreePointCal = 0.0
+        }
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.1,
+                       options: UIViewAnimationOptions.beginFromCurrentState,
+                       animations: { () -> Void in
+                        // adjust bars
+                        self.selectedTeam3PBar.adjustSize(currentValue: selectedThreePointCal * 100, max: 100)
+                        self.opponentTeam3PBar.adjustSize(currentValue: opponentThreePointCal * 100, max: 100)
+                        
+                        //adjust labels
+                        self.selectedTeamThreePointLabel.adjustPosition(currentValue: selectedThreePointCal * 100, max: 100, rightBarOrigin: self.selectedTeam3PBar.frame.origin)
+                        self.opponentTeamThreePointLabel.adjustPosition(currentValue: opponentThreePointCal * 100, max: 100, rightBarOrigin: self.opponentTeam3PBar.frame.origin)
+        }, completion: { (finished) -> Void in
+            
+        })
     }
     
     func displayTeamFreeThrow() {
+        var selectedFreeThrowCal : Double = Double(calSelectedTeamFreeThrow())
+        var opponentFreeThrowCal : Double = Double(selectedOpponentGameStats.madeOnePoints) / Double(selectedOpponentGameStats.madeOnePoints + selectedOpponentGameStats.missedOnePoints)
+        
         selectedTeamFreeThrowLabel.text = checkIfNaN(calculatedPercentage: calSelectedTeamFreeThrow())
-        let opponentFreeThrowCal : Double = Double(selectedOpponentGameStats.madeOnePoints) / Double(selectedOpponentGameStats.madeOnePoints + selectedOpponentGameStats.missedOnePoints)
         opponentTeamFreeThrowLabel.text = checkIfNaN(calculatedPercentage: opponentFreeThrowCal)
         
-        if opponentFreeThrowCal.isNaN == false && calSelectedTeamFreeThrow().isNaN == false {
-            selectedTeamFTBar.adjustSize(currentValue: calSelectedTeamFreeThrow() * 100, max: 100)
-            opponentTeamFTBar.adjustSize(currentValue: opponentFreeThrowCal * 100, max: 100)
+        if selectedFreeThrowCal.isNaN == true {
+            selectedFreeThrowCal = 0.0
         }
+        if opponentFreeThrowCal.isNaN == true {
+            opponentFreeThrowCal = 0.0
+        }
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.1,
+                       options: UIViewAnimationOptions.beginFromCurrentState,
+                       animations: { () -> Void in
+                        
+                        //adjust bars
+                        self.selectedTeamFTBar.adjustSize(currentValue: selectedFreeThrowCal * 100, max: 100)
+                        self.opponentTeamFTBar.adjustSize(currentValue: opponentFreeThrowCal * 100, max: 100)
+        
+                        //adjust labels
+                        self.selectedTeamFreeThrowLabel.adjustPosition(currentValue: selectedFreeThrowCal * 100, max: 100, rightBarOrigin: self.selectedTeamFTBar.frame.origin)
+                        self.opponentTeamFreeThrowLabel.adjustPosition(currentValue: opponentFreeThrowCal * 100, max: 100, rightBarOrigin: self.opponentTeamFTBar.frame.origin)
+        }, completion: { (finished) -> Void in
+            
+        })
     }
     
     func displayTeamAssists() {
         selectedTeamAssistLabel.text = "\(calSelectedTeamAssists())"
         opponentTeamAssistLabel.text = "\(selectedOpponentGameStats.assists)"
         
-        selectedTeamAstBar.adjustSize(currentValue: Double(calSelectedTeamAssists()), max: 50)
-        opponentTeamAstBar.adjustSize(currentValue: Double(selectedOpponentGameStats.assists), max: 50)
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.1,
+                       options: UIViewAnimationOptions.beginFromCurrentState,
+                       animations: { () -> Void in
+                        // adjustbars
+                        self.selectedTeamAstBar.adjustSize(currentValue: Double(self.calSelectedTeamAssists()), max: 50)
+                        self.opponentTeamAstBar.adjustSize(currentValue: Double(self.selectedOpponentGameStats.assists), max: 50)
+                        
+                        //adjust labels
+                        self.selectedTeamAssistLabel.adjustPosition(currentValue: Double(self.calSelectedTeamAssists()), max: 50, rightBarOrigin: self.selectedTeamAstBar.frame.origin)
+                        self.opponentTeamAssistLabel.adjustPosition(currentValue: Double(self.selectedOpponentGameStats.assists), max: 50, rightBarOrigin: self.opponentTeamAstBar.frame.origin)
+        }, completion: { (finished) -> Void in
+            
+        })
 
     }
     
@@ -393,8 +468,23 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         selectedTeamReboundLabel.text = "\(calSelectedTeamRebounds())"
         opponentTeamReboundLabel.text = "\(selectedOpponentGameStats.defRebounds + selectedOpponentGameStats.offRebounds)"
         
-        selectedTeamRebBar.adjustSize(currentValue: Double(calSelectedTeamRebounds()), max: 50)
-        opponentTeamRebBar.adjustSize(currentValue: Double(selectedOpponentGameStats.defRebounds + selectedOpponentGameStats.offRebounds), max: 50)
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.1,
+                       options: UIViewAnimationOptions.beginFromCurrentState,
+                       animations: { () -> Void in
+                        // adjust bars
+                        self.selectedTeamRebBar.adjustSize(currentValue: Double(self.calSelectedTeamRebounds()), max: 50)
+                        self.opponentTeamRebBar.adjustSize(currentValue: Double(self.selectedOpponentGameStats.defRebounds + self.selectedOpponentGameStats.offRebounds), max: 50)
+        
+        
+                        //adjust labels
+                        self.selectedTeamReboundLabel.adjustPosition(currentValue: Double(self.calSelectedTeamRebounds()), max: 50, rightBarOrigin: self.selectedTeamRebBar.frame.origin)
+                        self.opponentTeamReboundLabel.adjustPosition(currentValue: Double(self.selectedOpponentGameStats.defRebounds + self.selectedOpponentGameStats.offRebounds), max: 50, rightBarOrigin: self.opponentTeamRebBar.frame.origin)
+        }, completion: { (finished) -> Void in
+            
+        })
+        
     }
     
     func checkIfNaN(calculatedPercentage: Double) -> String {
@@ -412,6 +502,8 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         if selectedGame?.gameStatus == "complete"
         {
             beginBoxScoreButton.setTitle("Box Score", for: .normal)
+        } else {
+            beginBoxScoreButton.setTitle("Begin Game", for: .normal)
         }
     }
     
