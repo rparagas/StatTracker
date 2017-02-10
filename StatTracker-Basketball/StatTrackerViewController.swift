@@ -847,19 +847,26 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     ******************************************************************************************************************* */
     
     @IBAction func opponentButtonTapped(_ sender: Any) {
-        selectOpponentButton()
-        statsButtonView.isHidden = false
-        selectedPlayerStatsView.isHidden = true
-        preventSelection()
-        resetSelectedPlayer()
+        if opponentButtonSelected == true {
+            deselectOpponentButton()
+            statsButtonView.isHidden = true
+        } else {
+            selectOpponentButton()
+            statsButtonView.isHidden = false
+            selectedPlayerStatsView.isHidden = true
+            preventSelection()
+            resetSelectedPlayer()
+        }
     }
     
     @IBAction func timerTapped(_ sender: Any) {
         if isTimeout == true {
             periodTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.displayPeriodTime), userInfo: nil, repeats: true)
+            timeButton.buttonIsSelected()
             isTimeout = false
         } else {
             periodTimer.invalidate()
+            timeButton.buttonIsDeselected()
             isTimeout = true
         }
     }
