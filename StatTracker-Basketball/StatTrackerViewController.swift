@@ -15,9 +15,10 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
      // VIEW CONTROLLER - BUTTON OUTLETS
      ******************************************************************************************************************* */
     
-    @IBOutlet weak var timeButton: UIButton!
+    @IBOutlet weak var timeButton: CustomProgressButton!
     @IBOutlet weak var currentPeriodLabel: UILabel!
     @IBOutlet weak var periodButton: UIButton!
+    @IBOutlet weak var opponentButton: CustomButton!
     
     /* *******************************************************************************************************************
      // VIEW CONTROLLER - VIEW OUTLETS
@@ -202,14 +203,25 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
         if tableView == self.selectedTeamTableView {
-            enableStatTracking(indexPath: indexPath)
+            if indexPath == selectedPlayerIndexPath {
+                hideTrackerViews()
+                preventSelection()
+                resetSelectedPlayer()
+            } else {
+                if opponentSelected() {
+                    deselectOpponentButton()
+                }
+                enableStatTracking(indexPath: indexPath)
+
+            }
         }
         if tableView == self.selectedTeamBenchTableView {
             performSubstitution(indexPath: indexPath)
         }
     }
-    
+
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         resetSelectedPlayer()
     }
@@ -229,8 +241,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     
     func enableStatTracking(indexPath: IndexPath) {
         selectedPlayer = selectedActiveRoster[indexPath.row]
-        statsButtonView.isHidden = false
-        selectedPlayerStatsView.isHidden = false
+        displayTrackerViews()
         for stat in selectedRosterStats{
             displayIndividualStats(stat: stat)
         }
@@ -238,6 +249,10 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         allowBenchSelection()
     }
     
+    func resetSelectedPlayer() {
+        selectedPlayer = Player()
+        selectedPlayerIndexPath = IndexPath()
+    }
     
     func performSubstitution(indexPath: IndexPath) {
         let temp = selectedActiveRoster[selectedPlayerIndexPath.row]
@@ -246,7 +261,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         activatePlayerStats(indexPath: indexPath)
         activatePlayer(indexPath: indexPath, temp: temp)
         resetSelectedPlayer()
-        displayTrackerViews()
+        hideTrackerViews()
         reloadRosters()
         preventSelection()
     }
@@ -276,12 +291,6 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
     }
-    
-    func resetSelectedPlayer() {
-        selectedPlayer = Player()
-        selectedPlayerIndexPath = IndexPath()
-    }
-    
     
     func createStatsDictionary(player: Stats) -> [String:Int] {
         let stats = ["playingTime": player.playingTimeInSeconds,
@@ -505,17 +514,20 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     func displayPeriodTime() {
         currentPeriodTimeInSeconds -= 1
         addPlayingTime()
-        let (minutes, seconds) = calMinutesSeconds(seconds: currentPeriodTimeInSeconds)
-        displayTime(m: minutes, s: seconds)
+    
+        self.timeButton.updateProgressBar(currentTime: self.currentPeriodTimeInSeconds, totalTime: Int(self.selectedGame.gamePeriodLength)! * 60)
+        
         selectedTeamTableView.reloadData()
         if currentPeriodTimeInSeconds == 0 {
+            timeButton.resetProgresBar(totalTime: Int(self.selectedGame.gamePeriodLength)! * 60)
             nextPeriod()
+            displayCurrentPeriod()
         }
         if currentPeriod > Int(selectedGame.gameNumPeriods)! {
             periodButton.setTitle("Upload", for: .normal)
             currentPeriodLabel.text = "Game Complete"
         } else {
-            displayCurrentPeriod()
+            displayCurrentPeriod() // revisit need for this
         }
     }
     
@@ -528,8 +540,8 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func displayTrackerViews() {
-        statsButtonView.isHidden = true
-        selectedPlayerStatsView.isHidden = true
+        statsButtonView.isHidden = false
+        selectedPlayerStatsView.isHidden = false
     }
     
     
@@ -837,6 +849,9 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     @IBAction func opponentButtonTapped(_ sender: Any) {
         selectOpponentButton()
         statsButtonView.isHidden = false
+        selectedPlayerStatsView.isHidden = true
+        preventSelection()
+        resetSelectedPlayer()
     }
     
     @IBAction func timerTapped(_ sender: Any) {
@@ -1067,7 +1082,6 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         hideTrackerViews()
-        //displayTeamFouls()
         preventSelection()
     }
     
@@ -1089,10 +1103,12 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     
     func selectOpponentButton() {
         opponentButtonSelected = true
+        opponentButton.buttonIsSelected()
     }
     
     func deselectOpponentButton() {
         opponentButtonSelected = false
+        opponentButton.buttonIsDeselected()
     }
     
     func setPlayerToActive(player: Stats) {

@@ -50,6 +50,15 @@ class CustomButton: UIButton {
         }
     }
     
+    func buttonIsSelected() {
+        self.backgroundColor = UIColor(colorLiteralRed: 50/255, green: 64/255, blue: 101/255, alpha: 1.0)
+        self.tintColor = UIColor.blue
+    }
+    
+    func buttonIsDeselected() {
+        self.backgroundColor = UIColor(red: 75/255, green: 89/255, blue: 126/255, alpha: 1.0)
+        self.tintColor = UIColor.white
+    }
     
     func createMask() {
         // create mask layer
