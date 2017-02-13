@@ -326,9 +326,9 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func displayGameInfo() {
         selectedTeamNameLabel.text = selectedTeam?.teamName
-        selectedTeamNameLabel.sizeToFit()
+        //selectedTeamNameLabel.sizeToFit()
         opponentTeamNameLabel.text = selectedGame?.gameOppTeam
-        opponentTeamNameLabel.sizeToFit()
+        //opponentTeamNameLabel.sizeToFit()
         gameDateLabel.text = selectedGame?.gameDateTime
         gameDateLabel.sizeToFit()
         gamePeriodsLabel.text = selectedGame?.gameNumPeriods
@@ -527,7 +527,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             nextVC.selectedTeam = selectedTeam!
         }
         if segue.identifier == "boxScoreSegue" {
-            let nextVC = segue.destination as! BoxScoreCollectionViewController
+            let nextVC = segue.destination as! BoxScoreViewController
             nextVC.selectedTeam = selectedTeam!
             nextVC.stats = selectedTeamGameStats
             nextVC.oppStats = selectedOpponentGameStats

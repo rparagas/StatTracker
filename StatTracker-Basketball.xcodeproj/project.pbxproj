@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A6083B501E51575B00BFD102 /* CustomBoxScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6083B4F1E51575B00BFD102 /* CustomBoxScoreView.swift */; };
+		A6083B521E5168B500BFD102 /* BoxScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6083B511E5168B500BFD102 /* BoxScoreViewController.swift */; };
 		A60CBB0C1E1E3194006100D2 /* StatTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60CBB0B1E1E3194006100D2 /* StatTrackerViewController.swift */; };
 		A60CBB0E1E1F384D006100D2 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60CBB0D1E1F384D006100D2 /* Stats.swift */; };
 		A617C9091E0035410077805E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A617C9081E0035410077805E /* AppDelegate.swift */; };
@@ -25,7 +27,6 @@
 		A684E5381E4D56E60018AD84 /* CustomProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A684E5371E4D56E60018AD84 /* CustomProgressButton.swift */; };
 		A689B50C1E07CC5100EE1E75 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A689B50B1E07CC5100EE1E75 /* GoogleService-Info.plist */; };
 		A69C15391E4C012D0014D8A1 /* CustomStatBarLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69C15381E4C012D0014D8A1 /* CustomStatBarLabel.swift */; };
-		A6A831361E3EFB1400A1DB60 /* BoxScoreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A831351E3EFB1400A1DB60 /* BoxScoreCollectionViewController.swift */; };
 		A6A8313A1E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A831391E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift */; };
 		A6AE59A51E4ACEA700B74A75 /* CustomStatBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AE59A41E4ACEA700B74A75 /* CustomStatBarView.swift */; };
 		A6BC03551E0124AF00CB843B /* AddTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BC03541E0124AF00CB843B /* AddTeamViewController.swift */; };
@@ -44,6 +45,8 @@
 		0563C83DB25A2EE67BCFEBCE /* Pods_StatTracker_Basketball.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StatTracker_Basketball.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		287A0FE79654E732982794B5 /* Pods-StatTracker-Basketball.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StatTracker-Basketball.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StatTracker-Basketball/Pods-StatTracker-Basketball.debug.xcconfig"; sourceTree = "<group>"; };
 		9D20947D506DF8FEF77D2F37 /* Pods-StatTracker-Basketball.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StatTracker-Basketball.release.xcconfig"; path = "Pods/Target Support Files/Pods-StatTracker-Basketball/Pods-StatTracker-Basketball.release.xcconfig"; sourceTree = "<group>"; };
+		A6083B4F1E51575B00BFD102 /* CustomBoxScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBoxScoreView.swift; sourceTree = "<group>"; };
+		A6083B511E5168B500BFD102 /* BoxScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxScoreViewController.swift; sourceTree = "<group>"; };
 		A60CBB0B1E1E3194006100D2 /* StatTrackerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatTrackerViewController.swift; sourceTree = "<group>"; };
 		A60CBB0D1E1F384D006100D2 /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		A617C9051E0035410077805E /* StatTracker-Basketball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StatTracker-Basketball.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,7 +67,6 @@
 		A684E5371E4D56E60018AD84 /* CustomProgressButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomProgressButton.swift; sourceTree = "<group>"; };
 		A689B50B1E07CC5100EE1E75 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A69C15381E4C012D0014D8A1 /* CustomStatBarLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStatBarLabel.swift; sourceTree = "<group>"; };
-		A6A831351E3EFB1400A1DB60 /* BoxScoreCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxScoreCollectionViewController.swift; sourceTree = "<group>"; };
 		A6A831391E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBoxScoreCollectionViewLayout.swift; sourceTree = "<group>"; };
 		A6AE59A41E4ACEA700B74A75 /* CustomStatBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStatBarView.swift; sourceTree = "<group>"; };
 		A6BC03541E0124AF00CB843B /* AddTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTeamViewController.swift; path = ../AddTeamViewController.swift; sourceTree = "<group>"; };
@@ -167,7 +169,7 @@
 				A6C9A47C1E179C5700057381 /* GamesViewController.swift */,
 				A6C9A47E1E17A97900057381 /* AddGameViewController.swift */,
 				A60CBB0B1E1E3194006100D2 /* StatTrackerViewController.swift */,
-				A6A831351E3EFB1400A1DB60 /* BoxScoreCollectionViewController.swift */,
+				A6083B511E5168B500BFD102 /* BoxScoreViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -198,6 +200,7 @@
 			children = (
 				A66EB0781E3ED13800358A60 /* CustomBoxScoreCollectionViewCell.swift */,
 				A6A831391E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift */,
+				A6083B4F1E51575B00BFD102 /* CustomBoxScoreView.swift */,
 			);
 			name = "Collections View";
 			sourceTree = "<group>";
@@ -336,8 +339,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6083B501E51575B00BFD102 /* CustomBoxScoreView.swift in Sources */,
 				A6BC03551E0124AF00CB843B /* AddTeamViewController.swift in Sources */,
-				A6A831361E3EFB1400A1DB60 /* BoxScoreCollectionViewController.swift in Sources */,
 				A69C15391E4C012D0014D8A1 /* CustomStatBarLabel.swift in Sources */,
 				A6A8313A1E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift in Sources */,
 				A6E3E5211E442B9F0008565F /* CustomButton.swift in Sources */,
@@ -358,6 +361,7 @@
 				A6C9A47F1E17A97900057381 /* AddGameViewController.swift in Sources */,
 				A60CBB0C1E1E3194006100D2 /* StatTrackerViewController.swift in Sources */,
 				A68095341E49B24500B78061 /* CustomPlayerTableViewCell.swift in Sources */,
+				A6083B521E5168B500BFD102 /* BoxScoreViewController.swift in Sources */,
 				A67DA55E1E090FF500191A27 /* AddPlayerViewController.swift in Sources */,
 				A6C9A4791E1770D900057381 /* Player.swift in Sources */,
 				A6BC03571E01366F00CB843B /* RosterViewController.swift in Sources */,

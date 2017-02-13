@@ -1,4 +1,12 @@
 //
+//  BoxScoreViewController.swift
+//  StatTracker-Basketball
+//
+//  Created by Ray Paragas on 13/2/17.
+//  Copyright © 2017 Ray Paragas. All rights reserved.
+//
+
+//
 //  BoxScoreCollectionViewController.swift
 //  StatTracker-Basketball
 //
@@ -10,8 +18,11 @@ import UIKit
 
 private let reuseIdentifier = "customCell"
 
-class BoxScoreCollectionViewController: UICollectionViewController {
-
+class BoxScoreViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    @IBOutlet weak var boxScoreCollection: UICollectionView!
+    @IBOutlet weak var boxScoreView: CustomBoxScoreView!
+    
     var selectedTeam = Team()
     var roster = [Player]()
     var stats = [Stats]()
@@ -19,33 +30,32 @@ class BoxScoreCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.edgesForExtendedLayout = UIRectEdge.bottom
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        // self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        boxScoreCollection.collectionViewLayout = CustomBoxScoreCollectionViewLayout()
+        boxScoreCollection.delegate = self
+        boxScoreCollection.dataSource = self
+        
+        //boxScoreCollection = self
+        self.edgesForExtendedLayout = UIRectEdge.bottom
     }
-
+    
     // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         let sections = roster.count + 2
         return sections
     }
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return 21
     }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CustomBoxScoreCollectionViewCell
+        
         if indexPath.section == 0 {
             cell.label.text = createHeaderString(indexPath: indexPath)
         } else if indexPath.section == (roster.count+1) {
@@ -55,6 +65,7 @@ class BoxScoreCollectionViewController: UICollectionViewController {
             cell.label.text = createStatString(indexPath: indexPath)
         }
         cell.label.sizeToFit()
+        //cell.label.text = "Section:\(indexPath.section) Item: \(indexPath.item)"
         return cell
     }
     
@@ -208,7 +219,7 @@ class BoxScoreCollectionViewController: UICollectionViewController {
         }
         return string
     }
-
+    
     func createStatString(indexPath: IndexPath) -> String {
         var string = ""
         for stat in stats {
@@ -331,7 +342,7 @@ class BoxScoreCollectionViewController: UICollectionViewController {
     func calMinutes(stat: Stats) -> (Int,Int) {
         return ((stat.playingTimeInSeconds % 3600) / 60,(stat.playingTimeInSeconds % 3600) % 60)
     }
-
+    
     func calPoints(stat: Stats) -> Int {
         return stat.madeOnePoints + stat.madeTwoPoints * 2 + stat.madeThreePoints * 3
     }
@@ -359,12 +370,12 @@ class BoxScoreCollectionViewController: UICollectionViewController {
     func calFGAttempted(stat: Stats) -> Int {
         return stat.madeTwoPoints + stat.madeThreePoints + stat.missedTwoPoints + stat.missedThreePoints
     }
-
+    
     func calFGPercent(stat: Stats) -> Double {
         let calculatedPercentage : Double = Double(stat.madeTwoPoints + stat.madeThreePoints) / Double(stat.madeTwoPoints + stat.madeThreePoints + stat.missedTwoPoints + stat.missedThreePoints)
         return calculatedPercentage
     }
-
+    
     func cal3PMade(stat: Stats) -> Int {
         return stat.madeThreePoints
     }
@@ -415,34 +426,34 @@ class BoxScoreCollectionViewController: UICollectionViewController {
         }
     }
     // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
-    }
-    */
-
+    /*
+     // Uncomment this method to specify if the specified item should be highlighted during tracking
+     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+     return true
+     }
+     */
+    
+    /*
+     // Uncomment this method to specify if the specified item should be selected
+     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+     return true
+     }
+     */
+    
+    /*
+     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
+     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+     return false
+     }
+     
+     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+     return false
+     }
+     
+     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+     
+     }
+     */
+    
 }
