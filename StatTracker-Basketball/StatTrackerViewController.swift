@@ -316,7 +316,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     
     func getPlayers() {
         var starters = 0
-        FIRDatabase.database().reference().child("players").child(selectedGame.gameSelectedTeam).observe(FIRDataEventType.childAdded, with: {(snapshot) in
+        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("players").child(selectedGame.gameSelectedTeam).observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let player = Player()
             let playerStats = Stats()
             playerStats.playerID = snapshot.key
@@ -349,12 +349,12 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     func uploadStats() {
         for player in selectedRosterStats {
             let stats = createStatsDictionary(player: player)
-            FIRDatabase.database().reference().child("gameResults").child(selectedTeam.teamID).child(selectedGame.gameID).child(player.playerID).setValue(stats)
+            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("gameResults").child(selectedTeam.teamID).child(selectedGame.gameID).child(player.playerID).setValue(stats)
         }
         let opponentStats = createStatsDictionary(player: opponent)
-        FIRDatabase.database().reference().child("gameResults").child(selectedTeam.teamID).child(selectedGame.gameID).child("opponent").setValue(opponentStats)
+        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("gameResults").child(selectedTeam.teamID).child(selectedGame.gameID).child("opponent").setValue(opponentStats)
         
-        FIRDatabase.database().reference().child("games").child(selectedTeam.teamID).child(selectedGame.gameID).child("gameStatus").setValue("complete")
+        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child(selectedTeam.teamID).child(selectedGame.gameID).child("gameStatus").setValue("complete")
         
         periodButton.setTitle("Successful", for: .normal)
         
@@ -364,11 +364,11 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         
         // CREATE ITS OWN FUNCTION LATER
         if opponentScore > homeScore {
-            FIRDatabase.database().reference().child("games").child(selectedTeam.teamID).child(selectedGame.gameID).child("gameOutcome").setValue("lose")
+            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child(selectedTeam.teamID).child(selectedGame.gameID).child("gameOutcome").setValue("lose")
         } else if opponentScore < homeScore {
-            FIRDatabase.database().reference().child("games").child(selectedTeam.teamID).child(selectedGame.gameID).child("gameOutcome").setValue("win")
+            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child(selectedTeam.teamID).child(selectedGame.gameID).child("gameOutcome").setValue("win")
         } else {
-            FIRDatabase.database().reference().child("games").child(selectedTeam.teamID).child(selectedGame.gameID).child("gameOutcome").setValue("tie")
+            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child(selectedTeam.teamID).child(selectedGame.gameID).child("gameOutcome").setValue("tie")
         }
     }
     

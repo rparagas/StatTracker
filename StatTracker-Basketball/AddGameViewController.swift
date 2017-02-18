@@ -105,9 +105,9 @@ class AddGameViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         selectedOpponent = opponentNameTextField.text!
         let game = ["gameOpponent": selectedOpponent, "gameDate": selectedDate, "gameNumPeriods": selectedPeriod, "gamePeriodLength": selectedLength, "gameFouls": selectedFoul, "gameStatus": "pending", "gameOutcome": "undecided"]
         print(game)
-        FIRDatabase.database().reference().child("games").child(selectedTeam.teamID).child(uuid).setValue(game)
+        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child(selectedTeam.teamID).child(uuid).setValue(game)
         let gameResults = createStatsDictionary()
-        FIRDatabase.database().reference().child("gameResults").child(selectedTeam.teamID).child(uuid).child("opponent").setValue(gameResults)
+        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("gameResults").child(selectedTeam.teamID).child(uuid).child("opponent").setValue(gameResults)
         
         navigationController?.popViewController(animated: true)
     }

@@ -18,5 +18,14 @@ class MainViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    @IBAction func logoutTapped(_ sender: Any) {
+        do {
+            try FIRAuth.auth()?.signOut()
+            print("Logout success")
+        } catch {
+            print(error)
+        }
+        dismiss(animated: true, completion: nil)
+    }
 }
 

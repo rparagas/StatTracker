@@ -77,7 +77,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
  
     func getTeams() {
-        FIRDatabase.database().reference().child("teams").observe(FIRDataEventType.childAdded, with: {(snapshot) in
+        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("teams").observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let team = Team()
             team.teamID = snapshot.key
             team.teamName = (snapshot.value as! NSDictionary)["teamName"] as! String
@@ -92,7 +92,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if selectedRoster.isEmpty != true {
             selectedRoster.removeAll()
         }
-        FIRDatabase.database().reference().child("players").child(selectedTeam!.teamID).observe(FIRDataEventType.childAdded, with: {(snapshot) in
+        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("players").child(selectedTeam!.teamID).observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let player = Player()
             player.playerID = snapshot.key
             player.playerFirstName = (snapshot.value as! NSDictionary)["playerFirstName"] as! String
@@ -128,10 +128,10 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            FIRDatabase.database().reference().child("teams").child(teams[indexPath.row].teamID).removeValue()
-            FIRDatabase.database().reference().child("players").child(teams[indexPath.row].teamID).removeValue()
-            FIRDatabase.database().reference().child("games").child(teams[indexPath.row].teamID).removeValue()
-            FIRDatabase.database().reference().child("gameResults").child(teams[indexPath.row].teamID).removeValue()
+            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("teams").child(teams[indexPath.row].teamID).removeValue()
+            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("players").child(teams[indexPath.row].teamID).removeValue()
+            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child(teams[indexPath.row].teamID).removeValue()
+            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("gameResults").child(teams[indexPath.row].teamID).removeValue()
             teams.remove(at: indexPath.row)
             teamsTableView.reloadData()
         }
@@ -162,7 +162,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 print(teamTextField.text!)
                 selectedTeam?.teamName = teamTextField.text!
                 teams[selectedIndex.row].teamName = teamTextField.text!
-                FIRDatabase.database().reference().child("teams").child(selectedTeam!.teamID).child("teamName").setValue(teamTextField.text)
+                FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("teams").child(selectedTeam!.teamID).child("teamName").setValue(teamTextField.text)
             }
             editTeamButton.setTitle("Edit Team", for: .normal)
             editRosterButton.isHidden = false

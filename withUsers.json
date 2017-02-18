@@ -1,0 +1,570 @@
+{
+  "f1oyneQHnUcwGe3xzXepXhxdHw32" : {
+    "gameResults" : {
+      "103436D0-0B7A-4DCD-86D2-5944A41EF0CE" : {
+        "6AA50D91-F9DE-42DB-B5A7-3D78B6598531" : {
+          "29165C15-2745-491D-BC25-F59F08CAACA6" : {
+            "assists" : 2,
+            "blocks" : 1,
+            "defRebounds" : 1,
+            "fouls" : 1,
+            "madeOne" : 1,
+            "madeThree" : 3,
+            "madeTwo" : 3,
+            "missOne" : 1,
+            "missThree" : 1,
+            "missTwo" : 1,
+            "offRebounds" : 1,
+            "playingTime" : 108,
+            "steals" : 2,
+            "turnovers" : 2
+          },
+          "6093E71A-A3C3-411C-BF62-1FD077CE4CD2" : {
+            "assists" : 2,
+            "blocks" : 0,
+            "defRebounds" : 0,
+            "fouls" : 1,
+            "madeOne" : 0,
+            "madeThree" : 2,
+            "madeTwo" : 0,
+            "missOne" : 0,
+            "missThree" : 0,
+            "missTwo" : 0,
+            "offRebounds" : 1,
+            "playingTime" : 75,
+            "steals" : 0,
+            "turnovers" : 0
+          },
+          "6A221FA6-11AD-4804-9459-464676CFE1E8" : {
+            "assists" : 1,
+            "blocks" : 1,
+            "defRebounds" : 1,
+            "fouls" : 0,
+            "madeOne" : 1,
+            "madeThree" : 1,
+            "madeTwo" : 1,
+            "missOne" : 0,
+            "missThree" : 2,
+            "missTwo" : 0,
+            "offRebounds" : 0,
+            "playingTime" : 94,
+            "steals" : 0,
+            "turnovers" : 1
+          },
+          "7E6E9DD8-4FDF-469D-8BEF-CF40C50A6305" : {
+            "assists" : 0,
+            "blocks" : 0,
+            "defRebounds" : 1,
+            "fouls" : 0,
+            "madeOne" : 0,
+            "madeThree" : 0,
+            "madeTwo" : 1,
+            "missOne" : 0,
+            "missThree" : 0,
+            "missTwo" : 0,
+            "offRebounds" : 1,
+            "playingTime" : 114,
+            "steals" : 1,
+            "turnovers" : 0
+          },
+          "848F421D-2DED-487D-9EA6-4F2B36AAEE88" : {
+            "assists" : 1,
+            "blocks" : 2,
+            "defRebounds" : 1,
+            "fouls" : 0,
+            "madeOne" : 0,
+            "madeThree" : 2,
+            "madeTwo" : 0,
+            "missOne" : 0,
+            "missThree" : 1,
+            "missTwo" : 0,
+            "offRebounds" : 0,
+            "playingTime" : 120,
+            "steals" : 1,
+            "turnovers" : 1
+          },
+          "FC8AC72B-48C0-4683-9BA7-890FBB679F52" : {
+            "assists" : 1,
+            "blocks" : 1,
+            "defRebounds" : 0,
+            "fouls" : 0,
+            "madeOne" : 0,
+            "madeThree" : 0,
+            "madeTwo" : 1,
+            "missOne" : 0,
+            "missThree" : 0,
+            "missTwo" : 0,
+            "offRebounds" : 1,
+            "playingTime" : 89,
+            "steals" : 1,
+            "turnovers" : 0
+          },
+          "opponent" : {
+            "assists" : 5,
+            "blocks" : 2,
+            "defRebounds" : 2,
+            "fouls" : 1,
+            "madeOne" : 2,
+            "madeThree" : 5,
+            "madeTwo" : 4,
+            "missOne" : 3,
+            "missThree" : 2,
+            "missTwo" : 0,
+            "offRebounds" : 3,
+            "playingTime" : 0,
+            "steals" : 1,
+            "turnovers" : 2
+          }
+        }
+      },
+      "C76143EB-97DC-458C-AB0E-625A771BB54C" : {
+        "13B065D7-734D-4DCF-B64F-6295584A73D5" : {
+          "opponent" : {
+            "assists" : 0,
+            "blocks" : 0,
+            "defRebounds" : 0,
+            "fouls" : 0,
+            "madeOne" : 0,
+            "madeThree" : 0,
+            "madeTwo" : 0,
+            "missOne" : 0,
+            "missThree" : 0,
+            "missTwo" : 0,
+            "offRebounds" : 0,
+            "playingTime" : 0,
+            "steals" : 0,
+            "turnovers" : 0
+          }
+        },
+        "E1ACCE8D-B671-4BDC-A660-DFACF9F4BC16" : {
+          "opponent" : {
+            "assists" : 0,
+            "blocks" : 0,
+            "defRebounds" : 0,
+            "fouls" : 0,
+            "madeOne" : 0,
+            "madeThree" : 0,
+            "madeTwo" : 0,
+            "missOne" : 0,
+            "missThree" : 0,
+            "missTwo" : 0,
+            "offRebounds" : 0,
+            "playingTime" : 0,
+            "steals" : 0,
+            "turnovers" : 0
+          }
+        }
+      },
+      "E49FE9A3-CA6C-442C-8544-C6D21D598076" : {
+        "DBEB0016-9E94-4E36-96B9-DE40FA0073D3" : {
+          "0D5E1A71-85B4-45AE-87EB-87BA6BD6C053" : {
+            "assists" : 2,
+            "blocks" : 0,
+            "defRebounds" : 1,
+            "fouls" : 1,
+            "madeOne" : 0,
+            "madeThree" : 0,
+            "madeTwo" : 1,
+            "missOne" : 0,
+            "missThree" : 0,
+            "missTwo" : 0,
+            "offRebounds" : 0,
+            "playingTime" : 806,
+            "steals" : 1,
+            "turnovers" : 0
+          },
+          "237D5821-7718-412E-B7A2-86CFAD24F05E" : {
+            "assists" : 0,
+            "blocks" : 0,
+            "defRebounds" : 0,
+            "fouls" : 0,
+            "madeOne" : 0,
+            "madeThree" : 0,
+            "madeTwo" : 0,
+            "missOne" : 0,
+            "missThree" : 0,
+            "missTwo" : 1,
+            "offRebounds" : 0,
+            "playingTime" : 1548,
+            "steals" : 1,
+            "turnovers" : 2
+          },
+          "6614C37E-C77E-422E-B476-10DE5ECEE8D3" : {
+            "assists" : 2,
+            "blocks" : 0,
+            "defRebounds" : 2,
+            "fouls" : 0,
+            "madeOne" : 0,
+            "madeThree" : 0,
+            "madeTwo" : 3,
+            "missOne" : 0,
+            "missThree" : 0,
+            "missTwo" : 1,
+            "offRebounds" : 0,
+            "playingTime" : 1400,
+            "steals" : 3,
+            "turnovers" : 1
+          },
+          "6EDA21C9-7F83-4D80-AD1E-FDA4AE5D0062" : {
+            "assists" : 3,
+            "blocks" : 0,
+            "defRebounds" : 3,
+            "fouls" : 1,
+            "madeOne" : 2,
+            "madeThree" : 0,
+            "madeTwo" : 6,
+            "missOne" : 2,
+            "missThree" : 0,
+            "missTwo" : 4,
+            "offRebounds" : 2,
+            "playingTime" : 2025,
+            "steals" : 2,
+            "turnovers" : 3
+          },
+          "9A18EED7-4F17-48D8-BA1E-BB6FEA50AD6E" : {
+            "assists" : 0,
+            "blocks" : 0,
+            "defRebounds" : 0,
+            "fouls" : 0,
+            "madeOne" : 0,
+            "madeThree" : 0,
+            "madeTwo" : 0,
+            "missOne" : 0,
+            "missThree" : 0,
+            "missTwo" : 0,
+            "offRebounds" : 0,
+            "playingTime" : 34,
+            "steals" : 0,
+            "turnovers" : 0
+          },
+          "D15A1E48-E450-4A28-A22D-A9AE60826229" : {
+            "assists" : 0,
+            "blocks" : 0,
+            "defRebounds" : 0,
+            "fouls" : 0,
+            "madeOne" : 0,
+            "madeThree" : 0,
+            "madeTwo" : 0,
+            "missOne" : 0,
+            "missThree" : 0,
+            "missTwo" : 3,
+            "offRebounds" : 0,
+            "playingTime" : 612,
+            "steals" : 0,
+            "turnovers" : 1
+          },
+          "DD186AD2-6A28-4927-BA51-588D49CB1E6C" : {
+            "assists" : 2,
+            "blocks" : 0,
+            "defRebounds" : 4,
+            "fouls" : 0,
+            "madeOne" : 1,
+            "madeThree" : 0,
+            "madeTwo" : 2,
+            "missOne" : 1,
+            "missThree" : 0,
+            "missTwo" : 2,
+            "offRebounds" : 1,
+            "playingTime" : 2007,
+            "steals" : 2,
+            "turnovers" : 2
+          },
+          "DD5078F6-CDA5-45F0-83DB-3A9C7B125864" : {
+            "assists" : 0,
+            "blocks" : 0,
+            "defRebounds" : 1,
+            "fouls" : 1,
+            "madeOne" : 0,
+            "madeThree" : 0,
+            "madeTwo" : 3,
+            "missOne" : 0,
+            "missThree" : 0,
+            "missTwo" : 0,
+            "offRebounds" : 1,
+            "playingTime" : 1967,
+            "steals" : 2,
+            "turnovers" : 3
+          },
+          "E373A2E4-AC2E-41FD-8088-880A0FDEDB2B" : {
+            "assists" : 1,
+            "blocks" : 0,
+            "defRebounds" : 3,
+            "fouls" : 1,
+            "madeOne" : 1,
+            "madeThree" : 0,
+            "madeTwo" : 2,
+            "missOne" : 1,
+            "missThree" : 0,
+            "missTwo" : 6,
+            "offRebounds" : 0,
+            "playingTime" : 1598,
+            "steals" : 1,
+            "turnovers" : 1
+          },
+          "F28497FF-49E8-4AD0-8261-E28B469D59A8" : {
+            "assists" : 0,
+            "blocks" : 0,
+            "defRebounds" : 0,
+            "fouls" : 0,
+            "madeOne" : 0,
+            "madeThree" : 0,
+            "madeTwo" : 0,
+            "missOne" : 0,
+            "missThree" : 0,
+            "missTwo" : 0,
+            "offRebounds" : 0,
+            "playingTime" : 3,
+            "steals" : 0,
+            "turnovers" : 0
+          },
+          "opponent" : {
+            "assists" : 3,
+            "blocks" : 2,
+            "defRebounds" : 8,
+            "fouls" : 10,
+            "madeOne" : 1,
+            "madeThree" : 7,
+            "madeTwo" : 8,
+            "missOne" : 4,
+            "missThree" : 11,
+            "missTwo" : 7,
+            "offRebounds" : 1,
+            "playingTime" : 0,
+            "steals" : 7,
+            "turnovers" : 9
+          }
+        }
+      }
+    },
+    "games" : {
+      "103436D0-0B7A-4DCD-86D2-5944A41EF0CE" : {
+        "6AA50D91-F9DE-42DB-B5A7-3D78B6598531" : {
+          "gameDate" : "05-01-2017 06:38",
+          "gameFouls" : "5",
+          "gameNumPeriods" : "2",
+          "gameOpponent" : "The Other Team",
+          "gameOutcome" : "win",
+          "gamePeriodLength" : "1",
+          "gameStatus" : "complete"
+        }
+      },
+      "C76143EB-97DC-458C-AB0E-625A771BB54C" : {
+        "13B065D7-734D-4DCF-B64F-6295584A73D5" : {
+          "gameDate" : "12-02-2017 18:00",
+          "gameFouls" : "5",
+          "gameNumPeriods" : "2",
+          "gameOpponent" : "O&L",
+          "gameOutcome" : "undecided",
+          "gamePeriodLength" : "19",
+          "gameStatus" : "pending"
+        },
+        "E1ACCE8D-B671-4BDC-A660-DFACF9F4BC16" : {
+          "gameDate" : "27-01-2017 03:38",
+          "gameFouls" : "5",
+          "gameNumPeriods" : "4",
+          "gameOpponent" : "lebronterage",
+          "gameOutcome" : "undecided",
+          "gamePeriodLength" : "20",
+          "gameStatus" : "pending"
+        }
+      },
+      "E49FE9A3-CA6C-442C-8544-C6D21D598076" : {
+        "DBEB0016-9E94-4E36-96B9-DE40FA0073D3" : {
+          "gameDate" : "02-02-2017 13:45",
+          "gameFouls" : "5",
+          "gameNumPeriods" : "2",
+          "gameOpponent" : "Eastwood",
+          "gameOutcome" : "tie",
+          "gamePeriodLength" : "20",
+          "gameStatus" : "complete"
+        }
+      }
+    },
+    "players" : {
+      "103436D0-0B7A-4DCD-86D2-5944A41EF0CE" : {
+        "29165C15-2745-491D-BC25-F59F08CAACA6" : {
+          "playerFirstName" : "Alyssa",
+          "playerLastName" : "Magno",
+          "playerNumber" : "21",
+          "playerPosition" : "F"
+        },
+        "6093E71A-A3C3-411C-BF62-1FD077CE4CD2" : {
+          "playerFirstName" : "Liz",
+          "playerLastName" : "Villa",
+          "playerNumber" : "10",
+          "playerPosition" : "G"
+        },
+        "6A221FA6-11AD-4804-9459-464676CFE1E8" : {
+          "playerFirstName" : "Nicole",
+          "playerLastName" : "Bisa",
+          "playerNumber" : "2",
+          "playerPosition" : "G"
+        },
+        "7E6E9DD8-4FDF-469D-8BEF-CF40C50A6305" : {
+          "playerFirstName" : "Cassie",
+          "playerLastName" : "Knezevic",
+          "playerNumber" : "12",
+          "playerPosition" : "F"
+        },
+        "848F421D-2DED-487D-9EA6-4F2B36AAEE88" : {
+          "playerFirstName" : "Anna",
+          "playerLastName" : "Castaneda",
+          "playerNumber" : "20",
+          "playerPosition" : "G"
+        },
+        "FC6B928F-5E35-4D8C-8CBC-BBD301705BFE" : {
+          "playerFirstName" : "Jess",
+          "playerLastName" : "Bisa",
+          "playerNumber" : "9",
+          "playerPosition" : "G"
+        },
+        "FC8AC72B-48C0-4683-9BA7-890FBB679F52" : {
+          "playerFirstName" : "Jodie",
+          "playerLastName" : "Lloyd",
+          "playerNumber" : "8",
+          "playerPosition" : "C"
+        }
+      },
+      "C76143EB-97DC-458C-AB0E-625A771BB54C" : {
+        "03513DB7-32A8-4B54-B3C8-DFFBC9A7E897" : {
+          "playerFirstName" : "Chris",
+          "playerLastName" : "Castaneda",
+          "playerNumber" : "10",
+          "playerPosition" : "F"
+        },
+        "1E432F9E-CA54-4E4B-B543-1E42AE624EA1" : {
+          "playerFirstName" : "Will",
+          "playerLastName" : "Villarica",
+          "playerNumber" : "13",
+          "playerPosition" : "F"
+        },
+        "5E9261D3-5CC1-4F9A-8296-82838BEB0E52" : {
+          "playerFirstName" : "Anna",
+          "playerLastName" : "Castaneda",
+          "playerNumber" : "20",
+          "playerPosition" : "G"
+        },
+        "66CBCA79-622E-4BAA-8C09-8AE14C4AFC76" : {
+          "playerFirstName" : "Jayden",
+          "playerLastName" : "Simaitis",
+          "playerNumber" : "6",
+          "playerPosition" : "C"
+        },
+        "7F946BC8-D88D-4C79-B8DA-8A68167FC8F8" : {
+          "playerFirstName" : "Alyssa",
+          "playerLastName" : "Magno",
+          "playerNumber" : "21",
+          "playerPosition" : "F"
+        },
+        "9ADCB273-95F3-4EB6-8D21-47BDA2902E6F" : {
+          "playerFirstName" : "Tommy",
+          "playerLastName" : "Mcallister",
+          "playerNumber" : "3",
+          "playerPosition" : "F"
+        },
+        "A0672EB4-3027-4F0B-B533-3E49DAD9FC0F" : {
+          "playerFirstName" : "Liz",
+          "playerLastName" : "Villaneuva",
+          "playerNumber" : "4",
+          "playerPosition" : "G"
+        },
+        "B3B77FB2-4B19-483D-A92A-75765B5947AB" : {
+          "playerFirstName" : "Jodie",
+          "playerLastName" : "Lloyd",
+          "playerNumber" : "2",
+          "playerPosition" : "F"
+        }
+      },
+      "E49FE9A3-CA6C-442C-8544-C6D21D598076" : {
+        "0D5E1A71-85B4-45AE-87EB-87BA6BD6C053" : {
+          "playerFirstName" : "Jose",
+          "playerLastName" : "Sapitula",
+          "playerNumber" : "11",
+          "playerPosition" : ""
+        },
+        "237D5821-7718-412E-B7A2-86CFAD24F05E" : {
+          "playerFirstName" : "Miguel",
+          "playerLastName" : "Deguia",
+          "playerNumber" : "8",
+          "playerPosition" : ""
+        },
+        "6614C37E-C77E-422E-B476-10DE5ECEE8D3" : {
+          "playerFirstName" : "Caden",
+          "playerLastName" : "Singapu",
+          "playerNumber" : "10",
+          "playerPosition" : ""
+        },
+        "6EDA21C9-7F83-4D80-AD1E-FDA4AE5D0062" : {
+          "playerFirstName" : "Isaac",
+          "playerLastName" : "Rosario",
+          "playerNumber" : "6",
+          "playerPosition" : ""
+        },
+        "9A18EED7-4F17-48D8-BA1E-BB6FEA50AD6E" : {
+          "playerFirstName" : "Sam",
+          "playerLastName" : "Loizou",
+          "playerNumber" : "5",
+          "playerPosition" : ""
+        },
+        "D15A1E48-E450-4A28-A22D-A9AE60826229" : {
+          "playerFirstName" : "Levi",
+          "playerLastName" : "Ngaha",
+          "playerNumber" : "7",
+          "playerPosition" : ""
+        },
+        "DD186AD2-6A28-4927-BA51-588D49CB1E6C" : {
+          "playerFirstName" : "Sage",
+          "playerLastName" : "Andary",
+          "playerNumber" : "4",
+          "playerPosition" : ""
+        },
+        "DD5078F6-CDA5-45F0-83DB-3A9C7B125864" : {
+          "playerFirstName" : "Flynn",
+          "playerLastName" : "Broom",
+          "playerNumber" : "14",
+          "playerPosition" : ""
+        },
+        "E373A2E4-AC2E-41FD-8088-880A0FDEDB2B" : {
+          "playerFirstName" : "Tauvao",
+          "playerLastName" : "Fabnico",
+          "playerNumber" : "12",
+          "playerPosition" : ""
+        },
+        "F28497FF-49E8-4AD0-8261-E28B469D59A8" : {
+          "playerFirstName" : "Aj",
+          "playerLastName" : "Kolo",
+          "playerNumber" : "13",
+          "playerPosition" : ""
+        }
+      }
+    },
+    "teams" : {
+      "103436D0-0B7A-4DCD-86D2-5944A41EF0CE" : {
+        "players" : {
+          "29165C15-2745-491D-BC25-F59F08CAACA6" : true,
+          "6093E71A-A3C3-411C-BF62-1FD077CE4CD2" : true,
+          "6A221FA6-11AD-4804-9459-464676CFE1E8" : true,
+          "7E6E9DD8-4FDF-469D-8BEF-CF40C50A6305" : true,
+          "848F421D-2DED-487D-9EA6-4F2B36AAEE88" : true,
+          "FC8AC72B-48C0-4683-9BA7-890FBB679F52" : true
+        },
+        "teamName" : "Layup Ladies"
+      },
+      "C76143EB-97DC-458C-AB0E-625A771BB54C" : {
+        "players" : {
+          "03513DB7-32A8-4B54-B3C8-DFFBC9A7E897" : true,
+          "1E432F9E-CA54-4E4B-B543-1E42AE624EA1" : true,
+          "5E9261D3-5CC1-4F9A-8296-82838BEB0E52" : true,
+          "7F946BC8-D88D-4C79-B8DA-8A68167FC8F8" : true,
+          "A0672EB4-3027-4F0B-B533-3E49DAD9FC0F" : true,
+          "B3B77FB2-4B19-483D-A92A-75765B5947AB" : true
+        },
+        "teamName" : "Scrantonicity"
+      },
+      "E49FE9A3-CA6C-442C-8544-C6D21D598076" : {
+        "teamName" : "Patties",
+        "teamType" : "Boys"
+      }
+    }
+  }
+}

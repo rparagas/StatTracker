@@ -158,7 +158,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
      ******************************************************************************************************************* */
     
     func getTeams() {
-        FIRDatabase.database().reference().child("teams").observe(FIRDataEventType.childAdded, with: {(snapshot) in
+        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("teams").observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let team = Team()
             team.teamID = snapshot.key
             team.teamName = (snapshot.value as! NSDictionary)["teamName"] as! String
@@ -168,7 +168,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func getGames() {
-        FIRDatabase.database().reference().child("games").child((selectedTeam?.teamID)!).observe(FIRDataEventType.childAdded, with: {(snapshot) in
+        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child((selectedTeam?.teamID)!).observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let game = Game()
             
             game.gameID = snapshot.key
@@ -186,7 +186,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func getGameSummary() {
-        FIRDatabase.database().reference().child("gameResults").child((selectedTeam?.teamID)!).child((selectedGame?.gameID)!).observe(FIRDataEventType.childAdded, with: {(snapshot) in
+        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("gameResults").child((selectedTeam?.teamID)!).child((selectedGame?.gameID)!).observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let stats = Stats()
             
             stats.playerID = snapshot.key
@@ -216,7 +216,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func getPlayers() {
         roster.removeAll()
-        FIRDatabase.database().reference().child("players").child(selectedTeam!.teamID).observe(FIRDataEventType.childAdded, with: {(snapshot) in
+        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("players").child(selectedTeam!.teamID).observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let player = Player()
             player.playerID = snapshot.key
             player.playerFirstName = (snapshot.value as! NSDictionary)["playerFirstName"] as! String

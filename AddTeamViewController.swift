@@ -24,7 +24,7 @@ class AddTeamViewController: UIViewController {
     @IBAction func addTeamTapped(_ sender: Any) {
         let uuid = NSUUID().uuidString
         let team = ["teamName":teamNameTextField.text!, "teamType":teamTypeTextField.text!]
-        FIRDatabase.database().reference().child("teams").child(uuid).setValue(team)
+        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("teams").child(uuid).setValue(team)
         navigationController?.popViewController(animated: true)
     }
 }

@@ -71,7 +71,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     func getPlayers() {
-        FIRDatabase.database().reference().child("players").child(team.teamID).observe(FIRDataEventType.childAdded, with: {(snapshot) in
+        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("players").child(team.teamID).observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let player = Player()
             player.playerID = snapshot.key
             player.playerFirstName = (snapshot.value as! NSDictionary)["playerFirstName"] as! String
@@ -86,7 +86,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func updateTapped(_ sender: Any) {
      let player = ["playerFirstName": firstNameTextField.text, "playerLastName": lastNameTextField.text, "playerNumber": numberTextField.text, "playerPosition": positionTextField.text]
-     FIRDatabase.database().reference().child("players").child(team.teamID).child(selectedPlayer.playerID).setValue(player)
+     FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("players").child(team.teamID).child(selectedPlayer.playerID).setValue(player)
         rosterTableView.reloadData()
     }
     
