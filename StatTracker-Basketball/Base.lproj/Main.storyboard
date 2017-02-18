@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbI-zT-zku" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="526" y="237" width="480" height="511"/>
+                                <rect key="frame" x="522" y="237" width="482" height="511"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Game Mangement"/>
@@ -37,15 +37,8 @@
                                     <segue destination="oFd-R4-6UJ" kind="show" id="61m-Fy-UgS"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="StatTracker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7DA-JH-I8Y">
-                                <rect key="frame" x="387" y="119" width="250" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <color key="textColor" red="0.89418298009999997" green="0.92945009469999995" blue="0.93321317429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubS-Zu-0t9" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="20" y="237" width="480" height="511"/>
+                                <rect key="frame" x="20" y="237" width="482" height="511"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Team Management"/>
@@ -59,6 +52,13 @@
                                     <segue destination="ZwY-ps-5iQ" kind="show" identifier="teamManagementSegue" id="RwF-Bv-jRG"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="StatTracker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7DA-JH-I8Y">
+                                <rect key="frame" x="387" y="135" width="250" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <color key="textColor" red="0.89418298009999997" green="0.92945009469999995" blue="0.93321317429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.083038054410000006" green="0.12528568509999999" blue="0.2273392081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -86,119 +86,108 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="62B-sV-qCY" customClass="CustomTableView" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="300" height="704"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnA-ib-dLg" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                <rect key="frame" x="318" y="653" width="335" height="95"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Edit Team"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ButtonType">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="editTeamTapped:" destination="ZwY-ps-5iQ" eventType="touchUpInside" id="IQY-eW-swB"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="62B-sV-qCY" customClass="CustomTableView" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                <rect key="frame" x="20" y="86" width="280" height="662"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="nZq-dg-glm"/>
-                                </constraints>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pfp-6m-vAV" customClass="CustomView" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="308" y="72" width="707" height="688"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pfp-6m-vAV" customClass="CustomView" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                <rect key="frame" x="318" y="86" width="686" height="552"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h98-yr-dM3">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h98-yr-dM3">
                                         <rect key="frame" x="124" y="91" width="109" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqm-Tw-yWY">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqm-Tw-yWY">
                                         <rect key="frame" x="124" y="160.5" width="108.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2A-fc-TIj">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2A-fc-TIj">
                                         <rect key="frame" x="124" y="230.5" width="108.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zS-3p-bLn">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zS-3p-bLn">
                                         <rect key="frame" x="124" y="300.5" width="108.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEO-vV-DNG">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEO-vV-DNG">
                                         <rect key="frame" x="124" y="370.5" width="108.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ZV-AL-Rb8">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ZV-AL-Rb8">
                                         <rect key="frame" x="124" y="440.5" width="108.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2aF-z0-s0v">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2aF-z0-s0v">
                                         <rect key="frame" x="124" y="510.5" width="108.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vky-W7-iVU">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vky-W7-iVU">
                                         <rect key="frame" x="474" y="161" width="109" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTO-qv-bO6">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTO-qv-bO6">
                                         <rect key="frame" x="474" y="231" width="109" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhK-97-Y73">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhK-97-Y73">
                                         <rect key="frame" x="474" y="301" width="109" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YUU-Q4-Ecu">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YUU-Q4-Ecu">
                                         <rect key="frame" x="474" y="371" width="109" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEp-rS-UE5">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEp-rS-UE5">
                                         <rect key="frame" x="474" y="441" width="109" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68o-zZ-UcZ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68o-zZ-UcZ">
                                         <rect key="frame" x="474" y="511" width="109" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7BB-KY-gqa" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="316" y="623" width="75" height="30"/>
-                                        <state key="normal" title="Edit Roster"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="ButtonType">
-                                                <integer key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="editRosterTapped:" destination="ZwY-ps-5iQ" eventType="touchUpInside" id="WOt-yg-wLr"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnA-ib-dLg" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="319" y="563" width="68" height="30"/>
-                                        <state key="normal" title="Edit Team"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="ButtonType">
-                                                <integer key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="editTeamTapped:" destination="ZwY-ps-5iQ" eventType="touchUpInside" id="IQY-eW-swB"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfr-0e-OjJ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#1 John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfr-0e-OjJ">
                                         <rect key="frame" x="474" y="91" width="109" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -207,53 +196,36 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="lqm-Tw-yWY" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="-175" id="3gu-TV-giV"/>
                                     <constraint firstItem="P2A-fc-TIj" firstAttribute="top" secondItem="lqm-Tw-yWY" secondAttribute="bottom" constant="49" id="76k-lV-HyG"/>
-                                    <constraint firstItem="7BB-KY-gqa" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" id="7By-TV-rq9"/>
                                     <constraint firstItem="9ZV-AL-Rb8" firstAttribute="top" secondItem="QEO-vV-DNG" secondAttribute="bottom" constant="49" id="7OF-yp-DcQ"/>
-                                    <constraint firstItem="68o-zZ-UcZ" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="175" id="8qs-JF-100"/>
-                                    <constraint firstItem="vhK-97-Y73" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="175" id="9F8-bt-Veh"/>
-                                    <constraint firstItem="mnA-ib-dLg" firstAttribute="top" secondItem="68o-zZ-UcZ" secondAttribute="bottom" constant="31" id="9f6-Tf-JXi"/>
                                     <constraint firstItem="vky-W7-iVU" firstAttribute="top" secondItem="lfr-0e-OjJ" secondAttribute="bottom" constant="49" id="AKI-yZ-3Q6"/>
-                                    <constraint firstItem="h98-yr-dM3" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="-175" id="AWB-9h-CGA"/>
-                                    <constraint firstItem="QEO-vV-DNG" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="-175" id="D3g-GW-J7m"/>
                                     <constraint firstItem="eTO-qv-bO6" firstAttribute="top" secondItem="vky-W7-iVU" secondAttribute="bottom" constant="49" id="Dsf-dh-IoP"/>
-                                    <constraint firstItem="9ZV-AL-Rb8" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="-175" id="EsT-jB-thE"/>
-                                    <constraint firstItem="YUU-Q4-Ecu" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="175" id="Fb9-t9-ABp"/>
-                                    <constraint firstItem="7BB-KY-gqa" firstAttribute="top" secondItem="mnA-ib-dLg" secondAttribute="bottom" constant="30" id="Gyr-mn-P4x"/>
-                                    <constraint firstItem="mnA-ib-dLg" firstAttribute="top" secondItem="2aF-z0-s0v" secondAttribute="bottom" constant="31.5" id="Hk0-A4-vmK"/>
-                                    <constraint firstItem="P2A-fc-TIj" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="-175" id="IPS-N6-c2P"/>
                                     <constraint firstItem="lqm-Tw-yWY" firstAttribute="top" secondItem="h98-yr-dM3" secondAttribute="bottom" constant="49" id="K0C-VF-96b"/>
-                                    <constraint firstItem="eTO-qv-bO6" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="175" id="RVQ-M5-FUD"/>
                                     <constraint firstItem="YUU-Q4-Ecu" firstAttribute="top" secondItem="vhK-97-Y73" secondAttribute="bottom" constant="49" id="SVY-tU-Qed"/>
-                                    <constraint firstItem="h98-yr-dM3" firstAttribute="top" secondItem="Pfp-6m-vAV" secondAttribute="top" constant="91" id="UL7-al-H4h"/>
-                                    <constraint firstItem="lfr-0e-OjJ" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="175" id="VFd-iP-XJh"/>
                                     <constraint firstItem="4zS-3p-bLn" firstAttribute="top" secondItem="P2A-fc-TIj" secondAttribute="bottom" constant="49" id="Zcp-xC-KCN"/>
-                                    <constraint firstAttribute="bottom" secondItem="7BB-KY-gqa" secondAttribute="bottom" constant="35" id="aLk-St-7Ae"/>
-                                    <constraint firstItem="lfr-0e-OjJ" firstAttribute="top" secondItem="Pfp-6m-vAV" secondAttribute="top" constant="91" id="aVe-t0-HgN"/>
-                                    <constraint firstItem="KEp-rS-UE5" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="175" id="bxm-1O-KfM"/>
-                                    <constraint firstItem="4zS-3p-bLn" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="-175" id="eWM-jW-AAp"/>
                                     <constraint firstItem="68o-zZ-UcZ" firstAttribute="top" secondItem="KEp-rS-UE5" secondAttribute="bottom" constant="49" id="ez9-M2-KNn"/>
-                                    <constraint firstItem="mnA-ib-dLg" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" id="mBv-Ss-xEh"/>
                                     <constraint firstItem="QEO-vV-DNG" firstAttribute="top" secondItem="4zS-3p-bLn" secondAttribute="bottom" constant="49" id="pac-qr-Ck6"/>
                                     <constraint firstItem="KEp-rS-UE5" firstAttribute="top" secondItem="YUU-Q4-Ecu" secondAttribute="bottom" constant="49" id="sBb-dX-xOp"/>
-                                    <constraint firstItem="2aF-z0-s0v" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="-175" id="vlh-ma-rIO"/>
-                                    <constraint firstItem="vky-W7-iVU" firstAttribute="centerX" secondItem="Pfp-6m-vAV" secondAttribute="centerX" constant="175" id="wsd-22-OGx"/>
                                     <constraint firstItem="2aF-z0-s0v" firstAttribute="top" secondItem="9ZV-AL-Rb8" secondAttribute="bottom" constant="49" id="zIh-qM-vim"/>
                                     <constraint firstItem="vhK-97-Y73" firstAttribute="top" secondItem="eTO-qv-bO6" secondAttribute="bottom" constant="49" id="zUu-Uh-wdy"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7BB-KY-gqa" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                <rect key="frame" x="669" y="653" width="335" height="95"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Edit Roster"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ButtonType">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="editRosterTapped:" destination="ZwY-ps-5iQ" eventType="touchUpInside" id="WOt-yg-wLr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.083038054410000006" green="0.12528568509999999" blue="0.2273392081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Pfp-6m-vAV" firstAttribute="leading" secondItem="62B-sV-qCY" secondAttribute="trailing" constant="8" symbolic="YES" id="1rJ-ep-qNI"/>
-                            <constraint firstItem="62B-sV-qCY" firstAttribute="centerY" secondItem="Pfp-6m-vAV" secondAttribute="centerY" id="1v0-C8-Q8E"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Pfp-6m-vAV" secondAttribute="trailing" constant="-11" id="5Zs-du-iI7"/>
-                            <constraint firstItem="62B-sV-qCY" firstAttribute="leading" secondItem="b9G-tF-408" secondAttribute="leading" id="D6L-Yg-2mL"/>
-                            <constraint firstItem="62B-sV-qCY" firstAttribute="top" secondItem="gG8-MH-rsZ" secondAttribute="bottom" id="MZU-DB-V2m"/>
-                            <constraint firstItem="Pfp-6m-vAV" firstAttribute="top" secondItem="gG8-MH-rsZ" secondAttribute="bottom" constant="8" symbolic="YES" id="cs4-MS-Fz2"/>
-                            <constraint firstItem="62B-sV-qCY" firstAttribute="bottom" secondItem="kJO-5Z-QJT" secondAttribute="top" id="z2e-Cx-nki"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Team Management" id="Ld2-4l-tBV">
                         <barButtonItem key="rightBarButtonItem" title="Edit" systemItem="add" id="yrP-Nw-0x4">
@@ -288,7 +260,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMx-LQ-IC6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="-544"/>
+            <point key="canvasLocation" x="1128.515625" y="-544.53125"/>
         </scene>
         <!--Game Management-->
         <scene sceneID="v7p-Oc-dcp">
@@ -302,140 +274,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zOy-Gs-a0N" customClass="CustomTableView" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="20" y="206" width="280" height="542"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="separatorColor" red="0.083038054410000006" green="0.12528568509999999" blue="0.2273392081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomGameTableViewCell" id="c3z-d8-UnV" customClass="CustomGameTableViewCell" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="280" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c3z-d8-UnV" id="IAI-fR-Obz">
-                                            <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMD-7e-rQJ">
-                                                    <rect key="frame" x="8" y="0.0" width="264" height="43"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vs Op Team Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIP-3l-0zS">
-                                                            <rect key="frame" x="8" y="11" width="223" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClK-5r-ocZ">
-                                                            <rect key="frame" x="239" y="11" width="17" height="21"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="17" id="mSY-gW-jnS"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstItem="HIP-3l-0zS" firstAttribute="leading" secondItem="gMD-7e-rQJ" secondAttribute="leadingMargin" id="9i6-tr-f3a"/>
-                                                        <constraint firstItem="ClK-5r-ocZ" firstAttribute="trailing" secondItem="gMD-7e-rQJ" secondAttribute="trailingMargin" id="T5d-dr-U1b"/>
-                                                        <constraint firstItem="ClK-5r-ocZ" firstAttribute="leading" secondItem="HIP-3l-0zS" secondAttribute="trailing" constant="8" symbolic="YES" id="cO4-wf-1DL"/>
-                                                        <constraint firstItem="HIP-3l-0zS" firstAttribute="centerY" secondItem="gMD-7e-rQJ" secondAttribute="centerY" id="iJ4-H0-BwD"/>
-                                                        <constraint firstItem="HIP-3l-0zS" firstAttribute="baseline" secondItem="ClK-5r-ocZ" secondAttribute="baseline" id="nRm-gA-pUD"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="gMD-7e-rQJ" firstAttribute="leading" secondItem="IAI-fR-Obz" secondAttribute="leadingMargin" id="8FD-gK-Ewl"/>
-                                                <constraint firstItem="gMD-7e-rQJ" firstAttribute="top" secondItem="IAI-fR-Obz" secondAttribute="top" id="8aZ-OY-oOG"/>
-                                                <constraint firstItem="gMD-7e-rQJ" firstAttribute="trailing" secondItem="IAI-fR-Obz" secondAttribute="trailingMargin" id="dJ8-cM-HjG"/>
-                                                <constraint firstAttribute="bottom" secondItem="gMD-7e-rQJ" secondAttribute="bottom" id="qy0-Eh-s1H"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="customContentView" destination="gMD-7e-rQJ" id="SY4-bS-fKL"/>
-                                            <outlet property="opponentLabel" destination="HIP-3l-0zS" id="k77-31-bz9"/>
-                                            <outlet property="outcomeLabel" destination="ClK-5r-ocZ" id="9cV-AB-mZJ"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <view hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdg-Fm-ovP">
+                            <view hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sdg-Fm-ovP">
                                 <rect key="frame" x="320" y="64" width="704" height="704"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aq7-S0-OtQ" customClass="CustomView" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="486" width="389" height="201"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Period Length" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYb-GM-d6v">
-                                                <rect key="frame" x="21" y="85" width="107" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdb-XQ-x9I">
-                                                <rect key="frame" x="290" y="85" width="21" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0q-Sl-zZi">
-                                                <rect key="frame" x="295" y="118" width="10" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date / Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmr-MQ-C7Z">
-                                                <rect key="frame" x="21" y="51" width="89" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHy-6s-fIv">
-                                                <rect key="frame" x="294" y="150" width="11" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="22/11/1992 - 9PM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AtN-YS-0Gc">
-                                                <rect key="frame" x="232" y="51" width="136" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Foul Limit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2j3-CT-W01">
-                                                <rect key="frame" x="21" y="150" width="74" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovq-OV-9Xn">
-                                                <rect key="frame" x="131" y="8" width="127" height="16"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of Periods" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pec-oY-hJR">
-                                                <rect key="frame" x="21" y="118" width="144" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u6e-X5-bd5" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                        <rect key="frame" x="404" y="486" width="282" height="201"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u6e-X5-bd5" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="412" y="486" width="270" height="201"/>
-                                        <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="270" id="0GL-xx-Reu"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Begin Game"/>
                                         <userDefinedRuntimeAttributes>
@@ -447,8 +293,9 @@
                                             <action selector="beginGameTapped:" destination="oFd-R4-6UJ" eventType="touchUpInside" id="SGn-UV-qnW"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJA-P2-bGv" userLabel="Game Stats View" customClass="CustomView" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="21" width="674" height="447"/>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jJA-P2-bGv" userLabel="Game Stats View" customClass="CustomView" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="16" width="678" height="453"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29p-mS-2dP">
                                                 <rect key="frame" x="326" y="22" width="22" height="21"/>
@@ -750,44 +597,151 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aq7-S0-OtQ" customClass="CustomView" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="486" width="382" height="201"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Period Length" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYb-GM-d6v">
+                                                <rect key="frame" x="21" y="85" width="107" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdb-XQ-x9I">
+                                                <rect key="frame" x="290" y="85" width="21" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0q-Sl-zZi">
+                                                <rect key="frame" x="295" y="118" width="10" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date / Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmr-MQ-C7Z">
+                                                <rect key="frame" x="21" y="51" width="89" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHy-6s-fIv">
+                                                <rect key="frame" x="294" y="150" width="11" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="22/11/1992 - 9PM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AtN-YS-0Gc">
+                                                <rect key="frame" x="232" y="51" width="136" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Foul Limit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2j3-CT-W01">
+                                                <rect key="frame" x="21" y="150" width="74" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovq-OV-9Xn">
+                                                <rect key="frame" x="131" y="8" width="127" height="16"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of Periods" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pec-oY-hJR">
+                                                <rect key="frame" x="21" y="118" width="144" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.083038054410000006" green="0.12528568509999999" blue="0.2273392081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="u6e-X5-bd5" firstAttribute="leading" secondItem="aq7-S0-OtQ" secondAttribute="trailing" constant="15" id="Dxz-u1-44K"/>
-                                    <constraint firstAttribute="bottom" secondItem="u6e-X5-bd5" secondAttribute="bottom" constant="17" id="QC2-Y2-ZTi"/>
-                                    <constraint firstItem="jJA-P2-bGv" firstAttribute="trailing" secondItem="u6e-X5-bd5" secondAttribute="trailing" id="Rwg-0l-N6B"/>
-                                    <constraint firstItem="u6e-X5-bd5" firstAttribute="top" secondItem="jJA-P2-bGv" secondAttribute="bottom" constant="18" id="YSO-2A-H72"/>
-                                    <constraint firstItem="u6e-X5-bd5" firstAttribute="bottom" secondItem="aq7-S0-OtQ" secondAttribute="bottom" id="dbB-Lt-rjm"/>
-                                    <constraint firstItem="aq7-S0-OtQ" firstAttribute="top" secondItem="jJA-P2-bGv" secondAttribute="bottom" constant="18" id="g4a-bV-5Xk"/>
-                                    <constraint firstItem="jJA-P2-bGv" firstAttribute="top" secondItem="sdg-Fm-ovP" secondAttribute="top" constant="21" id="gzE-SK-vvl"/>
-                                    <constraint firstAttribute="bottom" secondItem="jJA-P2-bGv" secondAttribute="bottom" constant="236" id="ndK-cA-nzf"/>
-                                    <constraint firstAttribute="trailing" secondItem="jJA-P2-bGv" secondAttribute="trailing" constant="22" id="wqi-0E-Rg4"/>
-                                </constraints>
                             </view>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ifG-6a-pr1">
-                                <rect key="frame" x="20" y="88" width="280" height="110"/>
-                                <color key="tintColor" red="0.95000961261183547" green="0.99057686823816249" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="110" id="As8-DY-fl6"/>
-                                    <constraint firstAttribute="width" constant="280" id="aQT-GB-7Pk"/>
-                                </constraints>
-                            </pickerView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mU2-mW-NeV" customClass="CustomMaskView" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                <rect key="frame" x="20" y="81" width="292" height="111"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ifG-6a-pr1">
+                                        <rect key="frame" x="0.0" y="0.0" width="292" height="111"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zOy-Gs-a0N" customClass="CustomTableView" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                <rect key="frame" x="20" y="206" width="292" height="542"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.083038054410000006" green="0.12528568509999999" blue="0.2273392081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomGameTableViewCell" id="c3z-d8-UnV" customClass="CustomGameTableViewCell" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="292" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c3z-d8-UnV" id="IAI-fR-Obz">
+                                            <rect key="frame" x="0.0" y="0.0" width="292" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMD-7e-rQJ">
+                                                    <rect key="frame" x="8" y="0.0" width="276" height="43"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vs Op Team Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIP-3l-0zS">
+                                                            <rect key="frame" x="8" y="11" width="235" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClK-5r-ocZ">
+                                                            <rect key="frame" x="251" y="11" width="17" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="17" id="mSY-gW-jnS"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="HIP-3l-0zS" firstAttribute="leading" secondItem="gMD-7e-rQJ" secondAttribute="leadingMargin" id="9i6-tr-f3a"/>
+                                                        <constraint firstItem="ClK-5r-ocZ" firstAttribute="trailing" secondItem="gMD-7e-rQJ" secondAttribute="trailingMargin" id="T5d-dr-U1b"/>
+                                                        <constraint firstItem="ClK-5r-ocZ" firstAttribute="leading" secondItem="HIP-3l-0zS" secondAttribute="trailing" constant="8" symbolic="YES" id="cO4-wf-1DL"/>
+                                                        <constraint firstItem="HIP-3l-0zS" firstAttribute="centerY" secondItem="gMD-7e-rQJ" secondAttribute="centerY" id="iJ4-H0-BwD"/>
+                                                        <constraint firstItem="HIP-3l-0zS" firstAttribute="baseline" secondItem="ClK-5r-ocZ" secondAttribute="baseline" id="nRm-gA-pUD"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gMD-7e-rQJ" firstAttribute="leading" secondItem="IAI-fR-Obz" secondAttribute="leadingMargin" id="8FD-gK-Ewl"/>
+                                                <constraint firstItem="gMD-7e-rQJ" firstAttribute="top" secondItem="IAI-fR-Obz" secondAttribute="top" id="8aZ-OY-oOG"/>
+                                                <constraint firstItem="gMD-7e-rQJ" firstAttribute="trailing" secondItem="IAI-fR-Obz" secondAttribute="trailingMargin" id="dJ8-cM-HjG"/>
+                                                <constraint firstAttribute="bottom" secondItem="gMD-7e-rQJ" secondAttribute="bottom" id="qy0-Eh-s1H"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="customContentView" destination="gMD-7e-rQJ" id="SY4-bS-fKL"/>
+                                            <outlet property="opponentLabel" destination="HIP-3l-0zS" id="k77-31-bz9"/>
+                                            <outlet property="outcomeLabel" destination="ClK-5r-ocZ" id="9cV-AB-mZJ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.083038054410000006" green="0.12528568509999999" blue="0.2273392081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="jJA-P2-bGv" firstAttribute="leading" secondItem="zOy-Gs-a0N" secondAttribute="trailing" constant="28" id="2b9-BC-HPl"/>
-                            <constraint firstItem="sdg-Fm-ovP" firstAttribute="leading" secondItem="ifG-6a-pr1" secondAttribute="trailing" constant="20" id="5yW-9j-iyW"/>
-                            <constraint firstItem="ifG-6a-pr1" firstAttribute="leading" secondItem="MPM-qx-PCh" secondAttribute="leadingMargin" id="6R4-uA-bo6"/>
-                            <constraint firstItem="ifG-6a-pr1" firstAttribute="leading" secondItem="zOy-Gs-a0N" secondAttribute="leading" id="8i2-lY-n0o"/>
-                            <constraint firstItem="aq7-S0-OtQ" firstAttribute="leading" secondItem="zOy-Gs-a0N" secondAttribute="trailing" constant="28" id="G9Y-9q-fIh"/>
-                            <constraint firstAttribute="trailing" secondItem="sdg-Fm-ovP" secondAttribute="trailing" id="HaV-NA-aCr"/>
-                            <constraint firstItem="zOy-Gs-a0N" firstAttribute="top" secondItem="ifG-6a-pr1" secondAttribute="bottom" constant="8" id="Leo-rc-9Px"/>
-                            <constraint firstItem="sdg-Fm-ovP" firstAttribute="bottom" secondItem="kdD-qf-YnT" secondAttribute="top" id="Oox-dq-e09"/>
-                            <constraint firstItem="sdg-Fm-ovP" firstAttribute="top" secondItem="6Jp-HS-0Ol" secondAttribute="bottom" id="aCb-0B-53V"/>
-                            <constraint firstAttribute="bottom" secondItem="zOy-Gs-a0N" secondAttribute="bottom" constant="20" symbolic="YES" id="rFt-HN-1vB"/>
-                            <constraint firstItem="jJA-P2-bGv" firstAttribute="leading" secondItem="ifG-6a-pr1" secondAttribute="trailing" constant="28" id="xLU-x3-nVH"/>
-                            <constraint firstItem="ifG-6a-pr1" firstAttribute="top" secondItem="6Jp-HS-0Ol" secondAttribute="bottom" constant="24" id="yUJ-2T-oJ1"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Game Management" id="AXe-pV-seR">
                         <barButtonItem key="rightBarButtonItem" title="New Game" id="ied-dh-vJp">
@@ -851,8 +805,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rqF-Q7-ggz" customClass="CustomTableView" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="12" y="72" width="277" height="246"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rqF-Q7-ggz" customClass="CustomTableView" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                <rect key="frame" x="12" y="79" width="277" height="246"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.083038054410000006" green="0.12528568509999999" blue="0.2273392081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -861,7 +815,7 @@
                                         <rect key="frame" x="0.0" y="28" width="277" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6RK-Z4-i0j" id="kgs-9A-LGw">
-                                            <rect key="frame" x="0.0" y="0.0" width="277" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="277" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hMi-hQ-Qm4">
@@ -896,25 +850,11 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9D6-Im-DYk">
-                                <rect key="frame" x="297" y="162" width="713" height="178"/>
+                                <rect key="frame" x="304" y="162" width="706" height="178"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9x-nL-UP5" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="103" y="0.0" width="95" height="85"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="+ 2"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="ButtonType">
-                                                <integer key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="madeTwoTapped:" destination="6b9-J8-EoR" eventType="touchUpInside" id="us5-Om-6ZV"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgR-PX-pFe" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="206" y="0.0" width="95" height="85"/>
+                                        <rect key="frame" x="206" y="0.0" width="90" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="+ 3"/>
@@ -928,7 +868,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0r6-Gw-gCa" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="412" y="0.0" width="95" height="85"/>
+                                        <rect key="frame" x="411" y="0.0" width="90" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="OFF REB"/>
@@ -942,7 +882,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEf-Le-d9Q" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="103" y="93" width="95" height="85"/>
+                                        <rect key="frame" x="104" y="93" width="90" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="~ 2"/>
@@ -956,7 +896,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lO5-Ek-K6F" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="206" y="93" width="95" height="85"/>
+                                        <rect key="frame" x="206" y="93" width="90" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="~ 3"/>
@@ -970,7 +910,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nz6-k0-gl1" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="515" y="0.0" width="95" height="85"/>
+                                        <rect key="frame" x="514" y="0.0" width="90" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="BLK"/>
@@ -984,7 +924,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfZ-w8-1i6" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="309" y="93" width="95" height="85"/>
+                                        <rect key="frame" x="308" y="93" width="90" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="TO"/>
@@ -998,7 +938,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjW-tl-MUK" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="93" width="95" height="85"/>
+                                        <rect key="frame" x="0.0" y="93" width="90" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="~ 1"/>
@@ -1012,7 +952,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAE-17-rvQ" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="309" y="0.0" width="95" height="85"/>
+                                        <rect key="frame" x="308" y="0.0" width="90" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="AST"/>
@@ -1026,7 +966,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSd-Nb-j6Z" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="412" y="93" width="95" height="85"/>
+                                        <rect key="frame" x="411" y="93" width="90" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="DEF REB"/>
@@ -1039,22 +979,8 @@
                                             <action selector="defReboundTapped:" destination="6b9-J8-EoR" eventType="touchUpInside" id="bd5-e7-8i6"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAI-vh-pNV" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="618" y="0.0" width="95" height="85"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="FOUL"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="ButtonType">
-                                                <integer key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="foulTapped:" destination="6b9-J8-EoR" eventType="touchUpInside" id="Sfj-rr-JNX"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LMu-LF-WNH" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="515" y="93" width="95" height="85"/>
+                                        <rect key="frame" x="514" y="93" width="90" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="STL"/>
@@ -1068,7 +994,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glN-Iu-UKt" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="95" height="85"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="90" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="+ 1"/>
@@ -1082,7 +1008,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iGt-v8-f5p" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="618" y="93" width="95" height="85"/>
+                                        <rect key="frame" x="616" y="93" width="90" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="FIX"/>
@@ -1095,10 +1021,38 @@
                                             <action selector="fixTapped:" destination="6b9-J8-EoR" eventType="touchUpInside" id="d2C-Lt-g2N"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAI-vh-pNV" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                        <rect key="frame" x="616" y="0.0" width="90" height="82"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="FOUL"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="ButtonType">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="foulTapped:" destination="6b9-J8-EoR" eventType="touchUpInside" id="Sfj-rr-JNX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9x-nL-UP5" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                        <rect key="frame" x="104" y="0.0" width="90" height="82"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="+ 2"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="ButtonType">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="madeTwoTapped:" destination="6b9-J8-EoR" eventType="touchUpInside" id="us5-Om-6ZV"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DBA-b8-gSa" customClass="CustomProgressButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="537" y="72" width="236" height="82"/>
+                                <rect key="frame" x="538" y="79" width="233" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="20 : 00">
@@ -1109,7 +1063,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DBr-FN-w4P" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="781" y="72" width="230" height="82"/>
+                                <rect key="frame" x="783" y="80" width="227" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="END PERIOD">
@@ -1125,7 +1079,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dW5-eO-kwt" customClass="CustomView" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="297" y="451" width="714" height="309"/>
+                                <rect key="frame" x="304" y="458" width="706" height="294"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3tt-bh-hzn">
@@ -1175,7 +1129,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2uK-vY-pMd">
-                                        <rect key="frame" x="102" y="58" width="511" height="232"/>
+                                        <rect key="frame" x="102" y="50" width="511" height="232"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="000.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKi-v4-j78" customClass="CustomStatBarLabel" customModule="StatTracker_Basketball" customModuleProvider="target">
@@ -1593,7 +1547,7 @@
                                 <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACq-yD-YI4" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="12" y="648" width="277" height="112"/>
+                                <rect key="frame" x="16" y="648" width="273" height="104"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="OPPONENT"/>
@@ -1607,7 +1561,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ED-pA-dFp" customClass="CustomSmallView" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="297" y="72" width="232" height="82"/>
+                                <rect key="frame" x="304" y="79" width="223" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Period" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxM-ii-PLn">
@@ -1628,12 +1582,56 @@
                                 <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ko4-en-hcU" userLabel="Cover Up View">
-                                <rect key="frame" x="297" y="372" width="207" height="64"/>
+                                <rect key="frame" x="297" y="372" width="263" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.083038054410000006" green="0.12528568509999999" blue="0.2273392081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Vm-kd-3yx" customClass="CustomTableView" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                <rect key="frame" x="12" y="339" width="277" height="294"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.083038054410000006" green="0.12528568509999999" blue="0.2273392081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomPlayerTableViewCell" id="p7l-US-Zi6" customClass="CustomPlayerTableViewCell" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="277" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p7l-US-Zi6" id="hCu-pT-eZU">
+                                            <rect key="frame" x="0.0" y="0.0" width="277" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zNy-fi-H2T">
+                                                    <rect key="frame" x="8" y="0.0" width="261" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#0 Player" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x25-kF-TNn">
+                                                            <rect key="frame" x="8" y="11" width="175" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdV-19-icu">
+                                                            <rect key="frame" x="211" y="11" width="46" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="customContentView" destination="zNy-fi-H2T" id="yhc-gm-moB"/>
+                                            <outlet property="playerLabel" destination="x25-kF-TNn" id="9Rg-pC-Kvu"/>
+                                            <outlet property="playerMinutesLabel" destination="pdV-19-icu" id="GyZ-4o-DjJ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TbX-zl-1m7" customClass="CustomSmallView" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="297" y="348" width="713" height="95"/>
+                                <rect key="frame" x="304" y="351" width="706" height="95"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLf-Ac-PHq">
@@ -1786,50 +1784,6 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Vm-kd-3yx" customClass="CustomTableView" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="12" y="326" width="277" height="314"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="separatorColor" red="0.083038054410000006" green="0.12528568509999999" blue="0.2273392081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomPlayerTableViewCell" id="p7l-US-Zi6" customClass="CustomPlayerTableViewCell" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="277" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p7l-US-Zi6" id="hCu-pT-eZU">
-                                            <rect key="frame" x="0.0" y="0.0" width="277" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zNy-fi-H2T">
-                                                    <rect key="frame" x="8" y="0.0" width="261" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#0 Player" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x25-kF-TNn">
-                                                            <rect key="frame" x="8" y="11" width="175" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdV-19-icu">
-                                                            <rect key="frame" x="211" y="11" width="46" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="customContentView" destination="zNy-fi-H2T" id="yhc-gm-moB"/>
-                                            <outlet property="playerLabel" destination="x25-kF-TNn" id="9Rg-pC-Kvu"/>
-                                            <outlet property="playerMinutesLabel" destination="pdV-19-icu" id="GyZ-4o-DjJ"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.083038054410000006" green="0.12528568509999999" blue="0.2273392081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -1909,7 +1863,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pcb-SM-A8I" customClass="CustomView" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="20" y="20" width="984" height="269"/>
+                                <rect key="frame" x="20" y="16" width="984" height="273"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R07-lr-tkl">
@@ -2063,7 +2017,7 @@
                                 <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GV8-XD-CWB" customClass="CustomBoxScoreView" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="20" y="312" width="984" height="378"/>
+                                <rect key="frame" x="20" y="304" width="984" height="386"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" directionalLockEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BHy-Qr-Zob">
@@ -2165,15 +2119,21 @@
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWK-CG-khO">
                                 <rect key="frame" x="386" y="427" width="424" height="74"/>
+                                <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </pickerView>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATi-yD-zux">
                                 <rect key="frame" x="386" y="345" width="424" height="74"/>
+                                <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="74" id="QW6-Cw-FKf"/>
                                 </constraints>
                             </pickerView>
                             <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ylw-CZ-IS4">
                                 <rect key="frame" x="386" y="211" width="424" height="126"/>
+                                <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <date key="date" timeIntervalSinceReferenceDate="504865902.04169798">
                                     <!--2016-12-31 08:31:42 +0000-->
                                 </date>
@@ -2208,6 +2168,8 @@
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sPx-fA-iEn">
                                 <rect key="frame" x="386" y="509" width="424" height="74"/>
+                                <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="74" id="Ziu-aw-Duc"/>
                                 </constraints>
@@ -2278,44 +2240,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="nxx10001" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hWa-BT-Udk">
-                                <rect key="frame" x="387" y="369" width="250" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="password1" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hWa-BT-Udk">
+                                <rect key="frame" x="387" y="449" width="250" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ccr-4o-ceI">
-                                <rect key="frame" x="475" y="340" width="74" height="21"/>
+                                <rect key="frame" x="475" y="420" width="74" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bS5-Qg-hNY">
-                                <rect key="frame" x="491" y="249" width="41" height="21"/>
+                                <rect key="frame" x="491" y="329" width="41" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="StatTracker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCF-S4-Slu">
-                                <rect key="frame" x="387" y="86" width="250" height="50"/>
+                                <rect key="frame" x="387" y="166" width="250" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <color key="textColor" red="0.89418298009999997" green="0.92945009469999995" blue="0.93321317429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="rayy.paragas@gmail.com" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WVX-Pc-j1j">
-                                <rect key="frame" x="387" y="278" width="250" height="30"/>
+                                <rect key="frame" x="387" y="358" width="250" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgL-8d-V0A" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="464" y="472" width="97" height="51"/>
+                                <rect key="frame" x="387" y="552" width="250" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Login"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="ButtonType">
@@ -2337,7 +2300,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vor-EC-w15" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1296" y="38"/>
+            <point key="canvasLocation" x="-1296.09375" y="37.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="j2M-bl-wdw">
@@ -2369,71 +2332,69 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ejf-EI-P0Y" customClass="CustomTableView" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="300" height="704"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ejf-EI-P0Y" customClass="CustomTableView" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                <rect key="frame" x="20" y="86" width="280" height="662"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="Xb3-O0-4nY"/>
-                                </constraints>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9p-li-irK">
-                                <rect key="frame" x="546" y="131" width="83" height="21"/>
+                                <rect key="frame" x="549" y="252" width="83" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4R-dS-Mjw">
-                                <rect key="frame" x="546" y="188" width="82" height="21"/>
+                                <rect key="frame" x="549" y="309" width="82" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ah3-Kd-ixp">
-                                <rect key="frame" x="546" y="245" width="77" height="21"/>
+                                <rect key="frame" x="549" y="366" width="77" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Position" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CsQ-vD-Dgg">
-                                <rect key="frame" x="546" y="308" width="61" height="21"/>
+                                <rect key="frame" x="549" y="429" width="61" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gQI-9r-4Mq">
-                                <rect key="frame" x="704" y="126" width="97" height="30"/>
+                                <rect key="frame" x="707" y="247" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gSA-55-y5O">
-                                <rect key="frame" x="704" y="183" width="97" height="30"/>
+                                <rect key="frame" x="707" y="304" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gQE-69-aOp">
-                                <rect key="frame" x="704" y="240" width="97" height="30"/>
+                                <rect key="frame" x="707" y="361" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9lJ-Yd-Oko">
-                                <rect key="frame" x="704" y="303" width="97" height="30"/>
+                                <rect key="frame" x="707" y="424" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tuG-2C-TCF" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="635" y="370" width="51" height="30"/>
+                                <rect key="frame" x="638" y="491" width="51" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Update"/>
                                 <userDefinedRuntimeAttributes>
@@ -2447,12 +2408,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.083038054410000006" green="0.12528568509999999" blue="0.2273392081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="ejf-EI-P0Y" firstAttribute="bottom" secondItem="fx1-1E-Yho" secondAttribute="top" id="Mxo-Vo-9YK"/>
-                            <constraint firstItem="fx1-1E-Yho" firstAttribute="top" secondItem="ejf-EI-P0Y" secondAttribute="bottom" id="TDY-BH-3NW"/>
-                            <constraint firstItem="ejf-EI-P0Y" firstAttribute="leading" secondItem="aj8-OU-DOp" secondAttribute="leading" id="gQp-l3-loD"/>
-                            <constraint firstItem="ejf-EI-P0Y" firstAttribute="top" secondItem="wo2-kR-8D2" secondAttribute="bottom" id="xvM-mS-aSV"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Team Name" id="K6O-F8-mOn">
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="jgY-uh-cjU">
@@ -2473,7 +2428,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J5h-em-Vc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1850" y="-545"/>
+            <point key="canvasLocation" x="1849.8046874999998" y="-545.3125"/>
         </scene>
         <!--Add Team View Controller-->
         <scene sceneID="O9U-TT-5IY">
@@ -2488,49 +2443,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="utC-ed-f7Y">
-                                <rect key="frame" x="521" y="119" width="97" height="30"/>
+                                <rect key="frame" x="521" y="247" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yUz-66-6Ha">
-                                <rect key="frame" x="521" y="195" width="97" height="30"/>
+                                <rect key="frame" x="521" y="323" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bSy-bs-Lhv">
-                                <rect key="frame" x="521" y="274" width="97" height="30"/>
+                                <rect key="frame" x="521" y="402" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLi-U3-anq">
-                                <rect key="frame" x="406" y="124" width="92" height="21"/>
+                                <rect key="frame" x="406" y="252" width="92" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSR-Te-LIQ">
-                                <rect key="frame" x="406" y="200" width="38" height="21"/>
+                                <rect key="frame" x="406" y="328" width="38" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Division" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wV8-L0-gPF">
-                                <rect key="frame" x="406" y="279" width="60" height="21"/>
+                                <rect key="frame" x="406" y="407" width="60" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9qQ-sf-MmD" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="478" y="364" width="69" height="30"/>
+                                <rect key="frame" x="478" y="492" width="69" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add Team"/>
                                 <userDefinedRuntimeAttributes>
@@ -2568,56 +2523,56 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6NJ-wH-qzc">
-                                <rect key="frame" x="386" y="185" width="83" height="21"/>
+                                <rect key="frame" x="380" y="241" width="83" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ac2-Ou-M4W">
-                                <rect key="frame" x="387" y="230" width="82" height="21"/>
+                                <rect key="frame" x="381" y="286" width="82" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bA0-mh-PDA">
-                                <rect key="frame" x="390" y="318" width="77" height="21"/>
+                                <rect key="frame" x="384" y="374" width="77" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Position" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O0d-Lh-LuM">
-                                <rect key="frame" x="397" y="271" width="61" height="21"/>
+                                <rect key="frame" x="391" y="327" width="61" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GHc-UY-UmK">
-                                <rect key="frame" x="554" y="266" width="97" height="30"/>
+                                <rect key="frame" x="548" y="322" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I4J-a1-bcY">
-                                <rect key="frame" x="554" y="180" width="97" height="30"/>
+                                <rect key="frame" x="548" y="236" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n53-Ii-9X7">
-                                <rect key="frame" x="554" y="225" width="97" height="30"/>
+                                <rect key="frame" x="548" y="281" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMS-KP-9NY" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="495" y="447" width="34" height="30"/>
+                                <rect key="frame" x="489" y="503" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save"/>
                                 <userDefinedRuntimeAttributes>
@@ -2630,7 +2585,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YkN-hv-VMW">
-                                <rect key="frame" x="554" y="313" width="97" height="30"/>
+                                <rect key="frame" x="548" y="369" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

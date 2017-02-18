@@ -106,9 +106,10 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         return teams.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let team = teams[row]
-        return team.teamName
+        let attributedString = NSAttributedString(string: team.teamName, attributes: [NSForegroundColorAttributeName: UIColor.white])
+        return attributedString
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
