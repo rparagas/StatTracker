@@ -15,4 +15,5 @@ class Player {
     var playerNumber = ""
     var playerPosition = ""
     var playerTeam = ""
+    var playerGamesPlayed = 0
 }

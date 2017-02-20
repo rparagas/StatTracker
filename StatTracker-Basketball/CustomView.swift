@@ -9,6 +9,8 @@
 import UIKit
 
 class CustomView: UIView {
+    
+    var viewTitleBarSize = 0
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -22,8 +24,18 @@ class CustomView: UIView {
         createBar() //removed until positioning fixed
     }
     
+    @IBInspectable var ViewTitleBar : Int {
+        get {
+            return viewTitleBarSize
+        }
+        set {
+            viewTitleBarSize = newValue
+            createBar()
+        }
+    }
+    
     func createBar() {
-        let (barWidth, barHeight) = (self.frame.width, self.frame.height / 7)
+        let (barWidth, barHeight) = (self.frame.width, self.frame.height / CGFloat(viewTitleBarSize))
         let barSize = CGSize(width: barWidth, height: barHeight)
         let barView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: barSize)) // revisit y origin
         barView.backgroundColor = UIColor(colorLiteralRed: 50/255, green: 64/255, blue: 101/255, alpha: 1.0) // Navy

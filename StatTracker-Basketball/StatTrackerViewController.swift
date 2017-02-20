@@ -356,11 +356,8 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         
         FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child(selectedTeam.teamID).child(selectedGame.gameID).child("gameStatus").setValue("complete")
         
-        periodButton.setTitle("Successful", for: .normal)
-        
         let homeScore = calSelectedTeamScore()
         let opponentScore = opponent.madeOnePoints + (opponent.madeTwoPoints * 2) + (opponent.madeThreePoints * 3)
-        
         
         // CREATE ITS OWN FUNCTION LATER
         if opponentScore > homeScore {
@@ -370,7 +367,10 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         } else {
             FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child(selectedTeam.teamID).child(selectedGame.gameID).child("gameOutcome").setValue("tie")
         }
+        
+        periodButton.setTitle("Successful", for: .normal)
     }
+    
     
     /* *******************************************************************************************************************
      // VIEW CONTROLLER - CALCULATE STATISTICS FUNCTIONS

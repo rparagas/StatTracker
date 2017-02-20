@@ -13,6 +13,8 @@ import FirebaseDatabase
 
 class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var teamNameLabel: UILabel!
+    @IBOutlet weak var teamDetailsLabel: UILabel!
     @IBOutlet weak var playerOneLabel: UILabel!
     @IBOutlet weak var playerTwoLabel: UILabel!
     @IBOutlet weak var playerThreeLabel: UILabel!
@@ -25,15 +27,16 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var playerTenLabel: UILabel!
     @IBOutlet weak var playerElevenLabel: UILabel!
     @IBOutlet weak var playerTwelveLabel: UILabel!
-    @IBOutlet weak var playerThirteenLabel: UILabel!
-    @IBOutlet weak var playerFourteenLabel: UILabel!
     
     @IBOutlet weak var teamView: UIView!
+    
     @IBOutlet weak var teamsTableView: UITableView!
     @IBOutlet weak var editRosterButton: UIButton!
     @IBOutlet weak var editTeamButton: UIButton!
     @IBOutlet weak var addTeamButton: UIBarButtonItem!
     
+    var selectedTeamAggergateStats = [Stats]()
+    var selectedTeamAllStats = [Stats]()
     var selectedRoster = [Player]()
     var selectedTeam : Team? = nil
     var teams = [Team]()
@@ -43,23 +46,21 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var labelArray = [UILabel]()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         teamsTableView.dataSource = self
         teamsTableView.delegate = self
         
-        labelArray = [playerOneLabel, playerTwoLabel, playerThreeLabel, playerFourLabel, playerFiveLabel, playerSixLabel, playerSevenLabel, playerEightLabel, playerNineLabel, playerTenLabel, playerElevenLabel, playerTwelveLabel, playerThirteenLabel, playerFourteenLabel]
+        labelArray = [playerOneLabel, playerTwoLabel, playerThreeLabel, playerFourLabel, playerFiveLabel, playerSixLabel, playerSevenLabel, playerEightLabel, playerNineLabel, playerTenLabel, playerElevenLabel, playerTwelveLabel]
         hidePlayerLabels()
         editTeamButton.isHidden = true
         editRosterButton.isHidden = true
-        
         getTeams()
     }
     
     func hidePlayerLabels() {
-        for index in 0...13 {
+        for index in 0...11 {
             labelArray[index].isHidden = true
         }
     }
@@ -70,6 +71,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         for player in selectedRoster {
             labelArray[count].isHidden = false
             labelArray[count].text = "#\(player.playerNumber). \(player.playerFirstName) \(player.playerLastName)"
+            labelArray[count].sizeToFit()
             count = count + 1
         }
         editTeamButton.isHidden = false
@@ -81,11 +83,14 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let team = Team()
             team.teamID = snapshot.key
             team.teamName = (snapshot.value as! NSDictionary)["teamName"] as! String
+            team.teamSeason = (snapshot.value as! NSDictionary)["teamSeason"] as! String
+            team.teamType = (snapshot.value as! NSDictionary)["teamType"] as! String
+            team.teamDivision = (snapshot.value as! NSDictionary)["teamDivision"] as! String
+            team.teamYear = (snapshot.value as! NSDictionary)["teamYear"] as! String
             self.teams.append(team)
             self.teamsTableView.reloadData()
         })
     }
-    
     
     // update view as the data comes in
     func getPlayers() {
@@ -111,9 +116,10 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTeamTableViewCell", for: indexPath) as! CustomTeamTableViewCell
         let team = teams[indexPath.row]
-        cell.textLabel?.text = team.teamName
+        cell.setTeamName(team: team)
+        cell.setTeamDetails(team: team)
         return cell
     }
     
@@ -127,6 +133,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         getPlayers()
         updateDisplayedRoster()
         createTeamNameLabel()
+        //getTeamStats() // resolve later
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -181,22 +188,11 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func createTeamNameLabel() {
-        if let viewWithTag = teamView.viewWithTag(100) {
-            print("label exists, will delete")
-            viewWithTag.removeFromSuperview()
-        }
-        if let viewWithTag = teamView.viewWithTag(200) {
-            print("textfield exists, will delete")
-            viewWithTag.removeFromSuperview()
-        }
-        let teamNameLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-        teamNameLabel.center = CGPoint(x: 332, y: 36)
-        teamNameLabel.textAlignment = .center
         teamNameLabel.text = selectedTeam?.teamName
-        teamNameLabel.tag = 100
-        teamView.addSubview(teamNameLabel)
+        teamDetailsLabel.text = "\(selectedTeam!.teamType) | \(selectedTeam!.teamDivision) | \(selectedTeam!.teamSeason) '\(selectedTeam!.teamYear)"
     }
     
+    // remove
     func createTeamNameTextField() {
         if let viewWithTag = teamView.viewWithTag(100) {
             print("label exists, will delete")

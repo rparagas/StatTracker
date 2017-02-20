@@ -38,14 +38,18 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Do any additional setup after loading the view.
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Roster"
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return roster.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomRosterTableViewCell", for: indexPath) as! CustomRosterTableViewCell
         let player = roster[indexPath.row]
-        cell.textLabel?.text = "#\(player.playerNumber). \(player.playerFirstName) \(player.playerLastName)"
+        cell.setPlayerDetails(player: player)
         return cell
     }    
     

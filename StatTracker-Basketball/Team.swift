@@ -12,5 +12,8 @@ class Team {
     var teamID = ""
     var teamName = ""
     var teamType = ""
+    var teamDivision = ""
+    var teamSeason = ""
+    var teamYear = ""
     var teamRoster = [String]()
 }
