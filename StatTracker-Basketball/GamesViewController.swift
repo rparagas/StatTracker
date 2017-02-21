@@ -25,6 +25,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
      ******************************************************************************************************************* */
     @IBOutlet weak var beginBoxScoreButton: UIButton!
     @IBOutlet weak var newGameButton: UIBarButtonItem!
+    @IBOutlet weak var editGameButton: UIButton!
     
     /* *******************************************************************************************************************
      // VIEW CONTROLLER - LABEL OUTLETS
@@ -89,7 +90,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         getTeams()
         newGameButton.isEnabled = false
         gameSummaryView.isHidden = true
-        
+        editGameButton.isHidden = true
         
         // Do any additional setup after loading the view.
     }
@@ -146,6 +147,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         gameSummaryView.isHidden = false
+        editGameButton.isHidden = false
         selectedGame = selectedTeamGames[indexPath.row]
         displayGameInfo()
         selectedTeamGameStats = [Stats]()
@@ -327,9 +329,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func displayGameInfo() {
         selectedTeamNameLabel.text = selectedTeam?.teamName
-        //selectedTeamNameLabel.sizeToFit()
         opponentTeamNameLabel.text = selectedGame?.gameOppTeam
-        //opponentTeamNameLabel.sizeToFit()
         gameDateLabel.text = selectedGame?.gameDateTime
         gameDateLabel.sizeToFit()
         gamePeriodsLabel.text = selectedGame?.gameNumPeriods
@@ -521,6 +521,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         if segue.identifier == "newGameSegue" {
             let nextVC = segue.destination as! AddGameViewController
             nextVC.selectedTeam = sender as! Team
+            nextVC.editMode = false
         }
         if segue.identifier == "beginGameSegue" {
             let nextVC = segue.destination as! StatTrackerViewController
@@ -533,6 +534,12 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             nextVC.stats = selectedTeamGameStats
             nextVC.oppStats = selectedOpponentGameStats
             nextVC.roster = roster
+        }
+        if segue.identifier == "editGameSegue" {
+            let nextVC = segue.destination as! AddGameViewController
+            nextVC.editMode = true
+            nextVC.selectedTeam = selectedTeam!
+            nextVC.selectedGame = selectedGame!
         }
     }
     
@@ -548,6 +555,9 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
     }
     
+    @IBAction func editTapped(_ sender: Any) {
+        performSegue(withIdentifier: "editGameSegue", sender: selectedGame)
+    }
     
     
 }

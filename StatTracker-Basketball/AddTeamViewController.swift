@@ -20,6 +20,7 @@ class AddTeamViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var addUpdateButton: CustomButton!
     
     var editMode = false
+    var preFill = false
     var selectedTeam = Team()
     var seasonOptions = ["Summer", "Autumn", "Winter", "Spring"]
     var yearOptions = [String]()
@@ -82,13 +83,16 @@ class AddTeamViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             title = String(yearOptions[row])
         }
         
-        if pickerView == self.seasonPickerView && row == seasonOptions.count-1 {
-            seasonPickerView.selectRow(findChosenSeason(), inComponent: 1, animated: true)
+        if editMode == true && preFill == false {
+            preFill = true
+            if pickerView == self.seasonPickerView && row == seasonOptions.count-1 {
+                seasonPickerView.selectRow(findChosenSeason(), inComponent: 0, animated: true)
+            }
+            if pickerView == self.yearPickerView && row == yearOptions.count-1 {
+                yearPickerView.selectRow(findChosenYear(), inComponent: 0, animated: true)
+            }
         }
-        if pickerView == self.yearPickerView && row == yearOptions.count-1 {
-            yearPickerView.selectRow(findChosenYear(), inComponent: 1, animated: true)
-        }
-        
+    
         return title
     }
     

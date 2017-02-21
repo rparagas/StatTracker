@@ -774,7 +774,7 @@
                                 <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zOy-Gs-a0N" customClass="CustomTableView" customModule="StatTracker_Basketball" customModuleProvider="target">
-                                <rect key="frame" x="20" y="206" width="292" height="542"/>
+                                <rect key="frame" x="20" y="206" width="292" height="431"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.083038054410000006" green="0.12528568509999999" blue="0.2273392081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -830,6 +830,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kk5-fV-byY" customClass="CustomButton" customModule="StatTracker_Basketball" customModuleProvider="target">
+                                <rect key="frame" x="20" y="653" width="292" height="95"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.29484516379999998" green="0.34876978400000003" blue="0.49393248560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Edit Game"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ButtonType">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="editTapped:" destination="oFd-R4-6UJ" eventType="touchUpInside" id="QeN-7E-SzB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.083038054410000006" green="0.12528568509999999" blue="0.2273392081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -842,6 +856,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="beginBoxScoreButton" destination="u6e-X5-bd5" id="p04-oF-HyH"/>
+                        <outlet property="editGameButton" destination="kk5-fV-byY" id="SFj-PN-8LU"/>
                         <outlet property="gameDateLabel" destination="AtN-YS-0Gc" id="qe7-Fu-5ky"/>
                         <outlet property="gameFoulsLabel" destination="pHy-6s-fIv" id="Ziy-df-mRU"/>
                         <outlet property="gamePeriodLengthLabel" destination="Cdb-XQ-x9I" id="eZK-YJ-uTj"/>
@@ -877,6 +892,7 @@
                         <segue destination="2x1-h9-suX" kind="show" identifier="newGameSegue" id="CVS-2E-ZNk"/>
                         <segue destination="6b9-J8-EoR" kind="show" identifier="beginGameSegue" id="psP-oS-Wrx"/>
                         <segue destination="7KC-F9-hVI" kind="show" identifier="boxScoreSegue" id="rYq-f3-AH5"/>
+                        <segue destination="2x1-h9-suX" kind="show" identifier="editGameSegue" id="A1K-da-rbc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ewP-YS-O48" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2834,5 +2850,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="6em-KR-naK"/>
+        <segue reference="A1K-da-rbc"/>
     </inferredMetricsTieBreakers>
 </document>

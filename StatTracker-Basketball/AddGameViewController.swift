@@ -18,6 +18,10 @@ class AddGameViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var saveGameButton: UIButton!
     @IBOutlet weak var opponentNameTextField: UITextField!
     
+    var editMode = false
+    var preFill = false
+    var selectedGame = Game()
+    
     var selectedTeam = Team()
     var uuid = ""
     var periodOptions = [2,4]
@@ -39,9 +43,19 @@ class AddGameViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         foulPickerView.dataSource = self
         foulPickerView.delegate = self
         saveGameButton.isEnabled = false
+        
+        if editMode == true {
+            opponentNameTextField.text = selectedGame.gameOppTeam
+            selectedOpponent = selectedGame.gameOppTeam
+            selectedLength = selectedGame.gamePeriodLength
+            selectedPeriod = selectedGame.gameNumPeriods
+            selectedDate = selectedGame.gameDateTime
+            selectedFoul = selectedGame.gameNumFouls
+            
+            saveGameButton.setTitle("Update", for: .normal)
+        }
         // Do any additional setup after loading the view.
     }
-    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -72,9 +86,36 @@ class AddGameViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         if pickerView == self.foulPickerView {
             title = String(foulsOptions[row])
         }
+        
+        if editMode == true && preFill == false {
+            preFill = true
+            if pickerView == self.periodsPickerView && row == periodOptions.count-1 {
+                periodsPickerView.selectRow(findChosenPeriods(), inComponent: 0, animated: true)
+            }
+            if pickerView == self.lengthPickerView && row == lengthOptions.count-1 {
+                lengthPickerView.selectRow(findChosenLength(), inComponent: 0, animated: true)
+            }
+            if pickerView == self.foulPickerView && row == foulsOptions.count-1 {
+                foulPickerView.selectRow(findChosenFouls(), inComponent: 0, animated: true)
+            }
+        }
         return title
     }
     
+    func findChosenPeriods() -> Int {
+        let chosenPeriodIndex = periodOptions.index(of: Int(selectedGame.gameNumPeriods)!)
+        return chosenPeriodIndex!
+    }
+    
+    func findChosenLength() -> Int {
+        let chosenLengthIndex = lengthOptions.index(of: Int(selectedGame.gamePeriodLength)!)
+        return chosenLengthIndex!
+    }
+    
+    func findChosenFouls() -> Int {
+        let chosenFoulsIndex = foulsOptions.index(of: Int(selectedGame.gameNumFouls)!)
+        return chosenFoulsIndex!
+    }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.periodsPickerView {
@@ -99,17 +140,25 @@ class AddGameViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         self.selectedDate = strDate
     }
 
-    
     @IBAction func saveGameTapped(_ sender: Any) {
         uuid = NSUUID().uuidString
-        selectedOpponent = opponentNameTextField.text!
-        let game = ["gameOpponent": selectedOpponent, "gameDate": selectedDate, "gameNumPeriods": selectedPeriod, "gamePeriodLength": selectedLength, "gameFouls": selectedFoul, "gameStatus": "pending", "gameOutcome": "undecided"]
-        print(game)
-        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child(selectedTeam.teamID).child(uuid).setValue(game)
-        let gameResults = createStatsDictionary()
-        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("gameResults").child(selectedTeam.teamID).child(uuid).child("opponent").setValue(gameResults)
+        let game = ["gameDate": selectedDate,
+                    "gameFouls": selectedFoul,
+                    "gameNumPeriods": selectedPeriod,
+                    "gameOpponent": opponentNameTextField.text!,
+                    "gameOutcome": "undecided",
+                    "gamePeriodLength": selectedLength,
+                    "gameStatus": "pending"]
+
+        if editMode == true {
+            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child(selectedTeam.teamID).child(selectedGame.gameID).setValue(game)
+        } else {
+            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child(selectedTeam.teamID).child(uuid).setValue(game)
+            let gameResults = createStatsDictionary()
+            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("gameResults").child(selectedTeam.teamID).child(uuid).child("opponent").setValue(gameResults)
+        }
         
-        navigationController?.popViewController(animated: true)
+        let _ = navigationController?.popViewController(animated: true)
     }
     
     func createStatsDictionary() -> [String:Int] {
