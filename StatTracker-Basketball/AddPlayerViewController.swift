@@ -28,7 +28,7 @@ class AddPlayerViewController: UIViewController {
         let uuid = NSUUID().uuidString
         let player = ["playerFirstName": playerFirstNameLabel.text, "playerLastName": playerLastNameLabel.text, "playerNumber": playerNumberLabel.text, "playerPosition": playerPositionLabel.text]
         FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("players").child(selectedTeam.teamID).child(uuid).setValue(player)
-        navigationController?.popViewController(animated: true)
+        let _ = navigationController?.popViewController(animated: true)
     }
 
 }

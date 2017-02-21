@@ -29,11 +29,11 @@
 		A688F6171E5AA11D00A45AFA /* CustomTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688F6161E5AA11D00A45AFA /* CustomTeamTableViewCell.swift */; };
 		A688F61A1E5AF6D600A45AFA /* CustomLeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688F6191E5AF6D600A45AFA /* CustomLeaderCollectionViewCell.swift */; };
 		A688F61D1E5B36C500A45AFA /* CustomRosterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688F61C1E5B36C500A45AFA /* CustomRosterTableViewCell.swift */; };
+		A688F61F1E5C05D600A45AFA /* AddTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688F61E1E5C05D600A45AFA /* AddTeamViewController.swift */; };
 		A689B50C1E07CC5100EE1E75 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A689B50B1E07CC5100EE1E75 /* GoogleService-Info.plist */; };
 		A69C15391E4C012D0014D8A1 /* CustomStatBarLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69C15381E4C012D0014D8A1 /* CustomStatBarLabel.swift */; };
 		A6A8313A1E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A831391E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift */; };
 		A6AE59A51E4ACEA700B74A75 /* CustomStatBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AE59A41E4ACEA700B74A75 /* CustomStatBarView.swift */; };
-		A6BC03551E0124AF00CB843B /* AddTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BC03541E0124AF00CB843B /* AddTeamViewController.swift */; };
 		A6BC03571E01366F00CB843B /* RosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BC03561E01366F00CB843B /* RosterViewController.swift */; };
 		A6C9A4771E17707B00057381 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9A4761E17707B00057381 /* Team.swift */; };
 		A6C9A4791E1770D900057381 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9A4781E1770D900057381 /* Player.swift */; };
@@ -73,11 +73,11 @@
 		A688F6161E5AA11D00A45AFA /* CustomTeamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTeamTableViewCell.swift; sourceTree = "<group>"; };
 		A688F6191E5AF6D600A45AFA /* CustomLeaderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		A688F61C1E5B36C500A45AFA /* CustomRosterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRosterTableViewCell.swift; sourceTree = "<group>"; };
+		A688F61E1E5C05D600A45AFA /* AddTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTeamViewController.swift; sourceTree = "<group>"; };
 		A689B50B1E07CC5100EE1E75 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A69C15381E4C012D0014D8A1 /* CustomStatBarLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStatBarLabel.swift; sourceTree = "<group>"; };
 		A6A831391E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBoxScoreCollectionViewLayout.swift; sourceTree = "<group>"; };
 		A6AE59A41E4ACEA700B74A75 /* CustomStatBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStatBarView.swift; sourceTree = "<group>"; };
-		A6BC03541E0124AF00CB843B /* AddTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTeamViewController.swift; path = ../AddTeamViewController.swift; sourceTree = "<group>"; };
 		A6BC03561E01366F00CB843B /* RosterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RosterViewController.swift; path = ../RosterViewController.swift; sourceTree = "<group>"; };
 		A6C9A4761E17707B00057381 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		A6C9A4781E1770D900057381 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 				A688F6111E58513F00A45AFA /* LoginViewController.swift */,
 				A617C90A1E0035410077805E /* MainViewController.swift */,
 				A617C91D1E003C6E0077805E /* TeamViewController.swift */,
-				A6BC03541E0124AF00CB843B /* AddTeamViewController.swift */,
+				A688F61E1E5C05D600A45AFA /* AddTeamViewController.swift */,
 				A6BC03561E01366F00CB843B /* RosterViewController.swift */,
 				A67DA55D1E090FF500191A27 /* AddPlayerViewController.swift */,
 				A6C9A47C1E179C5700057381 /* GamesViewController.swift */,
@@ -378,7 +378,6 @@
 				A688F6121E58513F00A45AFA /* LoginViewController.swift in Sources */,
 				A6083B501E51575B00BFD102 /* CustomBoxScoreView.swift in Sources */,
 				A688F6151E5866FD00A45AFA /* CustomMaskView.swift in Sources */,
-				A6BC03551E0124AF00CB843B /* AddTeamViewController.swift in Sources */,
 				A69C15391E4C012D0014D8A1 /* CustomStatBarLabel.swift in Sources */,
 				A6A8313A1E3F054200A1DB60 /* CustomBoxScoreCollectionViewLayout.swift in Sources */,
 				A6E3E5211E442B9F0008565F /* CustomButton.swift in Sources */,
@@ -401,6 +400,7 @@
 				A6C9A47F1E17A97900057381 /* AddGameViewController.swift in Sources */,
 				A60CBB0C1E1E3194006100D2 /* StatTrackerViewController.swift in Sources */,
 				A68095341E49B24500B78061 /* CustomPlayerTableViewCell.swift in Sources */,
+				A688F61F1E5C05D600A45AFA /* AddTeamViewController.swift in Sources */,
 				A6083B521E5168B500BFD102 /* BoxScoreViewController.swift in Sources */,
 				A67DA55E1E090FF500191A27 /* AddPlayerViewController.swift in Sources */,
 				A6C9A4791E1770D900057381 /* Player.swift in Sources */,

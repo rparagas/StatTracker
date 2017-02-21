@@ -23,7 +23,6 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var roster = [Player]()
     var team : Team = Team()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         firstNameTextField.isHidden = true

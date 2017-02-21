@@ -35,12 +35,9 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var editTeamButton: UIButton!
     @IBOutlet weak var addTeamButton: UIBarButtonItem!
     
-    var selectedTeamAggergateStats = [Stats]()
-    var selectedTeamAllStats = [Stats]()
     var selectedRoster = [Player]()
     var selectedTeam : Team? = nil
     var teams = [Team]()
-    var editMode = false
     var selectedIndex = IndexPath()
     var teamTextField : UITextField = UITextField()
     
@@ -56,6 +53,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         hidePlayerLabels()
         editTeamButton.isHidden = true
         editRosterButton.isHidden = true
+        teamView.isHidden = true
         getTeams()
     }
     
@@ -76,6 +74,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         editTeamButton.isHidden = false
         editRosterButton.isHidden = false
+        teamView.isHidden = false
     }
  
     func getTeams() {
@@ -151,7 +150,15 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if segue.identifier == "editRosterSegue" {
             let nextVC = segue.destination as! RosterViewController
             nextVC.team = selectedTeam!
+        } else if segue.identifier == "editTeamSegue" {
+            let nextVC = segue.destination as! AddTeamViewController
+            nextVC.editMode = true
+            nextVC.selectedTeam = selectedTeam!
+        } else if segue.identifier == "addTeamSegue" {
+            let nextVC = segue.destination as! AddTeamViewController
+            nextVC.editMode = false
         }
+
     }
     
     @IBAction func addTapped(_ sender: Any) {
@@ -159,28 +166,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     @IBAction func editTeamTapped(_ sender: Any) {
-        if editMode == false {
-            editMode = true
-            editTeamButton.setTitle("Done", for: .normal)
-            editRosterButton.isHidden = true
-            addTeamButton.isEnabled = false
-            teamsTableView.allowsSelection = false
-            createTeamNameTextField()
-        } else {
-            editMode = false
-            if (teamView.viewWithTag(200) != nil) {
-                print(teamTextField.text!)
-                selectedTeam?.teamName = teamTextField.text!
-                teams[selectedIndex.row].teamName = teamTextField.text!
-                FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("teams").child(selectedTeam!.teamID).child("teamName").setValue(teamTextField.text)
-            }
-            editTeamButton.setTitle("Edit Team", for: .normal)
-            editRosterButton.isHidden = false
-            addTeamButton.isEnabled = true
-            teamsTableView.allowsSelection = true
-            teamsTableView.reloadData()
-            createTeamNameLabel()
-        }
+        performSegue(withIdentifier: "editTeamSegue", sender: selectedTeam)
     }
 
     @IBAction func editRosterTapped(_ sender: Any) {
