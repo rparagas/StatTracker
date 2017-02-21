@@ -145,6 +145,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         timeButton.setTitle("\(m) : 0\(s)", for: .normal)
         displayCurrentPeriod()
         
+        displayTeamScore()
         displayTeamFieldGoal()
         displayTeamThreePoint()
         displayTeamFreeThrow()
@@ -230,14 +231,7 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
      // VIEW CONTROLLER - PERFORM FUNCTIONS
      ******************************************************************************************************************* */
     
-    func nextPeriod() {
-        periodTimer.invalidate()
-        currentPeriodTimeInSeconds = Int(selectedGame.gamePeriodLength)! * 60
-        isTimeout = true
-        currentPeriod += 1
-        let (minutes, seconds) = calMinutesSeconds(seconds: currentPeriodTimeInSeconds)
-        displayTime(m: minutes, s: seconds)
-    }
+    // PLACEHOLDER FOR NEXTPERIOD()
     
     func enableStatTracking(indexPath: IndexPath) {
         selectedPlayer = selectedActiveRoster[indexPath.row]
@@ -503,6 +497,30 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         selectedPlayerStatsView.isHidden = true
     }
     
+    func nextPeriod() {
+        periodTimer.invalidate()
+        isTimeout = true
+        currentPeriod += 1
+        currentPeriodTimeInSeconds = Int(selectedGame.gamePeriodLength)! * 60
+        let (minutes, seconds) = calMinutesSeconds(seconds: currentPeriodTimeInSeconds)
+        displayTime(m: minutes, s: seconds)
+        displayCurrentPeriod()
+        timeButton.updateProgressBar(currentTime: currentPeriodTimeInSeconds, totalTime: Int(selectedGame.gamePeriodLength)!)
+        if currentPeriod > Int(selectedGame.gameNumPeriods)! {
+            //CODE FOR OT HERE
+            /* ask user if ot
+               establish global OT var
+               if yes {
+                ask how many minutes
+                increment OT var
+                change currentPeriodLabel.text = "OT /(OT var)"
+             } else { */
+            //END HERE
+            periodButton.setTitle("Upload", for: .normal)
+            currentPeriodLabel.text = "Game Complete"
+        }
+    }
+    
     func displayCurrentPeriod() {
         if selectedGame.gameNumPeriods == "4" {
             currentPeriodLabel.text = "Q\(currentPeriod)"
@@ -514,20 +532,14 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
     func displayPeriodTime() {
         currentPeriodTimeInSeconds -= 1
         addPlayingTime()
-    
+        
         self.timeButton.updateProgressBar(currentTime: self.currentPeriodTimeInSeconds, totalTime: Int(self.selectedGame.gamePeriodLength)! * 60)
         
         selectedTeamTableView.reloadData()
+        
         if currentPeriodTimeInSeconds == 0 {
-            timeButton.resetProgresBar(totalTime: Int(self.selectedGame.gamePeriodLength)! * 60)
+            timeButton.buttonIsDeselected()
             nextPeriod()
-            displayCurrentPeriod()
-        }
-        if currentPeriod > Int(selectedGame.gameNumPeriods)! {
-            periodButton.setTitle("Upload", for: .normal)
-            currentPeriodLabel.text = "Game Complete"
-        } else {
-            displayCurrentPeriod() // revisit need for this
         }
     }
     
@@ -536,6 +548,27 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
             timeButton.setTitle("\(m) : 0\(s)", for: .normal)
         } else {
             timeButton.setTitle("\(m) : \(s)", for: .normal)
+        }
+    }
+    
+    @IBAction func timerTapped(_ sender: Any) {
+        if isTimeout == true {
+            periodTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.displayPeriodTime), userInfo: nil, repeats: true)
+            timeButton.buttonIsSelected()
+            isTimeout = false
+        } else {
+            isTimeout = true
+            timeButton.buttonIsDeselected()
+            periodTimer.invalidate()
+        }
+    }
+    
+    @IBAction func nextPeriodTapped(_ sender: Any) {
+        if periodButton.titleLabel?.text == "Upload" {
+            uploadStats()
+        } else {
+            timeButton.buttonIsDeselected()
+            nextPeriod()
         }
     }
     
@@ -859,25 +892,9 @@ class StatTrackerViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    @IBAction func timerTapped(_ sender: Any) {
-        if isTimeout == true {
-            periodTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.displayPeriodTime), userInfo: nil, repeats: true)
-            timeButton.buttonIsSelected()
-            isTimeout = false
-        } else {
-            periodTimer.invalidate()
-            timeButton.buttonIsDeselected()
-            isTimeout = true
-        }
-    }
-    
-    @IBAction func nextPeriodTapped(_ sender: Any) {
-        if periodButton.titleLabel?.text == "Upload" {
-            uploadStats()
-        } else {
-            nextPeriod()
-        }
-    }
+    //PLACEholder for timerTapped()
+
+    // placeholder for nexttapped()
     
     @IBAction func madeOneTapped(_ sender: Any) {
         if opponentSelected() {

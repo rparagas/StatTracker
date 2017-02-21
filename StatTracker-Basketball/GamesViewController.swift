@@ -87,11 +87,13 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         teamsPickerView.dataSource = self
         gamesTableView.delegate = self
         gamesTableView.dataSource = self
-        getTeams()
         newGameButton.isEnabled = false
         gameSummaryView.isHidden = true
         editGameButton.isHidden = true
         
+        getTeams()
+        selectedTeamGames.removeAll()
+        gamesTableView.reloadData()
         // Do any additional setup after loading the view.
     }
     
@@ -161,6 +163,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
      ******************************************************************************************************************* */
     
     func getTeams() {
+        teams.removeAll()
         FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("teams").observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let team = Team()
             team.teamID = snapshot.key
@@ -171,6 +174,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func getGames() {
+        selectedTeamGames.removeAll()
         FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child((selectedTeam?.teamID)!).observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let game = Game()
             
@@ -189,6 +193,8 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func getGameSummary() {
+        selectedTeamGameStats.removeAll()
+        selectedOpponentGameStats = Stats()
         FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("gameResults").child((selectedTeam?.teamID)!).child((selectedGame?.gameID)!).observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let stats = Stats()
             
@@ -520,8 +526,9 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newGameSegue" {
             let nextVC = segue.destination as! AddGameViewController
-            nextVC.selectedTeam = sender as! Team
+            nextVC.selectedTeam = selectedTeam!
             nextVC.editMode = false
+            nextVC.previousVC = self
         }
         if segue.identifier == "beginGameSegue" {
             let nextVC = segue.destination as! StatTrackerViewController
@@ -540,11 +547,12 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             nextVC.editMode = true
             nextVC.selectedTeam = selectedTeam!
             nextVC.selectedGame = selectedGame!
+            nextVC.previousVC = self
         }
     }
     
     @IBAction func newGameTapped(_ sender: Any) {
-        performSegue(withIdentifier: "newGameSegue", sender: selectedTeam)
+        performSegue(withIdentifier: "newGameSegue", sender: nil)
     }
     
     @IBAction func beginGameTapped(_ sender: Any) {

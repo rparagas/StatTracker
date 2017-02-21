@@ -21,6 +21,7 @@ class AddTeamViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     var editMode = false
     var preFill = false
+    var previousVC = TeamViewController()
     var selectedTeam = Team()
     var seasonOptions = ["Summer", "Autumn", "Winter", "Spring"]
     var yearOptions = [String]()
@@ -122,6 +123,7 @@ class AddTeamViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         } else {
             FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("teams").child(uuid).setValue(team)
         }
+        previousVC.viewDidLoad()
         let _ = navigationController?.popViewController(animated: true)
     }
 }

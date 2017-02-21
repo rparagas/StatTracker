@@ -78,6 +78,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
  
     func getTeams() {
+        teams.removeAll()
         FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("teams").observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let team = Team()
             team.teamID = snapshot.key
@@ -132,6 +133,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         getPlayers()
         updateDisplayedRoster()
         createTeamNameLabel()
+        print("\(selectedTeam?.teamDivision)")
         //getTeamStats() // resolve later
     }
     
@@ -154,6 +156,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let nextVC = segue.destination as! AddTeamViewController
             nextVC.editMode = true
             nextVC.selectedTeam = selectedTeam!
+            nextVC.previousVC = self
         } else if segue.identifier == "addTeamSegue" {
             let nextVC = segue.destination as! AddTeamViewController
             nextVC.editMode = false

@@ -20,6 +20,7 @@ class AddGameViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     var editMode = false
     var preFill = false
+    var previousVC = GamesViewController()
     var selectedGame = Game()
     
     var selectedTeam = Team()
@@ -153,11 +154,12 @@ class AddGameViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         if editMode == true {
             FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child(selectedTeam.teamID).child(selectedGame.gameID).setValue(game)
         } else {
-            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child(selectedTeam.teamID).child(uuid).setValue(game)
             let gameResults = createStatsDictionary()
+            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child(selectedTeam.teamID).child(uuid).setValue(game)
             FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("gameResults").child(selectedTeam.teamID).child(uuid).child("opponent").setValue(gameResults)
         }
         
+        previousVC.viewDidLoad()
         let _ = navigationController?.popViewController(animated: true)
     }
     
