@@ -158,6 +158,15 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         getPlayers()
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child((selectedTeam?.teamID)!).child(selectedTeamGames[indexPath.row].gameID).removeValue()
+            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("gameResults").child((selectedTeam?.teamID)!).child(selectedTeamGames[indexPath.row].gameID).removeValue()
+            selectedTeamGames.remove(at: indexPath.row)
+            gamesTableView.reloadData()
+        }
+    }
+    
     /* *******************************************************************************************************************
      // FIREBASE - DATABASE QUERY
      ******************************************************************************************************************* */
