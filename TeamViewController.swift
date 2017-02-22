@@ -53,8 +53,19 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         hidePlayerLabels()
         hideTeamView()
         getTeams()
+        createGestureRecognizer()
     }
 
+    func createGestureRecognizer() {
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeTableViewEditing))
+        gestureRecognizer.numberOfTapsRequired = 1
+        self.view.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    func closeTableViewEditing() {
+        teamsTableView.setEditing(false, animated: true)
+    }
+    
     func hidePlayerLabels() {
         for index in 0...11 {
             labelArray[index].isHidden = true
@@ -186,6 +197,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func cancelDelete(alertAction: UIAlertAction!) -> Void {
         deleteCellIndexPath = nil
+        closeTableViewEditing()
     }
     
 
