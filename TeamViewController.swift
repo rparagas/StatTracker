@@ -40,6 +40,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var teams = [Team]()
     var selectedIndex = IndexPath()
     var teamTextField : UITextField = UITextField()
+    var deleteCellIndexPath: IndexPath? = nil
     
     var labelArray = [UILabel]()
     
@@ -53,7 +54,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         hideTeamView()
         getTeams()
     }
-    
+
     func hidePlayerLabels() {
         for index in 0...11 {
             labelArray[index].isHidden = true
@@ -139,20 +140,55 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         getPlayers()
         updateDisplayedRoster()
         createTeamNameLabel()
-        print("\(selectedTeam?.teamDivision)")
         //getTeamStats() // resolve later
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            deleteCellIndexPath = indexPath
+            let teamToDelete = teams[indexPath.row].teamName
+            confirmDelete(team: teamToDelete)
+            
+        }
+    }
+    
+    func confirmDelete(team: String) {
+        let alertController = UIAlertController(title: "Deleting a Team.", message: "Are you sure you want to delete \(team)?", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: handleDelete)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelDelete)
+        
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+        // Support display in iPad
+        alertController.popoverPresentationController?.sourceView = self.view
+        let rectOfCellInTableView = teamsTableView.rectForRow(at: deleteCellIndexPath!)
+        let rectOfCellInSuperview = teamsTableView.convert(rectOfCellInTableView, to: teamsTableView.superview)
+        let x = rectOfCellInSuperview.origin.x + (teamsTableView.cellForRow(at: deleteCellIndexPath!)?.contentView.bounds.width)!
+        let y = rectOfCellInSuperview.origin.y + ((teamsTableView.cellForRow(at: deleteCellIndexPath!)?.contentView.bounds.height)! / 2.0)
+        alertController.popoverPresentationController?.sourceRect = CGRect(x: x, y: y, width: 1.0, height: 1.0)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func handleDelete(alertAction: UIAlertAction!) -> Void {
+        if let indexPath = deleteCellIndexPath {
+            teamsTableView.beginUpdates()
             FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("teams").child(teams[indexPath.row].teamID).removeValue()
             FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("players").child(teams[indexPath.row].teamID).removeValue()
             FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child(teams[indexPath.row].teamID).removeValue()
             FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("gameResults").child(teams[indexPath.row].teamID).removeValue()
             teams.remove(at: indexPath.row)
-            teamsTableView.reloadData()
+            teamsTableView.deleteRows(at: [indexPath], with: .automatic)
+            deleteCellIndexPath = nil
+            teamsTableView.endUpdates()
         }
     }
+    
+    func cancelDelete(alertAction: UIAlertAction!) -> Void {
+        deleteCellIndexPath = nil
+    }
+    
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editRosterSegue" {
