@@ -120,10 +120,15 @@ class AddTeamViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         let team = ["teamName":teamNameTextField.text!, "teamType":teamTypeTextField.text!, "teamDivision": teamDivisionTextField.text!, "teamYear": selectedYear, "teamSeason":selectedSeason]
         if editMode == true {
             FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("teams").child(selectedTeam.teamID).setValue(team)
+            previousVC.viewDidLoad()
         } else {
             FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("teams").child(uuid).setValue(team)
         }
-        previousVC.viewDidLoad()
-        let _ = navigationController?.popViewController(animated: true)
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func cancelTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

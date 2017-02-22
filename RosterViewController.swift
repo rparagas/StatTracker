@@ -12,26 +12,27 @@ import Firebase
 
 class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
-    @IBOutlet weak var numberTextField: UITextField!
-    @IBOutlet weak var positionTextField: UITextField!
+
+    @IBOutlet weak var playerInfoView: CustomView!
+    @IBOutlet weak var playerFirstNameLabel: UILabel!
+    @IBOutlet weak var playerLastNameLabel: UILabel!
+    @IBOutlet weak var playerNumberLabel: UILabel!
+    @IBOutlet weak var playerPositionLabel: UILabel!
     @IBOutlet weak var rosterTableView: UITableView!
     @IBOutlet weak var updateButton: UIButton!
     
     var selectedPlayer : Player = Player()
+    var selectedPlayerIndex = IndexPath()
     var roster = [Player]()
     var team : Team = Team()
+    var previousVC = TeamViewController()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        firstNameTextField.isHidden = true
-        lastNameTextField.isHidden = true
-        numberTextField.isHidden = true
-        positionTextField.isHidden = true
-        updateButton.isHidden = true
         rosterTableView.dataSource = self
         rosterTableView.delegate = self
+        hidePlayerDetails()
         getPlayers()
         
         // Do any additional setup after loading the view.
@@ -54,26 +55,38 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedPlayer = roster[indexPath.row]
-        firstNameTextField.isHidden = false
-        firstNameTextField.text = selectedPlayer.playerFirstName
-        lastNameTextField.isHidden = false
-        lastNameTextField.text = selectedPlayer.playerLastName
-        numberTextField.isHidden = false
-        numberTextField.text = selectedPlayer.playerNumber
-        positionTextField.isHidden = false
-        positionTextField.text = selectedPlayer.playerPosition
+        displayPlayerDetails()
+        selectedPlayerIndex = indexPath
         updateButton.isHidden = false
+    }
+    
+    func displayPlayerDetails() {
+        playerInfoView.isHidden = false
+        playerFirstNameLabel.text = selectedPlayer.playerFirstName
+        playerLastNameLabel.text = selectedPlayer.playerLastName
+        playerNumberLabel.text = "# \(selectedPlayer.playerNumber)"
+        playerPositionLabel.text = selectedPlayer.playerPosition
+        updateButton.isHidden = false
+    }
+    
+    func hidePlayerDetails() {
+        playerInfoView.isHidden = true
+        updateButton.isHidden = true
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            FIRDatabase.database().reference().child("players").child(team.teamID).child(roster[indexPath.row].playerID).removeValue()
+            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("players").child(team.teamID).child(roster[indexPath.row].playerID).removeValue()
             roster.remove(at: indexPath.row)
             rosterTableView.reloadData()
+            previousVC.selectedRoster = roster
+            previousVC.hidePlayerLabels()
+            previousVC.updateDisplayedRoster()
         }
     }
 
     func getPlayers() {
+        previousVC.hidePlayerLabels()
         FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("players").child(team.teamID).observe(FIRDataEventType.childAdded, with: {(snapshot) in
             let player = Player()
             player.playerID = snapshot.key
@@ -84,21 +97,30 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             player.playerTeam = self.team.teamID
             self.roster.append(player)
             self.rosterTableView.reloadData()
+            self.previousVC.selectedRoster = self.roster
+            self.previousVC.updateDisplayedRoster()
         })
     }
     
-    @IBAction func updateTapped(_ sender: Any) {
-     let player = ["playerFirstName": firstNameTextField.text, "playerLastName": lastNameTextField.text, "playerNumber": numberTextField.text, "playerPosition": positionTextField.text]
-     FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("players").child(team.teamID).child(selectedPlayer.playerID).setValue(player)
-        rosterTableView.reloadData()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nextVC = segue.destination as! AddPlayerViewController
-        nextVC.selectedTeam = team
+        if segue.identifier == "addPlayerSegue" {
+            let nextVC = segue.destination as! AddPlayerViewController
+            nextVC.selectedTeam = team
+            nextVC.previousVC = self
+        } else if segue.identifier == "editPlayerSegue" {
+            let nextVC = segue.destination as! AddPlayerViewController
+            nextVC.selectedTeam = team
+            nextVC.selectedPlayer = selectedPlayer
+            nextVC.selectedPlayerIndex = selectedPlayerIndex
+            nextVC.editMode = true
+            nextVC.previousVC = self
+        }
     }
 
     @IBAction func addPlayerTapped(_ sender: Any) {
-        performSegue(withIdentifier: "addPlayerSegue", sender: team)
+        performSegue(withIdentifier: "addPlayerSegue", sender: nil)
+    }
+    @IBAction func editPlayerTapped(_ sender: Any) {
+        performSegue(withIdentifier: "editPlayerSegue", sender: nil)
     }
 }

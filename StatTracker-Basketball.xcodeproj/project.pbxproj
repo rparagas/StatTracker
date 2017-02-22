@@ -24,6 +24,7 @@
 		A68095301E49A45700B78061 /* CustomGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A680952F1E49A45700B78061 /* CustomGameTableViewCell.swift */; };
 		A68095341E49B24500B78061 /* CustomPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68095331E49B24500B78061 /* CustomPlayerTableViewCell.swift */; };
 		A684E5381E4D56E60018AD84 /* CustomProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A684E5371E4D56E60018AD84 /* CustomProgressButton.swift */; };
+		A6872A7C1E5D40EE004094D4 /* profilemen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A6872A7B1E5D40EE004094D4 /* profilemen.jpg */; };
 		A688F6121E58513F00A45AFA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688F6111E58513F00A45AFA /* LoginViewController.swift */; };
 		A688F6151E5866FD00A45AFA /* CustomMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688F6141E5866FD00A45AFA /* CustomMaskView.swift */; };
 		A688F6171E5AA11D00A45AFA /* CustomTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688F6161E5AA11D00A45AFA /* CustomTeamTableViewCell.swift */; };
@@ -68,6 +69,7 @@
 		A680952F1E49A45700B78061 /* CustomGameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGameTableViewCell.swift; sourceTree = "<group>"; };
 		A68095331E49B24500B78061 /* CustomPlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPlayerTableViewCell.swift; sourceTree = "<group>"; };
 		A684E5371E4D56E60018AD84 /* CustomProgressButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomProgressButton.swift; sourceTree = "<group>"; };
+		A6872A7B1E5D40EE004094D4 /* profilemen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profilemen.jpg; sourceTree = "<group>"; };
 		A688F6111E58513F00A45AFA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A688F6141E5866FD00A45AFA /* CustomMaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMaskView.swift; sourceTree = "<group>"; };
 		A688F6161E5AA11D00A45AFA /* CustomTeamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTeamTableViewCell.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 		A617C9071E0035410077805E /* StatTracker-Basketball */ = {
 			isa = PBXGroup;
 			children = (
+				A6872A7D1E5D40F4004094D4 /* Images */,
 				A66EB0771E3ED0EC00358A60 /* View */,
 				A67DA5291E090D4500191A27 /* Model */,
 				A67DA5121E090A5800191A27 /* Controller */,
@@ -204,6 +207,14 @@
 				A688F61C1E5B36C500A45AFA /* CustomRosterTableViewCell.swift */,
 			);
 			name = "Tableview View";
+			sourceTree = "<group>";
+		};
+		A6872A7D1E5D40F4004094D4 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				A6872A7B1E5D40EE004094D4 /* profilemen.jpg */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		A688F6131E5866E500A45AFA /* PickerView */ = {
@@ -317,6 +328,7 @@
 				A617C9161E0035410077805E /* LaunchScreen.storyboard in Resources */,
 				A617C9131E0035410077805E /* Assets.xcassets in Resources */,
 				A617C90E1E0035410077805E /* Main.storyboard in Resources */,
+				A6872A7C1E5D40EE004094D4 /* profilemen.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -45,15 +45,12 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         teamsTableView.dataSource = self
         teamsTableView.delegate = self
-        
+        hideButtons()
         labelArray = [playerOneLabel, playerTwoLabel, playerThreeLabel, playerFourLabel, playerFiveLabel, playerSixLabel, playerSevenLabel, playerEightLabel, playerNineLabel, playerTenLabel, playerElevenLabel, playerTwelveLabel]
         hidePlayerLabels()
-        editTeamButton.isHidden = true
-        editRosterButton.isHidden = true
-        teamView.isHidden = true
+        hideTeamView()
         getTeams()
     }
     
@@ -61,6 +58,15 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         for index in 0...11 {
             labelArray[index].isHidden = true
         }
+    }
+    
+    func hideTeamView() {
+        teamView.isHidden = true
+    }
+    
+    func hideButtons() {
+        editTeamButton.isHidden = true
+        editRosterButton.isHidden = true
     }
     
     func updateDisplayedRoster() {
@@ -152,6 +158,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if segue.identifier == "editRosterSegue" {
             let nextVC = segue.destination as! RosterViewController
             nextVC.team = selectedTeam!
+            nextVC.previousVC = self
         } else if segue.identifier == "editTeamSegue" {
             let nextVC = segue.destination as! AddTeamViewController
             nextVC.editMode = true
@@ -179,21 +186,5 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func createTeamNameLabel() {
         teamNameLabel.text = selectedTeam?.teamName
         teamDetailsLabel.text = "\(selectedTeam!.teamType) | \(selectedTeam!.teamDivision) | \(selectedTeam!.teamSeason) '\(selectedTeam!.teamYear)"
-    }
-    
-    // remove
-    func createTeamNameTextField() {
-        if let viewWithTag = teamView.viewWithTag(100) {
-            print("label exists, will delete")
-            viewWithTag.removeFromSuperview()
-        }
-        let teamNameTextField = UITextField(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
-        teamNameTextField.center = CGPoint(x: 332, y: 36)
-        teamNameTextField.textAlignment = .center
-        teamNameTextField.borderStyle = .roundedRect
-        teamNameTextField.text = selectedTeam?.teamName
-        teamNameTextField.tag = 200
-        teamTextField = teamNameTextField
-        teamView.addSubview(teamNameTextField)
     }
 }
