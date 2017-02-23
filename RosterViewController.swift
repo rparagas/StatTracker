@@ -26,7 +26,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var roster = [Player]()
     var team : Team = Team()
     var previousVC = TeamViewController()
-
+    var deleteCellIndexPath: IndexPath? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,6 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         rosterTableView.delegate = self
         hidePlayerDetails()
         getPlayers()
-        
         // Do any additional setup after loading the view.
     }
     
@@ -76,14 +75,53 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("players").child(team.teamID).child(roster[indexPath.row].playerID).removeValue()
+            deleteCellIndexPath = indexPath
+            let playerToDelete = "\(roster[indexPath.row].playerFirstName) \(roster[indexPath.row].playerLastName)"
+            confirmDelete(player: playerToDelete)
+        }
+    }
+    
+    func confirmDelete(player: String) {
+        let alertController = UIAlertController(title: "Deleting a Player.", message: "Are you sure you want to delete \(player)?", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: handleDelete)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelDelete)
+        
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+        // Support display in iPad
+        alertController.popoverPresentationController?.sourceView = self.view
+        let rectOfCellInTableView = rosterTableView.rectForRow(at: deleteCellIndexPath!)
+        let rectOfCellInSuperview = rosterTableView.convert(rectOfCellInTableView, to: rosterTableView.superview)
+        let x = rectOfCellInSuperview.origin.x + (rosterTableView.cellForRow(at: deleteCellIndexPath!)?.contentView.bounds.width)!
+        let y = rectOfCellInSuperview.origin.y + ((rosterTableView.cellForRow(at: deleteCellIndexPath!)?.contentView.bounds.height)! / 2.0)
+        alertController.popoverPresentationController?.sourceRect = CGRect(x: x, y: y, width: 1.0, height: 1.0)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func handleDelete(alertAction: UIAlertAction!) -> Void {
+        if let indexPath = deleteCellIndexPath {
+            rosterTableView.beginUpdates()
+        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("players").child(team.teamID).child(roster[indexPath.row].playerID).removeValue()
             roster.remove(at: indexPath.row)
-            rosterTableView.reloadData()
+            rosterTableView.deleteRows(at: [indexPath], with: .automatic)
+            deleteCellIndexPath = nil
+            rosterTableView.endUpdates()
             previousVC.selectedRoster = roster
             previousVC.hidePlayerLabels()
             previousVC.updateDisplayedRoster()
         }
     }
+    
+    func cancelDelete(alertAction: UIAlertAction!) -> Void {
+        deleteCellIndexPath = nil
+        closeTableViewEditing()
+    }
+    
+    func closeTableViewEditing() {
+        rosterTableView.setEditing(false, animated: true)
+    }
+    
 
     func getPlayers() {
         previousVC.hidePlayerLabels()

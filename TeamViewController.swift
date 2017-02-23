@@ -53,19 +53,9 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         hidePlayerLabels()
         hideTeamView()
         getTeams()
-        createGestureRecognizer()
+        
     }
 
-    func createGestureRecognizer() {
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeTableViewEditing))
-        gestureRecognizer.numberOfTapsRequired = 1
-        self.view.addGestureRecognizer(gestureRecognizer)
-    }
-    
-    func closeTableViewEditing() {
-        teamsTableView.setEditing(false, animated: true)
-    }
-    
     func hidePlayerLabels() {
         for index in 0...11 {
             labelArray[index].isHidden = true
@@ -153,13 +143,17 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         createTeamNameLabel()
         //getTeamStats() // resolve later
     }
+
+    func closeTableViewEditing() {
+        teamsTableView.setEditing(false, animated: true)
+    }
+    
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             deleteCellIndexPath = indexPath
             let teamToDelete = teams[indexPath.row].teamName
             confirmDelete(team: teamToDelete)
-            
         }
     }
     
@@ -200,8 +194,6 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         closeTableViewEditing()
     }
     
-
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editRosterSegue" {
             let nextVC = segue.destination as! RosterViewController
@@ -236,3 +228,14 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
         teamDetailsLabel.text = "\(selectedTeam!.teamType) | \(selectedTeam!.teamDivision) | \(selectedTeam!.teamSeason) '\(selectedTeam!.teamYear)"
     }
 }
+
+/*
+ func createGestureRecognizer() -> UITapGestureRecognizer {
+ let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeTableViewEditing))
+ gestureRecognizer.numberOfTapsRequired = 1
+ return gestureRecognizer
+ }
+ let gestureRecogniser = createGestureRecognizer()
+ self.view.addGestureRecognizer(gestureRecogniser)
+ self.view.removeGestureRecognizer(gestureRecogniser)
+ */

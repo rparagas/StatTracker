@@ -76,6 +76,7 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     var selectedTeamGameStats = [Stats]()
     var selectedOpponentGameStats = Stats()
     var roster = [Player]()
+    var deleteCellIndexPath: IndexPath? = nil
     
     /* *******************************************************************************************************************
      // VIEW CONTROLLER - BOILERPLATE
@@ -160,12 +161,51 @@ class GamesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child((selectedTeam?.teamID)!).child(selectedTeamGames[indexPath.row].gameID).removeValue()
-            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("gameResults").child((selectedTeam?.teamID)!).child(selectedTeamGames[indexPath.row].gameID).removeValue()
-            selectedTeamGames.remove(at: indexPath.row)
-            gamesTableView.reloadData()
+            deleteCellIndexPath = indexPath
+            let gameToDelete = selectedTeamGames[(deleteCellIndexPath?.row)!].gameOppTeam
+            confirmDelete(opponent: gameToDelete)
         }
     }
+    
+    func confirmDelete(opponent: String) {
+        let alertController = UIAlertController(title: "Deleting a Game.", message: "Are you sure you want to delete a game against \(opponent)?", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: handleDelete)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelDelete)
+        
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+        // Support display in iPad
+        alertController.popoverPresentationController?.sourceView = self.view
+        let rectOfCellInTableView = gamesTableView.rectForRow(at: deleteCellIndexPath!)
+        let rectOfCellInSuperview = gamesTableView.convert(rectOfCellInTableView, to: gamesTableView.superview)
+        let x = rectOfCellInSuperview.origin.x + (gamesTableView.cellForRow(at: deleteCellIndexPath!)?.contentView.bounds.width)!
+        let y = rectOfCellInSuperview.origin.y + ((gamesTableView.cellForRow(at: deleteCellIndexPath!)?.contentView.bounds.height)! / 2.0)
+        alertController.popoverPresentationController?.sourceRect = CGRect(x: x, y: y, width: 1.0, height: 1.0)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func handleDelete(alertAction: UIAlertAction!) -> Void {
+        if let indexPath = deleteCellIndexPath {
+            gamesTableView.beginUpdates()
+        FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("games").child((selectedTeam?.teamID)!).child(selectedTeamGames[indexPath.row].gameID).removeValue()
+            FIRDatabase.database().reference().child(FIRAuth.auth()!.currentUser!.uid).child("gameResults").child((selectedTeam?.teamID)!).child(selectedTeamGames[indexPath.row].gameID).removeValue()
+            selectedTeamGames.remove(at: indexPath.row)
+            gamesTableView.deleteRows(at: [indexPath], with: .automatic)
+            deleteCellIndexPath = nil
+            gamesTableView.endUpdates()
+        }
+    }
+    
+    func cancelDelete(alertAction: UIAlertAction!) -> Void {
+        deleteCellIndexPath = nil
+        closeTableViewEditing()
+    }
+    
+    func closeTableViewEditing() {
+        gamesTableView.setEditing(false, animated: true)
+    }
+    
     
     /* *******************************************************************************************************************
      // FIREBASE - DATABASE QUERY
